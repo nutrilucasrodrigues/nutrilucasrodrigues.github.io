@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#005102">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Meu plano">
+<title>Meu plano · Moisés</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="../../assets/icon-192.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<style>
+:root{--dark:#005102;--leaf:#8AC243;--bg:#F4F8EF;--soft:#E3EFD3;--ink:#1E2B22;--muted:#5B6B5F;--line:#DCE6D2;--card:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);padding-bottom:90px;-webkit-tap-highlight-color:transparent}
+header{background:var(--dark);color:#fff;padding:calc(18px + env(safe-area-inset-top)) 16px 22px;border-radius:0 0 26px 26px}
+header .row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+header img{height:40px;background:#fff;border-radius:10px;padding:4px 8px}
+header h1{font-size:24px;margin-top:16px}
+header p{opacity:.9;font-size:14px;margin-top:4px}
+.prog{margin-top:14px;background:rgba(255,255,255,.18);border-radius:99px;height:10px;overflow:hidden}
+.prog i{display:block;height:100%;width:0;background:var(--leaf);transition:width .3s}
+.progt{font-size:13px;margin-top:6px;opacity:.9}
+main{max-width:640px;margin:0 auto;padding:16px}
+.tab{display:none}.tab.on{display:block}
+h2{color:var(--dark);font-size:19px;margin:18px 2px 10px}
+.meal{background:var(--card);border-radius:18px;padding:14px;margin-bottom:12px;border:1px solid var(--line)}
+.mh{display:flex;align-items:center;gap:12px}
+.mh .t{font-weight:800;color:var(--dark);font-size:17px;min-width:52px}
+.mh .n{flex:1}.mh .n b{display:block;font-size:16px}.mh .n small{color:var(--muted);font-size:13px}
+.chk{width:34px;height:34px;border-radius:50%;border:2px solid var(--leaf);background:#fff;display:grid;place-items:center;font-size:18px;color:#fff;flex:none;cursor:pointer}
+.chk.ok{background:var(--leaf);border-color:var(--leaf)}
+.meal ul{list-style:none;margin:10px 0 8px}
+.meal li{padding:6px 0 6px 18px;position:relative;font-size:15px;border-bottom:1px dashed var(--line)}
+.meal li:last-child{border:0}
+.meal li:before{content:"";position:absolute;left:2px;top:13px;width:7px;height:7px;border-radius:50%;background:var(--leaf)}
+.swap{background:var(--soft);border-radius:12px;padding:9px 11px;font-size:13.5px;color:#23401c}
+.swap b{color:var(--dark)}
+.meal.done{opacity:.6}
+.water{background:var(--card);border-radius:18px;padding:14px;border:1px solid var(--line)}
+.cups{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:10px}
+.cup{aspect-ratio:3/4;border:2px solid #b9d7f0;border-radius:6px 6px 12px 12px;background:#fff;cursor:pointer;position:relative;overflow:hidden}
+.cup.ok{background:linear-gradient(to top,#6cb6ea 85%,#fff 85%)}
+.water p{font-size:13px;color:var(--muted);margin-top:8px}
+.grp{background:var(--card);border-radius:18px;padding:14px;margin-bottom:12px;border:1px solid var(--line)}
+.grp h3{color:var(--dark);font-size:16px}.grp .por{font-size:12.5px;color:var(--muted);margin:2px 0 8px}
+.grp table{width:100%;border-collapse:collapse;font-size:14px}
+.grp td{padding:7px 0;border-bottom:1px dashed var(--line);vertical-align:top}
+.grp td.m{text-align:right;color:var(--dark);font-weight:600;padding-left:10px}
+.grp tr:last-child td{border:0}
+.buy{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:8px;cursor:pointer}
+.buy .bx{width:24px;height:24px;border-radius:7px;border:2px solid var(--leaf);flex:none;display:grid;place-items:center;color:#fff;font-size:15px}
+.buy.ok .bx{background:var(--leaf)}.buy.ok .it{text-decoration:line-through;color:var(--muted)}
+.buy .it{flex:1;font-size:15px}.buy .q{font-size:13px;color:var(--muted);text-align:right}
+.tip{background:var(--card);border-radius:18px;padding:14px;margin-bottom:12px;border:1px solid var(--line)}
+.tip h3{color:var(--dark);font-size:16px;margin-bottom:6px}
+.tip li{font-size:14.5px;margin:6px 0 6px 18px;line-height:1.4}
+.note{font-size:12.5px;color:var(--muted);text-align:center;margin:18px 8px}
+.wa{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--dark);color:#fff;text-decoration:none;font-weight:700;border-radius:999px;padding:14px;margin:16px 0}
+nav{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);padding:6px 4px calc(6px + env(safe-area-inset-bottom))}
+nav button{background:none;border:0;font:inherit;font-size:11.5px;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 0;cursor:pointer}
+nav button span{font-size:21px}
+nav button.on{color:var(--dark);font-weight:700}
+.hint{background:#fff7e6;border:1px solid #f1d39b;border-radius:14px;padding:10px 12px;font-size:13px;margin-bottom:12px;display:none}
+</style>
+</head>
+<body>
+<header>
+  <div class="row"><img src="../../assets/logo.png" alt="Logo Lucas Rodrigues"><span style="font-size:13px;opacity:.9" id="hoje"></span></div>
+  <h1>Oi, Moisés! 💚</h1>
+  <p>Seu plano do dia, do jeito da sua rotina.</p>
+  <div class="prog"><i id="bar"></i></div>
+  <div class="progt" id="progt"></div>
+</header>
+
+<main>
+  <div class="hint" id="hint">📲 Dica: toque em <b>Compartilhar → Adicionar à Tela de Início</b> (iPhone) ou <b>⋮ → Adicionar à tela inicial</b> (Android) para abrir como app.</div>
+
+  <section class="tab on" id="t-plano">
+    <h2>Refeições de hoje</h2>
+    <div id="meals"></div>
+    <h2>Água 💧</h2>
+    <div class="water"><b>Meta: cerca de 3 litros</b> · cada copo = 250 ml
+      <div class="cups" id="cups"></div><p>Toque em cada copo que beber. Tudo zera sozinho no dia seguinte.</p></div>
+  </section>
+
+  <section class="tab" id="t-trocas">
+    <h2>Troque dentro do mesmo grupo</h2>
+    <p style="font-size:14px;color:var(--muted);margin:0 2px 12px">Cada linha vale 1 porção. Troque um alimento por outro do mesmo grupo, na medida indicada.</p>
+    <div id="groups"></div>
+  </section>
+
+  <section class="tab" id="t-compras">
+    <h2>Lista de compras do mês</h2>
+    <p style="font-size:14px;color:var(--muted);margin:0 2px 12px">Toque para marcar o que já comprou. Estimativa: R$ 500 a 550 no mês.</p>
+    <div id="buys"></div>
+    <button onclick="clearBuys()" style="margin-top:8px;background:none;border:1px solid var(--line);border-radius:999px;padding:10px 16px;font:inherit;font-size:13px;color:var(--muted)">Desmarcar tudo</button>
+  </section>
+
+  <section class="tab" id="t-dicas">
+    <h2>Para o seu dia a dia</h2>
+    <div id="tips"></div>
+  </section>
+
+  <a class="wa" href="https://wa.me/5561992308296?text=Oi%20Lucas%2C%20tenho%20uma%20d%C3%BAvida%20sobre%20meu%20plano">💬 Falar com o Lucas no WhatsApp</a>
+  <p class="note">Nutricionista Lucas Rodrigues · CRN-1 15.957<br>Plano individual: não use para outras pessoas. Os resultados variam de pessoa para pessoa.<br>Atualizado em 07/11/2026</p>
+</main>
+
+<nav>
+  <button class="on" data-t="plano"><span>🍽️</span>Plano</button>
+  <button data-t="trocas"><span>🔄</span>Trocas</button>
+  <button data-t="compras"><span>🛒</span>Compras</button>
+  <button data-t="dicas"><span>💡</span>Dicas</button>
+</nav>
+
+<script>
+const MEALS=[
+ ["08:00","Café da manhã","antes de sair, mesmo sem muita fome",["1 pão francês","2 ovos mexidos ou cozidos","Café com 2 colheres de sopa de leite em pó, sem açúcar"],"Pão ↔ 2 fatias de pão de forma ↔ 1 tapioca pequena · 2 ovos ↔ 3 colheres de sopa de frango desfiado"],
+ ["12:00","Almoço","no refeitório",["Metade do prato com salada e legumes","5 colheres de sopa de arroz","1 concha média de feijão","1 filé grande de frango grelhado","Evite frituras e molhos gordurosos"],"Frango ↔ carne magra ↔ peixe ↔ 2 ovos · Arroz ↔ macarrão ou mandioca (veja Trocas)"],
+ ["15:30","Lanche da tarde","no trabalho, iogurte na geladeira",["1 pote de iogurte natural","2 colheres de sopa de aveia","1 banana","1 colher de sopa rasa de amendoim"],"Iogurte ↔ 1 copo de leite · Banana ↔ qualquer fruta"],
+ ["18:30","Lanche ao chegar","segura a fome até o jantar",["1 pão francês","3 colheres de sopa de frango desfiado","3 fatias de tomate","1 laranja"],"Pão com frango ↔ pão com 2 ovos ↔ pão com sardinha"],
+ ["21:00","Jantar","a comida de casa, na medida do plano",["Salada de repolho à vontade","3 colheres de sopa de arroz","½ concha cheia de feijão","1 bife médio de patinho grelhado","3 colheres de sopa de abobrinha"],"Patinho ↔ frango ↔ peixe ↔ 2 ovos"],
+ ["23:00","Ceia (opcional)","se der fome antes de dormir",["1 fatia média de mamão"],"Mamão ↔ 1 fruta ↔ 1 iogurte natural"]
+];
+const GROUPS=[
+ ["Pães, arroz e outros","1 porção ≈ 150 kcal",[["Pão francês","1 unidade"],["Arroz branco cozido","4½ colheres de sopa"],["Arroz integral cozido","5 colheres de sopa"],["Macarrão cozido","4 colheres de sopa"],["Mandioca cozida","2 pedaços médios"],["Batata-doce cozida","1 unidade grande"],["Batata inglesa cozida","2 unidades médias"],["Pão de forma integral","2½ fatias"],["Cuscuz de milho","4 colheres de sopa"],["Tapioca (goma)","3 colheres de sopa"],["Aveia em flocos","4 colheres de sopa"]]],
+ ["Carnes e ovos","1 porção ≈ 25 a 30 g de proteína",[["Frango (peito) grelhado ou cozido","1 filé médio"],["Frango desfiado","4 colheres de sopa"],["Coxa ou sobrecoxa sem pele","1 unidade grande"],["Carne magra (patinho, acém, coxão mole)","1 bife médio"],["Carne moída refogada","4 colheres de sopa"],["Fígado bovino grelhado","1 bife médio"],["Sardinha em lata escorrida","1 lata"],["Peixe (tilápia, merluza) assado","1 filé grande"],["Atum em lata escorrido","1 lata"],["Ovos cozidos ou mexidos","3 unidades"]]],
+ ["Feijões","1 porção = 1 concha média",[["Feijão carioca, preto ou de corda","1 concha média"],["Lentilha cozida","1 concha média"],["Grão-de-bico cozido","4 colheres de sopa"],["Ervilha seca cozida","1 concha média"]]],
+ ["Frutas","1 porção ≈ 70 kcal",[["Banana (prata ou nanica)","1 média"],["Laranja ou tangerina","1 média"],["Maçã","1 média"],["Mamão formosa","1 fatia média"],["Manga","1 pequena"],["Melancia","1 fatia média"],["Abacaxi","1 fatia média"],["Goiaba","1 média"],["Uva","1 cacho pequeno"]]],
+ ["Legumes e verduras","folhas à vontade",[["Alface, rúcula, couve crua, repolho","à vontade"],["Tomate e pepino","à vontade"],["Abobrinha ou chuchu","3 colheres de sopa"],["Quiabo ou vagem","3 colheres de sopa"],["Cenoura ou beterraba","2 colheres de sopa"],["Abóbora","2 colheres de sopa"]]],
+ ["Leite e derivados","1 porção",[["Leite em pó","2 colheres de sopa"],["Leite líquido","meio copo (100 ml)"],["Iogurte natural","1 pote"],["Queijo minas frescal","1 fatia fina"]]]
+];
+const BUYS=[["Ovos","2 bandejas de 30"],["Pão francês","60 unidades"],["Frango (peito ou filé)","2,5 kg"],["Carne magra (patinho ou acém)","3 kg"],["Iogurte natural","22 potes"],["Leite em pó","400 g"],["Aveia em flocos","500 g"],["Amendoim sem sal","250 g"],["Arroz","2 kg"],["Feijão","2 kg"],["Frutas (banana, laranja, mamão)","cerca de 60 unidades"],["Legumes e verduras","toda semana"],["Óleo","1 garrafa"],["Café em pó","250 g"]];
+const TIPS=[
+ ["🥤 Refrigerante e bebidas",["No dia a dia: água, água com limão ou refrigerante zero.","Suco de caixinha conta como refrigerante.","Bebida alcoólica só em ocasiões, intercalando com água."]],
+ ["🍽️ No refeitório",["Comece pela salada: metade do prato.","Arroz e feijão na medida do plano.","Prefira grelhado, assado ou cozido. Fritura no máximo 1 vez por semana.","Sobremesa doce? Troque por fruta."]],
+ ["🚶 Movimento",["Caminhe 30 a 40 minutos por dia: desça um ponto antes do ônibus.","A cada hora sentado, levante e ande 2 minutos."]],
+ ["😴 Sono e ronco",["Ronco alto pode ser apneia do sono: converse com um médico.","Café (a bebida) só até as 17h.","Celular longe da cama."]],
+ ["🧊 Comida segura",["Iogurte e comida pronta: no máximo 2 horas fora da geladeira.","Geladeira até 3 dias, freezer até 30 dias.","Esquente bem, até sair vapor do meio."]],
+ ["📅 Fim de semana",["Mantenha os horários parecidos.","Em festa, coma antes de sair.","Aproveite para caminhar mais."]]
+];
+const KEY="plano-moises-";
+const _d=new Date();const today=_d.getFullYear()+"-"+(_d.getMonth()+1)+"-"+_d.getDate();
+function load(k,d){try{const v=localStorage.getItem(KEY+k);return v?JSON.parse(v):d}catch(e){return d}}
+function save(k,v){try{localStorage.setItem(KEY+k,JSON.stringify(v))}catch(e){}}
+let day=load("dia",{d:today,m:[],w:0}); if(day.d!==today) day={d:today,m:[],w:0};
+let buys=load("compras",[]);
+const esc=s=>s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+function render(){
+  document.getElementById("meals").innerHTML=MEALS.map((m,i)=>`<div class="meal ${day.m.includes(i)?"done":""}"><div class="mh"><div class="t">${m[0]}</div><div class="n"><b>${esc(m[1])}</b><small>${esc(m[2])}</small></div><button class="chk ${day.m.includes(i)?"ok":""}" aria-label="Marcar ${esc(m[1])}" onclick="tgM(${i})">✓</button></div><ul>${m[3].map(x=>`<li>${esc(x)}</li>`).join("")}</ul><div class="swap"><b>Pode trocar:</b> ${esc(m[4])}</div></div>`).join("");
+  document.getElementById("cups").innerHTML=Array.from({length:12},(_,i)=>`<div class="cup ${i<day.w?"ok":""}" onclick="tgW(${i})" aria-label="Copo ${i+1}"></div>`).join("");
+  const tot=MEALS.length-1, done=day.m.filter(i=>i<tot).length;
+  document.getElementById("bar").style.width=Math.round(((done/tot)*0.7+(Math.min(day.w,12)/12)*0.3)*100)+"%";
+  document.getElementById("progt").textContent=`${done} de ${tot} refeições · ${(day.w*0.25).toFixed(day.w%4?2:0).replace(".",",")} L de água`;
+  document.getElementById("buys").innerHTML=BUYS.map((b,i)=>`<div class="buy ${buys.includes(i)?"ok":""}" onclick="tgB(${i})"><div class="bx">✓</div><div class="it">${esc(b[0])}</div><div class="q">${esc(b[1])}</div></div>`).join("");
+}
+function tgM(i){day.m=day.m.includes(i)?day.m.filter(x=>x!==i):[...day.m,i];save("dia",day);render()}
+function tgW(i){day.w=(i+1===day.w)?i:i+1;save("dia",day);render()}
+function tgB(i){buys=buys.includes(i)?buys.filter(x=>x!==i):[...buys,i];save("compras",buys);render()}
+function clearBuys(){buys=[];save("compras",buys);render()}
+document.getElementById("groups").innerHTML=GROUPS.map(g=>`<div class="grp"><h3>${esc(g[0])}</h3><div class="por">${esc(g[1])}</div><table>${g[2].map(r=>`<tr><td>${esc(r[0])}</td><td class="m">${esc(r[1])}</td></tr>`).join("")}</table></div>`).join("");
+document.getElementById("tips").innerHTML=TIPS.map(t=>`<div class="tip"><h3>${esc(t[0])}</h3><ul>${t[1].map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`).join("");
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("on",x===b));document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("on",t.id==="t-"+b.dataset.t));window.scrollTo(0,0)});
+document.getElementById("hoje").textContent=new Date().toLocaleDateString("pt-BR",{weekday:"long",day:"numeric",month:"short"});
+if(!(window.matchMedia&&matchMedia("(display-mode: standalone)").matches)&&!navigator.standalone) document.getElementById("hint").style.display="block";
+render();
+</script>
+</body>
+</html>
