@@ -59,10 +59,30 @@ h2{color:var(--dark);font-size:19px;margin:18px 2px 10px}
 .tip li{font-size:14.5px;margin:6px 0 6px 18px;line-height:1.4}
 .note{font-size:12.5px;color:var(--muted);text-align:center;margin:18px 8px}
 .wa{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--dark);color:#fff;text-decoration:none;font-weight:700;border-radius:999px;padding:14px;margin:16px 0}
-nav{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);padding:6px 4px calc(6px + env(safe-area-inset-bottom))}
+nav{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);padding:6px 4px calc(6px + env(safe-area-inset-bottom))}
 nav button{background:none;border:0;font:inherit;font-size:11.5px;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 0;cursor:pointer}
 nav button span{font-size:21px}
 nav button.on{color:var(--dark);font-weight:700}
+.appt{background:var(--card);border:2px solid var(--leaf);border-radius:18px;padding:14px;margin-bottom:12px;display:flex;gap:12px;align-items:center}
+.appt .ic{font-size:30px}.appt .tx{flex:1}.appt b{display:block;color:var(--dark);font-size:16px}.appt small{color:var(--muted);font-size:13px}
+.appt .cd{background:var(--dark);color:#fff;border-radius:12px;padding:8px 10px;text-align:center;font-weight:800;font-size:20px;line-height:1}.appt .cd span{display:block;font-size:10px;font-weight:600;margin-top:3px}
+.btn{display:inline-flex;align-items:center;gap:6px;background:var(--soft);color:var(--dark);border:0;border-radius:999px;padding:10px 14px;font:inherit;font-size:13.5px;font-weight:700;text-decoration:none;cursor:pointer;margin-top:8px}
+.soda{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px;margin-top:12px;cursor:pointer}
+.soda .chk{pointer-events:none}
+.ev{background:var(--card);border-radius:18px;padding:14px;margin-bottom:12px;border:1px solid var(--line)}
+.ev h3{color:var(--dark);font-size:16px;margin-bottom:8px}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.form label{font-size:12.5px;color:var(--muted);display:flex;flex-direction:column;gap:4px}
+.form input{font:inherit;font-size:16px;padding:10px;border:1px solid var(--line);border-radius:10px;background:#fff;width:100%}
+.form .full{grid-column:1/3}
+.save{background:var(--dark);color:#fff;border:0;border-radius:999px;padding:12px;font:inherit;font-weight:700;width:100%;margin-top:10px;cursor:pointer}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.kpi{background:var(--dark);color:#fff;border-radius:14px;padding:10px;text-align:center}
+.kpi b{display:block;font-size:20px;color:var(--leaf)}.kpi span{font-size:11.5px;opacity:.9}
+.hist{width:100%;border-collapse:collapse;font-size:14px}
+.hist td{padding:8px 0;border-bottom:1px dashed var(--line)}.hist td.r{text-align:right}
+.hist button{background:none;border:0;color:#b33;font-size:15px;cursor:pointer}
+.small{font-size:12.5px;color:var(--muted);margin-top:8px;line-height:1.4}
 .hint{background:#fff7e6;border:1px solid #f1d39b;border-radius:14px;padding:10px 12px;font-size:13px;margin-bottom:12px;display:none}
 </style>
 </head>
@@ -76,6 +96,7 @@ nav button.on{color:var(--dark);font-weight:700}
 </header>
 
 <main>
+  <div id="appt"></div>
   <div class="hint" id="hint">📲 Dica: toque em <b>Compartilhar → Adicionar à Tela de Início</b> (iPhone) ou <b>⋮ → Adicionar à tela inicial</b> (Android) para abrir como app.</div>
 
   <section class="tab on" id="t-plano">
@@ -84,6 +105,7 @@ nav button.on{color:var(--dark);font-weight:700}
     <h2>Água 💧</h2>
     <div class="water"><b>Meta: cerca de 3 litros</b> · cada copo = 250 ml
       <div class="cups" id="cups"></div><p>Toque em cada copo que beber. Tudo zera sozinho no dia seguinte.</p></div>
+    <div class="soda" onclick="tgR()"><div class="chk" id="sodachk">✓</div><div><b>Hoje fiquei sem refrigerante 🥤🚫</b><br><small style="color:var(--muted)">Marque no fim do dia. Vale para suco de caixinha também.</small></div></div>
   </section>
 
   <section class="tab" id="t-trocas">
@@ -99,19 +121,38 @@ nav button.on{color:var(--dark);font-weight:700}
     <button onclick="clearBuys()" style="margin-top:8px;background:none;border:1px solid var(--line);border-radius:999px;padding:10px 16px;font:inherit;font-size:13px;color:var(--muted)">Desmarcar tudo</button>
   </section>
 
+  <section class="tab" id="t-evolucao">
+    <h2>Minha evolução</h2>
+    <div class="kpis" id="kpis"></div>
+    <div class="ev"><h3>📈 Peso</h3><div id="chart"></div>
+      <table class="hist" id="hist"></table></div>
+    <div class="ev"><h3>⚖️ Registrar</h3>
+      <div class="form">
+        <label>Data<input type="date" id="fd"></label>
+        <label>Peso (kg)<input type="number" inputmode="decimal" step="0.1" min="30" max="300" id="fp" placeholder="ex.: 98,5"></label>
+        <label class="full">Cintura (cm), opcional<input type="number" inputmode="decimal" step="0.5" min="40" max="200" id="fc" placeholder="fita na altura do umbigo"></label>
+      </div>
+      <button class="save" onclick="addW()">Salvar registro</button>
+      <p class="small">Pese <b>1 vez por semana</b>, no mesmo dia, de manhã, em jejum e depois de ir ao banheiro. O peso oscila de um dia para o outro: olhe a tendência. Os resultados variam de pessoa para pessoa.</p>
+    </div>
+    <a class="wa" id="sendev" href="#">📤 Enviar minha evolução para o Lucas</a>
+    <p class="small" style="text-align:center">🔒 Seus registros ficam salvos só neste celular. Se trocar de aparelho ou limpar o navegador, eles somem.</p>
+  </section>
+
   <section class="tab" id="t-dicas">
     <h2>Para o seu dia a dia</h2>
     <div id="tips"></div>
   </section>
 
   <a class="wa" href="https://wa.me/5561992308296?text=Oi%20Lucas%2C%20tenho%20uma%20d%C3%BAvida%20sobre%20meu%20plano">💬 Falar com o Lucas no WhatsApp</a>
-  <p class="note">Nutricionista Lucas Rodrigues · CRN-1 15.957<br>Plano individual: não use para outras pessoas. Os resultados variam de pessoa para pessoa.<br>Atualizado em 07/11/2026</p>
+  <p class="note">Nutricionista Lucas Rodrigues · CRN-1 15.957<br>Plano individual: não use para outras pessoas. Os resultados variam de pessoa para pessoa.<br>Atualizado em 08/11/2026</p>
 </main>
 
 <nav>
   <button class="on" data-t="plano"><span>🍽️</span>Plano</button>
   <button data-t="trocas"><span>🔄</span>Trocas</button>
   <button data-t="compras"><span>🛒</span>Compras</button>
+  <button data-t="evolucao"><span>📈</span>Evolução</button>
   <button data-t="dicas"><span>💡</span>Dicas</button>
 </nav>
 
@@ -141,23 +182,93 @@ const TIPS=[
  ["🧊 Comida segura",["Iogurte e comida pronta: no máximo 2 horas fora da geladeira.","Geladeira até 3 dias, freezer até 30 dias.","Esquente bem, até sair vapor do meio."]],
  ["📅 Fim de semana",["Mantenha os horários parecidos.","Em festa, coma antes de sair.","Aproveite para caminhar mais."]]
 ];
+// Próxima consulta: data (AAAA-MM-DD), hora ("HH:MM" ou null) e modo ("presencial", "on-line" ou null)
+const RETORNO={data:"2026-12-07",hora:null,modo:null};
+const NOME="Moisés";
 const KEY="plano-moises-";
-const _d=new Date();const today=_d.getFullYear()+"-"+(_d.getMonth()+1)+"-"+_d.getDate();
+const ymd=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+const today=ymd(new Date());
 function load(k,d){try{const v=localStorage.getItem(KEY+k);return v?JSON.parse(v):d}catch(e){return d}}
 function save(k,v){try{localStorage.setItem(KEY+k,JSON.stringify(v))}catch(e){}}
-let day=load("dia",{d:today,m:[],w:0}); if(day.d!==today) day={d:today,m:[],w:0};
+let hist=load("historico",{});
+const old=load("dia",null); if(old&&old.d&&!hist[old.d]) {hist[old.d]={m:old.m||[],w:old.w||0,r:false};}
+if(!hist[today]) hist[today]={m:[],w:0,r:false};
+let day=hist[today];
+// guarda só os últimos 120 dias
+Object.keys(hist).sort().slice(0,-120).forEach(k=>delete hist[k]);
+function saveDay(){hist[today]=day;save("historico",hist)}
+let pesos=load("pesos",[]);
 let buys=load("compras",[]);
-const esc=s=>s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const br=(n,d=1)=>n.toFixed(d).replace(".",",");
+const fmtD=k=>{const [y,m,d]=k.split("-");return d+"/"+m};
 function render(){
   document.getElementById("meals").innerHTML=MEALS.map((m,i)=>`<div class="meal ${day.m.includes(i)?"done":""}"><div class="mh"><div class="t">${m[0]}</div><div class="n"><b>${esc(m[1])}</b><small>${esc(m[2])}</small></div><button class="chk ${day.m.includes(i)?"ok":""}" aria-label="Marcar ${esc(m[1])}" onclick="tgM(${i})">✓</button></div><ul>${m[3].map(x=>`<li>${esc(x)}</li>`).join("")}</ul><div class="swap"><b>Pode trocar:</b> ${esc(m[4])}</div></div>`).join("");
   document.getElementById("cups").innerHTML=Array.from({length:12},(_,i)=>`<div class="cup ${i<day.w?"ok":""}" onclick="tgW(${i})" aria-label="Copo ${i+1}"></div>`).join("");
+  document.getElementById("sodachk").classList.toggle("ok",!!day.r);
   const tot=MEALS.length-1, done=day.m.filter(i=>i<tot).length;
   document.getElementById("bar").style.width=Math.round(((done/tot)*0.7+(Math.min(day.w,12)/12)*0.3)*100)+"%";
-  document.getElementById("progt").textContent=`${done} de ${tot} refeições · ${(day.w*0.25).toFixed(day.w%4?2:0).replace(".",",")} L de água`;
+  document.getElementById("progt").textContent=`${done} de ${tot} refeições · ${br(day.w*0.25,day.w%4?2:0)} L de água`;
   document.getElementById("buys").innerHTML=BUYS.map((b,i)=>`<div class="buy ${buys.includes(i)?"ok":""}" onclick="tgB(${i})"><div class="bx">✓</div><div class="it">${esc(b[0])}</div><div class="q">${esc(b[1])}</div></div>`).join("");
+  renderEv();
 }
-function tgM(i){day.m=day.m.includes(i)?day.m.filter(x=>x!==i):[...day.m,i];save("dia",day);render()}
-function tgW(i){day.w=(i+1===day.w)?i:i+1;save("dia",day);render()}
+function stats(){
+  let streak=0; const d=new Date();
+  if(!hist[ymd(d)]||!hist[ymd(d)].r) d.setDate(d.getDate()-1);
+  while(hist[ymd(d)]&&hist[ymd(d)].r){streak++; d.setDate(d.getDate()-1)}
+  let s=0; const x=new Date(); for(let i=0;i<7;i++){const k=ymd(x); s+=(hist[k]?hist[k].w:0); x.setDate(x.getDate()-1)}
+  return {streak, agua:s*0.25/7};
+}
+function renderEv(){
+  const st=stats(); const ps=[...pesos].sort((a,b)=>a.d.localeCompare(b.d));
+  let dif="—"; if(ps.length>1){const v=ps[ps.length-1].p-ps[0].p; dif=(v>0?"+":"")+br(v)+" kg"}
+  document.getElementById("kpis").innerHTML=`<div class="kpi"><b>${dif}</b><span>desde o 1º registro</span></div><div class="kpi"><b>${st.streak}</b><span>dia(s) seguidos sem refri</span></div><div class="kpi"><b>${br(st.agua)} L</b><span>média de água (7 dias)</span></div>`;
+  const ch=document.getElementById("chart");
+  if(ps.length<2){ch.innerHTML=`<p class="small">${ps.length?"Registre de novo na próxima semana para ver o gráfico.":"Faça seu primeiro registro abaixo."}</p>`}
+  else{
+    const W=320,H=150,P=28; const vs=ps.map(x=>x.p); let lo=Math.min(...vs)-1, hi=Math.max(...vs)+1;
+    const X=i=>P+(W-P-10)*(ps.length===1?0:i/(ps.length-1)), Y=v=>10+(H-30)*(1-(v-lo)/(hi-lo));
+    const pts=ps.map((x,i)=>`${X(i)},${Y(x.p)}`).join(" ");
+    ch.innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Gráfico do peso">
+      <line x1="${P}" y1="${H-20}" x2="${W-10}" y2="${H-20}" stroke="#DCE6D2"/>
+      <text x="2" y="${Y(hi-1)+4}" font-size="10" fill="#5B6B5F">${br(hi-1)}</text><text x="2" y="${Y(lo+1)+4}" font-size="10" fill="#5B6B5F">${br(lo+1)}</text>
+      <polyline points="${pts}" fill="none" stroke="#005102" stroke-width="2.5" stroke-linejoin="round"/>
+      ${ps.map((x,i)=>`<circle cx="${X(i)}" cy="${Y(x.p)}" r="4" fill="#8AC243" stroke="#005102" stroke-width="1.5"/>`).join("")}
+      <text x="${X(0)}" y="${H-5}" font-size="10" fill="#5B6B5F">${fmtD(ps[0].d)}</text><text x="${X(ps.length-1)}" y="${H-5}" font-size="10" fill="#5B6B5F" text-anchor="end">${fmtD(ps[ps.length-1].d)}</text></svg>`;
+  }
+  document.getElementById("hist").innerHTML=[...ps].reverse().map(x=>`<tr><td>${fmtD(x.d)}</td><td>${br(x.p)} kg</td><td>${x.c?br(x.c,1)+" cm":""}</td><td class="r"><button onclick="delW('${x.d}')" aria-label="Apagar">✕</button></td></tr>`).join("");
+  let t=`Oi Lucas! Minha evolução (${NOME}):\n`;
+  ps.forEach(x=>t+=`• ${fmtD(x.d)}: ${br(x.p)} kg${x.c?` · cintura ${br(x.c)} cm`:""}\n`);
+  t+=`Dias seguidos sem refri: ${st.streak}\nMédia de água (7 dias): ${br(st.agua)} L`;
+  document.getElementById("sendev").href="https://wa.me/5561992308296?text="+encodeURIComponent(t);
+}
+function addW(){
+  const d=document.getElementById("fd").value||today, p=parseFloat(String(document.getElementById("fp").value).replace(",",".")), c=parseFloat(String(document.getElementById("fc").value).replace(",","."));
+  if(!(p>=30&&p<=300)){alertBox("Digite um peso válido, em kg.");return}
+  pesos=pesos.filter(x=>x.d!==d); pesos.push({d,p,c:(c>=40&&c<=200)?c:null}); save("pesos",pesos);
+  document.getElementById("fp").value="";document.getElementById("fc").value=""; render();
+}
+function delW(d){pesos=pesos.filter(x=>x.d!==d);save("pesos",pesos);render()}
+function alertBox(m){const e=document.getElementById("fp");e.style.borderColor="#b33";e.placeholder=m;setTimeout(()=>e.style.borderColor="",2500)}
+function tgR(){day.r=!day.r;saveDay();render()}
+function renderAppt(){
+  if(!RETORNO||!RETORNO.data) return;
+  const [y,m,d]=RETORNO.data.split("-").map(Number); const dt=new Date(y,m-1,d);
+  const t0=new Date(); t0.setHours(0,0,0,0); const dias=Math.round((dt-t0)/864e5);
+  if(dias<0) return;
+  const quando=dt.toLocaleDateString("pt-BR",{weekday:"long",day:"numeric",month:"long"});
+  const det=(RETORNO.hora?`às ${RETORNO.hora.replace(":","h")}`:"horário a confirmar")+(RETORNO.modo?` · ${RETORNO.modo}`:"");
+  let cal="";
+  if(RETORNO.hora){
+    const [hh,mm]=RETORNO.hora.split(":").map(Number); const p=n=>String(n).padStart(2,"0");
+    const st=`${y}${p(m)}${p(d)}T${p(hh)}${p(mm)}00`, en=`${y}${p(m)}${p(d)}T${p(hh+1)}${p(mm)}00`;
+    const ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//nutrilucas//plano//PT","BEGIN:VEVENT",`UID:retorno-${st}@nutrilucas`,`DTSTAMP:${st}`,`DTSTART;TZID=America/Sao_Paulo:${st}`,`DTEND;TZID=America/Sao_Paulo:${en}`,"SUMMARY:Retorno com o nutricionista Lucas Rodrigues",`DESCRIPTION:${RETORNO.modo||"Consulta"} · dúvidas: (61) 99230-8296`,"BEGIN:VALARM","TRIGGER:-P1D","ACTION:DISPLAY","DESCRIPTION:Amanhã é seu retorno","END:VALARM","END:VEVENT","END:VCALENDAR"].join("\r\n");
+    cal=`<a class="btn" download="retorno.ics" href="data:text/calendar;charset=utf-8,${encodeURIComponent(ics)}">📅 Salvar na agenda</a> <a class="btn" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent("Retorno com o nutricionista Lucas Rodrigues")}&dates=${st}/${en}&ctz=America/Sao_Paulo">Google Agenda</a>`;
+  }
+  document.getElementById("appt").innerHTML=`<div class="appt"><div class="ic">📅</div><div class="tx"><b>Seu retorno</b><small>${quando} · ${det}</small><br>${cal}</div><div class="cd">${dias}<span>${dias===1?"dia":"dias"}</span></div></div>`;
+}
+function tgM(i){day.m=day.m.includes(i)?day.m.filter(x=>x!==i):[...day.m,i];saveDay();render()}
+function tgW(i){day.w=(i+1===day.w)?i:i+1;saveDay();render()}
 function tgB(i){buys=buys.includes(i)?buys.filter(x=>x!==i):[...buys,i];save("compras",buys);render()}
 function clearBuys(){buys=[];save("compras",buys);render()}
 document.getElementById("groups").innerHTML=GROUPS.map(g=>`<div class="grp"><h3>${esc(g[0])}</h3><div class="por">${esc(g[1])}</div><table>${g[2].map(r=>`<tr><td>${esc(r[0])}</td><td class="m">${esc(r[1])}</td></tr>`).join("")}</table></div>`).join("");
@@ -165,6 +276,8 @@ document.getElementById("tips").innerHTML=TIPS.map(t=>`<div class="tip"><h3>${es
 document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("on",x===b));document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("on",t.id==="t-"+b.dataset.t));window.scrollTo(0,0)});
 document.getElementById("hoje").textContent=new Date().toLocaleDateString("pt-BR",{weekday:"long",day:"numeric",month:"short"});
 if(!(window.matchMedia&&matchMedia("(display-mode: standalone)").matches)&&!navigator.standalone) document.getElementById("hint").style.display="block";
+document.getElementById("fd").value=today;
+renderAppt();
 render();
 </script>
 </body>
