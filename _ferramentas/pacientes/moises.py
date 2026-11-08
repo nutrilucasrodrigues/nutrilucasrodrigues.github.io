@@ -1,7 +1,7 @@
 # Configuração do app do plano do Moisés. Só primeiro nome e dieta: nada de peso, exames ou diagnóstico.
 P = dict(
  nome="Moisés", slug="moises-999def", key="plano-moises-", atualizado="08/11/2026",
- retorno=dict(data="2026-12-07", hora=None, modo=None),
+ retorno=dict(data="2026-12-07"),  # prazo do retorno (30 dias); o dia e o horário são combinados no WhatsApp
  agua_l=3,
  refri=True,
  meals=[

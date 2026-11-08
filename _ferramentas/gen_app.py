@@ -26,16 +26,6 @@ for i, m in enumerate(P['meals']):
            "BEGIN:VALARM", "TRIGGER:PT0M", "ACTION:DISPLAY", f"DESCRIPTION:Hora do {m['n'].lower()}", "END:VALARM", "END:VEVENT"]
 ev += ["END:VCALENDAR"]
 (OUT / 'lembretes.ics').write_text("\r\n".join(ev) + "\r\n")
-R = P['retorno']
-if R.get('hora'):
-    y, mo, d = map(int, R['data'].split('-')); hh, mm = map(int, R['hora'].split(':'))
-    st = f"{y}{mo:02d}{d:02d}T{hh:02d}{mm:02d}00"; en = f"{y}{mo:02d}{d:02d}T{hh+1:02d}{mm:02d}00"
-    rc = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//nutrilucas//plano//PT"] + VTZ + ["BEGIN:VEVENT", f"UID:{P['slug']}-retorno-{st}@nutrilucas",
-          f"DTSTAMP:{start:%Y%m%d}T000000Z", f"DTSTART;TZID=America/Sao_Paulo:{st}", f"DTEND;TZID=America/Sao_Paulo:{en}",
-          "SUMMARY:Retorno com o nutricionista Lucas Rodrigues", f"DESCRIPTION:{(R.get('modo') or 'Consulta').capitalize()} · dúvidas: (61) 99230-8296",
-          "BEGIN:VALARM", "TRIGGER:-P1D", "ACTION:DISPLAY", "DESCRIPTION:Amanhã é seu retorno", "END:VALARM", "END:VEVENT", "END:VCALENDAR"]
-    (OUT / 'retorno.ics').write_text("\r\n".join(rc) + "\r\n")
-
 (OUT / 'manifest.json').write_text(json.dumps({"name": f"Meu plano · {P['nome']}", "short_name": "Meu plano", "start_url": "./", "scope": "./",
     "display": "standalone", "background_color": "#F4F8EF", "theme_color": G,
     "icons": [{"src": "../../assets/icon-192.png", "sizes": "192x192", "type": "image/png"}, {"src": "../../assets/icon-512.png", "sizes": "512x512", "type": "image/png"}]}, ensure_ascii=False))
@@ -92,7 +82,7 @@ h2{color:var(--dark);font-size:19px;margin:20px 2px 10px}
 .wa{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--dark);color:#fff;text-decoration:none;font-weight:700;border-radius:999px;padding:14px;margin:16px 0}
 .appt{background:var(--card);border:2px solid var(--leaf);border-radius:18px;padding:14px;margin-bottom:12px}
 .appt .top{display:flex;gap:12px;align-items:center}.appt .ic{display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:var(--soft);flex:none}
-.appt .tx{flex:1}.appt b{display:block;color:var(--dark);font-size:16px}.appt small{color:var(--muted);font-size:13px}
+.appt .tx{flex:1}.appt .tx b{display:block;color:var(--dark);font-size:16px}.appt .tx small b{display:inline;font-size:13px}.appt small{color:var(--muted);font-size:13px}
 .appt .cd{background:var(--dark);color:#fff;border-radius:12px;padding:8px 10px;text-align:center;font-weight:800;font-size:20px;line-height:1}.appt .cd span{display:block;font-size:10px;font-weight:600;margin-top:3px}
 .pre{margin-top:12px;border-top:1px dashed var(--line);padding-top:10px}.pre p{font-size:13px;font-weight:700;color:var(--dark);margin-bottom:6px}
 .li{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:14.5px;cursor:pointer}.li:last-child{border:0}
@@ -279,17 +269,15 @@ function addW(){{const d=document.getElementById("fd").value||today,p=parseFloat
  const e=document.getElementById("fp"); if(!(p>=30&&p<=300)){{e.style.borderColor="#b33";setTimeout(()=>e.style.borderColor="",2500);return}}
  pesos=pesos.filter(x=>x.d!==d);pesos.push({{d,p,c:(c>=40&&c<=200)?c:null}});save("pesos",pesos);e.value="";document.getElementById("fc").value="";render()}}
 function delW(d){{pesos=pesos.filter(x=>x.d!==d);save("pesos",pesos);render()}}
-const PRE=["Pesar em jejum, no dia do retorno ou na véspera","Separar exames novos (se tiver)","Anotar dúvidas e o que foi difícil","Enviar sua semana pelo botão da aba Evolução"];
+const PRE=["Combinar o dia e o horário com o Lucas","Pesar em jejum, no dia do retorno ou na véspera","Separar exames novos (se tiver)","Anotar dúvidas e o que foi difícil","Enviar sua semana pelo botão da aba Evolução"];
 function renderAppt(){{const R=P.retorno; const el=document.getElementById("appt"); if(!R||!R.data){{el.innerHTML="";return}}
  const [y,m,d]=R.data.split("-").map(Number),dt=new Date(y,m-1,d),t0=new Date();t0.setHours(0,0,0,0);const dias=Math.round((dt-t0)/864e5);
- if(dias<0){{el.innerHTML="";return}}
- const quando=dt.toLocaleDateString("pt-BR",{{weekday:"long",day:"numeric",month:"long"}});
- const det=(R.hora?`às ${{R.hora.replace(":","h")}}`:"horário a confirmar")+(R.modo?` · ${{R.modo}}`:"");
- let cal=""; if(R.hora){{const [hh,mm]=R.hora.split(":").map(Number),p=n=>String(n).padStart(2,"0"),st=`${{y}}${{p(m)}}${{p(d)}}T${{p(hh)}}${{p(mm)}}00`,en=`${{y}}${{p(m)}}${{p(d)}}T${{p(hh+1)}}${{p(mm)}}00`;
-  cal=`<a class="btn" href="retorno.ics">${{ic("calendar-check",16)}} Salvar na agenda</a><a class="btn" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=${{encodeURIComponent("Retorno com o nutricionista Lucas Rodrigues")}}&dates=${{st}}/${{en}}&ctz=America/Sao_Paulo">Google Agenda</a>`}}
+ const wa="https://wa.me/5561992308296?text="+encodeURIComponent("Oi Lucas! Quero agendar meu retorno ("+P.nome+").");
+ const txt=dias>0?`Faltam <b>${{dias}} ${{dias===1?"dia":"dias"}}</b> para o seu retorno.`:`Chegou a hora do seu retorno.`;
  let pre=""; if(dias<=7){{const k="pre-"+R.data; const done=load(k,[]);
   pre=`<div class="pre"><p>Checklist para o retorno</p>${{PRE.map((t,i)=>`<div class="li ${{done.includes(i)?"ok":""}}" onclick="tgPre('${{k}}',${{i}})"><div class="bx">${{ic("check",14)}}</div><div class="tx">${{t}}</div></div>`).join("")}}</div>`}}
- el.innerHTML=`<div class="appt"><div class="top"><div class="ic">${{ic("calendar",26)}}</div><div class="tx"><b>Seu retorno</b><small>${{quando}} · ${{det}}</small></div><div class="cd">${{dias}}<span>${{dias===1?"dia":"dias"}}</span></div></div>${{cal}}${{pre}}</div>`;
+ el.innerHTML=`<div class="appt"><div class="top"><div class="ic">${{ic("calendar",26)}}</div><div class="tx"><b>Seu retorno</b><small>${{txt}}<br>Fale com o Lucas para combinar o dia e o horário.</small></div>${{dias>0?`<div class="cd">${{dias}}<span>${{dias===1?"dia":"dias"}}</span></div>`:""}}</div>
+  <a class="btn" href="${{wa}}">${{ic("message-circle",16)}} Agendar meu retorno</a>${{pre}}</div>`;
 }}
 function tgPre(k,i){{let d=load(k,[]);d=d.includes(i)?d.filter(x=>x!==i):[...d,i];save(k,d);renderAppt()}}
 document.getElementById("medidas").innerHTML=P.medidas.map(m=>`<div class="med"><div class="ic">${{ic(m[0],20)}}</div><div><b>${{esc(m[1])}}</b><span>${{esc(m[2])}}</span></div></div>`).join("");
