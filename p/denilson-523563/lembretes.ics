@@ -46,7 +46,7 @@ DTSTART;TZID=America/Sao_Paulo:20261109T123000
 DTEND;TZID=America/Sao_Paulo:20261109T124500
 RRULE:FREQ=DAILY
 SUMMARY:Almoço (plano)
-DESCRIPTION:Salada à vontade (alface e tomate) · 7 colheres de sopa de arroz · 1 concha cheia de feijão · 1 bife grande de carne magra · 3 colheres de sopa de abobrinha refogada · Óleo: 1 colher de sopa rasa no preparo
+DESCRIPTION:Salada à vontade (alface e tomate) · 5 colheres de sopa de arroz · 1 concha cheia de feijão · 1 bife grande de carne magra · 3 colheres de sopa de abobrinha refogada · Óleo: 1 colher de sopa rasa no preparo
 BEGIN:VALARM
 TRIGGER:PT0M
 ACTION:DISPLAY
@@ -88,7 +88,7 @@ DTSTART;TZID=America/Sao_Paulo:20261109T213000
 DTEND;TZID=America/Sao_Paulo:20261109T214500
 RRULE:FREQ=DAILY
 SUMMARY:Jantar leve (plano)
-DESCRIPTION:Omelete de 3 ovos (pouco óleo) · 1 prato de sobremesa de salada de repolho e tomate · Meia concha de feijão · Azeite: 1 colher de sopa rasa
+DESCRIPTION:Omelete de 3 ovos (pouco óleo) · 1 prato de sobremesa de salada de repolho e tomate · 2 colheres de sopa de arroz · Meia concha de feijão · Azeite: 1 colher de sopa rasa
 BEGIN:VALARM
 TRIGGER:PT0M
 ACTION:DISPLAY
