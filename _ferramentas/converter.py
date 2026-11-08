@@ -60,7 +60,7 @@ def convert(pasta, nome, retorno, agua, refri, saida):
 
 if __name__ == '__main__':
     L = [('waleska', 'Waleska', '2026-11-25', 2.8, False), ('isabelly', 'Isabelly', '2026-11-25', 2.5, True),
-         ('alexandre', 'Alexandre', '2026-11-27', 3.8, False), ('junior', 'Denilson', '2026-11-27', 3.5, False), ('iasmin', 'Iasmin', '2026-11-30', 2.3, True)]
+         ('alexandre', 'Alexandre', '2026-11-27', 3.8, False), ('junior', 'Júnior', '2026-11-27', 3.5, False), ('iasmin', 'Iasmin', '2026-11-30', 2.3, True)]
     for pasta, nome, ret, ag, rf in L:
         out = f"/home/claude/apps/pacientes/{'denilson' if pasta == 'junior' else pasta}.py"
         if pathlib.Path(out).exists(): print('já existe', out); continue

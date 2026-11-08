@@ -1,5 +1,5 @@
 # Gerado a partir do PDF. Só primeiro nome e dieta: nada de peso, exames ou diagnóstico.
-P = {'nome': 'Denilson',
+P = {'nome': 'Júnior',
  'slug': 'denilson-523563',
  'key': 'plano-junior-',
  'atualizado': '08/11/2026',
