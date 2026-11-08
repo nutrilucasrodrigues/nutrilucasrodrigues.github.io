@@ -1,0 +1,84 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//nutrilucas//plano//PT
+CALSCALE:GREGORIAN
+BEGIN:VTIMEZONE
+TZID:America/Sao_Paulo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:-0300
+TZOFFSETTO:-0300
+TZNAME:-03
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:isabelly-15fc2f-ref0@nutrilucas
+DTSTAMP:20261109T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261109T050000
+DTEND;TZID=America/Sao_Paulo:20261109T051500
+RRULE:FREQ=DAILY
+SUMMARY:Café da manhã (plano)
+DESCRIPTION:3 colheres de sopa cheias de cuscuz · 2 ovos (cozidos ou mexidos) · Café com 2 colheres de sopa de leite em pó
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do café da manhã
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:isabelly-15fc2f-ref1@nutrilucas
+DTSTAMP:20261109T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261109T083000
+DTEND;TZID=America/Sao_Paulo:20261109T084500
+RRULE:FREQ=DAILY
+SUMMARY:Lanche da manhã (plano)
+DESCRIPTION:3 pães de queijo pequenos · Meio pote grande de iogurte natural (ou 1 pote pequeno)
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do lanche da manhã
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:isabelly-15fc2f-ref2@nutrilucas
+DTSTAMP:20261109T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261109T123000
+DTEND;TZID=America/Sao_Paulo:20261109T124500
+RRULE:FREQ=DAILY
+SUMMARY:Almoço (plano)
+DESCRIPTION:Salada (alface e tomate) · 6 colheres de sopa de arroz · 1 concha pequena de feijão · 1 bife médio de carne magra · 2 colheres de sopa de cenoura · Óleo: 1 colher de chá no preparo
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do almoço
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:isabelly-15fc2f-ref3@nutrilucas
+DTSTAMP:20261109T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261109T160000
+DTEND;TZID=America/Sao_Paulo:20261109T161500
+RRULE:FREQ=DAILY
+SUMMARY:Lanche antes do treino (plano)
+DESCRIPTION:1 banana grande · 4 colheres de sopa de aveia · Meio copo de leite (2 colheres de sopa de leite em pó)
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do lanche antes do treino
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:isabelly-15fc2f-ref4@nutrilucas
+DTSTAMP:20261109T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261109T200000
+DTEND;TZID=America/Sao_Paulo:20261109T201500
+RRULE:FREQ=DAILY
+SUMMARY:Jantar (plano)
+DESCRIPTION:4 pedaços médios de mandioca · 1 filé médio de frango · Meia concha de feijão · 3 colheres de sopa de brócolis · Azeite: 1 colher de sobremesa
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do jantar
+END:VALARM
+END:VEVENT
+END:VCALENDAR

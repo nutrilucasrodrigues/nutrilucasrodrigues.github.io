@@ -1,0 +1,98 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//nutrilucas//plano//PT
+CALSCALE:GREGORIAN
+BEGIN:VTIMEZONE
+TZID:America/Sao_Paulo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:-0300
+TZOFFSETTO:-0300
+TZNAME:-03
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:alexandre-218ef9-ref0@nutrilucas
+DTSTAMP:20261109T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261109T073000
+DTEND;TZID=America/Sao_Paulo:20261109T074500
+RRULE:FREQ=DAILY
+SUMMARY:Café da manhã (plano)
+DESCRIPTION:2 fatias de pão integral · 2 ovos mexidos ou cozidos · 1 fatia fina de queijo minas frescal · Café sem açúcar
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do café da manhã
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:alexandre-218ef9-ref1@nutrilucas
+DTSTAMP:20261109T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261109T104500
+DTEND;TZID=America/Sao_Paulo:20261109T110000
+RRULE:FREQ=DAILY
+SUMMARY:Pós-treino (plano)
+DESCRIPTION:1 dose (scoop) de whey batida com água · 2 colheres de sopa de aveia · 1 fatia média de mamão
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do pós-treino
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:alexandre-218ef9-ref2@nutrilucas
+DTSTAMP:20261109T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261109T130000
+DTEND;TZID=America/Sao_Paulo:20261109T131500
+RRULE:FREQ=DAILY
+SUMMARY:Almoço (plano)
+DESCRIPTION:Salada de alface e tomate à vontade (comece por ela) · 3 colheres de sopa de arroz · 1 concha cheia de feijão · 2 filés médios de frango (cerca de 200 g) · 2 colheres de sopa de cenoura · Azeite: ½ colher de chá
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do almoço
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:alexandre-218ef9-ref3@nutrilucas
+DTSTAMP:20261109T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261109T163000
+DTEND;TZID=America/Sao_Paulo:20261109T164500
+RRULE:FREQ=DAILY
+SUMMARY:Lanche da tarde (plano)
+DESCRIPTION:1 pote de iogurte natural · 1 maçã · 1 ovo cozido · 1 colher de sopa rasa de amendoim
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do lanche da tarde
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:alexandre-218ef9-ref4@nutrilucas
+DTSTAMP:20261109T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261109T203000
+DTEND;TZID=America/Sao_Paulo:20261109T204500
+RRULE:FREQ=DAILY
+SUMMARY:Jantar (plano)
+DESCRIPTION:Salada de repolho à vontade · 2 colheres de sopa cheias de arroz · 1 concha média de feijão · 1 bife grande + ½ bife de carne magra (patinho\, cerca de 170 g) · 4 colheres de sopa de abobrinha · Azeite: ½ colher de chá
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do jantar
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:alexandre-218ef9-ref5@nutrilucas
+DTSTAMP:20261109T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261109T223000
+DTEND;TZID=America/Sao_Paulo:20261109T224500
+RRULE:FREQ=DAILY
+SUMMARY:Ceia (plano)
+DESCRIPTION:1 pote de iogurte natural · 1 colher de sopa de aveia
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do ceia
+END:VALARM
+END:VEVENT
+END:VCALENDAR
