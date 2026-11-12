@@ -13,9 +13,9 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:denilson-523563-ref0@nutrilucas
-DTSTAMP:20261109T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261109T073000
-DTEND;TZID=America/Sao_Paulo:20261109T074500
+DTSTAMP:20261113T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261113T073000
+DTEND;TZID=America/Sao_Paulo:20261113T074500
 RRULE:FREQ=DAILY
 SUMMARY:Café da manhã (plano)
 DESCRIPTION:2 pães franceses · 2 ovos mexidos (com pouco óleo) · 1 xícara de café com leite (3 colheres de sopa de leite em pó desnatado) · 1 colher de chá de açúcar no café · 1 fatia média de mamão
@@ -27,9 +27,9 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:denilson-523563-ref1@nutrilucas
-DTSTAMP:20261109T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261109T100000
-DTEND;TZID=America/Sao_Paulo:20261109T101500
+DTSTAMP:20261113T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261113T100000
+DTEND;TZID=America/Sao_Paulo:20261113T101500
 RRULE:FREQ=DAILY
 SUMMARY:Lanche da manhã (plano)
 DESCRIPTION:1 banana · 2 ovos cozidos (leve já cozidos de casa) · 1 colher de sopa rasa de amendoim
@@ -41,9 +41,9 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:denilson-523563-ref2@nutrilucas
-DTSTAMP:20261109T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261109T123000
-DTEND;TZID=America/Sao_Paulo:20261109T124500
+DTSTAMP:20261113T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261113T123000
+DTEND;TZID=America/Sao_Paulo:20261113T124500
 RRULE:FREQ=DAILY
 SUMMARY:Almoço (plano)
 DESCRIPTION:Salada à vontade (alface e tomate) · 5 colheres de sopa de arroz · 1 concha cheia de feijão · 1 bife grande de carne magra · 3 colheres de sopa de abobrinha refogada · Óleo: 1 colher de sopa rasa no preparo
@@ -55,9 +55,9 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:denilson-523563-ref3@nutrilucas
-DTSTAMP:20261109T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261109T150000
-DTEND;TZID=America/Sao_Paulo:20261109T151500
+DTSTAMP:20261113T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261113T150000
+DTEND;TZID=America/Sao_Paulo:20261113T151500
 RRULE:FREQ=DAILY
 SUMMARY:Lanche antes das aulas (plano)
 DESCRIPTION:1 pão francês com frango desfiado (3 colheres de sopa cheias) · 1 maçã (ou outra fruta)
@@ -69,9 +69,9 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:denilson-523563-ref4@nutrilucas
-DTSTAMP:20261109T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261109T180000
-DTEND;TZID=America/Sao_Paulo:20261109T181500
+DTSTAMP:20261113T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261113T180000
+DTEND;TZID=America/Sao_Paulo:20261113T181500
 RRULE:FREQ=DAILY
 SUMMARY:Lanche reforçado na academia (plano)
 DESCRIPTION:1 batata-doce grande e meia pequena · 1 filé médio de frango · 2 colheres de sopa de cenoura · 1 banana
@@ -83,9 +83,9 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:denilson-523563-ref5@nutrilucas
-DTSTAMP:20261109T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261109T213000
-DTEND;TZID=America/Sao_Paulo:20261109T214500
+DTSTAMP:20261113T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261113T213000
+DTEND;TZID=America/Sao_Paulo:20261113T214500
 RRULE:FREQ=DAILY
 SUMMARY:Jantar leve (plano)
 DESCRIPTION:Omelete de 3 ovos (pouco óleo) · 1 prato de sobremesa de salada de repolho e tomate · 2 colheres de sopa de arroz · Meia concha de feijão · Azeite: 1 colher de sopa rasa

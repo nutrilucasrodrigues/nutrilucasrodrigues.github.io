@@ -212,4 +212,5 @@ P = {'nome': 'Waleska',
             'Bebida alcoólica: diminua e nunca beba de estômago vazio.',
             'Café (a bebida) só até as 16h, para dormir melhor.',
             'Tente dormir no mesmo horário todos os dias: noites mal dormidas aumentam a fome.',
-            'No mercado, faça a lista antes e não vá com fome.']]]}
+            'No mercado, faça a lista antes e não vá com fome.']]],
+ 'metas': {'plano': 5, 'agua': 5, 'treino': ('Treino', 3)}}

@@ -13,9 +13,9 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:waleska-61835a-ref0@nutrilucas
-DTSTAMP:20261109T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261109T053000
-DTEND;TZID=America/Sao_Paulo:20261109T054500
+DTSTAMP:20261113T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261113T053000
+DTEND;TZID=America/Sao_Paulo:20261113T054500
 RRULE:FREQ=DAILY
 SUMMARY:Café da manhã (plano)
 DESCRIPTION:1 pão francês · 2 ovos (cozidos ou mexidos) · Café com 2 colheres de sopa de leite em pó
@@ -27,9 +27,9 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:waleska-61835a-ref1@nutrilucas
-DTSTAMP:20261109T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261109T090000
-DTEND;TZID=America/Sao_Paulo:20261109T091500
+DTSTAMP:20261113T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261113T090000
+DTEND;TZID=America/Sao_Paulo:20261113T091500
 RRULE:FREQ=DAILY
 SUMMARY:Lanche da manhã (plano)
 DESCRIPTION:1 banana (ou outra fruta) · 1 punhado pequeno de amendoim (1 colher e meia de sopa)
@@ -41,9 +41,9 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:waleska-61835a-ref2@nutrilucas
-DTSTAMP:20261109T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261109T120000
-DTEND;TZID=America/Sao_Paulo:20261109T121500
+DTSTAMP:20261113T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261113T120000
+DTEND;TZID=America/Sao_Paulo:20261113T121500
 RRULE:FREQ=DAILY
 SUMMARY:Almoço (plano)
 DESCRIPTION:Salada à vontade (alface e tomate) · 5 colheres de sopa de arroz · 1 concha média de feijão · 1 filé médio de frango · 3 colheres de sopa de abobrinha refogada · Óleo: só um fio no preparo
@@ -55,9 +55,9 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:waleska-61835a-ref3@nutrilucas
-DTSTAMP:20261109T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261109T160000
-DTEND;TZID=America/Sao_Paulo:20261109T161500
+DTSTAMP:20261113T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261113T160000
+DTEND;TZID=America/Sao_Paulo:20261113T161500
 RRULE:FREQ=DAILY
 SUMMARY:Lanche da tarde (plano)
 DESCRIPTION:1 pão francês com 1 ovo · 1 laranja (ou outra fruta)
@@ -69,9 +69,9 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:waleska-61835a-ref4@nutrilucas
-DTSTAMP:20261109T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261109T210000
-DTEND;TZID=America/Sao_Paulo:20261109T211500
+DTSTAMP:20261113T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261113T210000
+DTEND;TZID=America/Sao_Paulo:20261113T211500
 RRULE:FREQ=DAILY
 SUMMARY:Lanche da noite (plano)
 DESCRIPTION:1 tapioca pequena (1 colher e meia de sopa de goma) · Recheio: 2 colheres de sopa cheias de frango desfiado · 1 copo pequeno de leite com 2 colheres de sopa de aveia

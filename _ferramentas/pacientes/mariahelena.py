@@ -203,4 +203,5 @@ P = {'nome': 'Maria Helena',
             'Coma o que tiver vontade, com calma, em 1 prato e sem repetir. Nas outras refeições do dia, siga o plano.',
             'Comida muito gordurosa pode pesar no estômago: vá devagar.',
             'No dia seguinte, volte ao plano normalmente, sem compensar ficando sem comer.',
-            'Domingo é um bom dia para preparar as marmitas da semana.']]]}
+            'Domingo é um bom dia para preparar as marmitas da semana.']]],
+ 'metas': {'plano': 5, 'agua': 5, 'treino': ('Musculação', 2)}}

@@ -212,4 +212,5 @@ P = {'nome': 'Alexandre',
            'Em casa',
            ['Você cozinha todo dia: use pouco óleo e prefira grelhado, assado ou cozido.',
             'Faça o arroz, o feijão e as carnes em maior quantidade e guarde porções na geladeira.',
-            'Tenha frutas à vista e doces fora do alcance.']]]}
+            'Tenha frutas à vista e doces fora do alcance.']]],
+ 'metas': {'plano': 5, 'agua': 5, 'treino': ('Treino', 4)}}

@@ -207,4 +207,5 @@ P = {'nome': 'Iasmin',
            ['Mantenha pelo menos 3 refeições.',
             'Em festa, coma antes de sair para não chegar com fome.',
             'Intercale a bebida com água.',
-            'Movimente-se: uma caminhada de 30 minutos já ajuda.']]]}
+            'Movimente-se: uma caminhada de 30 minutos já ajuda.']]],
+ 'metas': {'plano': 5, 'agua': 5, 'treino': None}}

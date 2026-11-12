@@ -206,4 +206,5 @@ P = {'nome': 'Isabelly',
            ['Leve os lanches e guarde na geladeira do trabalho assim que chegar.',
             'Faça a comida da semana no domingo: já sai para você e para o seu namorado.',
             'Carne todo dia pode, mas varie com frango, ovos e peixe.',
-            'No mercado, faça a lista antes e não vá com fome.']]]}
+            'No mercado, faça a lista antes e não vá com fome.']]],
+ 'metas': {'plano': 5, 'agua': 5, 'treino': ('Treino', 3)}}

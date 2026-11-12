@@ -13,9 +13,9 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:iasmin-6a2e15-ref0@nutrilucas
-DTSTAMP:20261109T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261109T090000
-DTEND;TZID=America/Sao_Paulo:20261109T091500
+DTSTAMP:20261113T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261113T090000
+DTEND;TZID=America/Sao_Paulo:20261113T091500
 RRULE:FREQ=DAILY
 SUMMARY:Café da manhã (plano)
 DESCRIPTION:1 pão francês · 1 ovo mexido ou cozido · 1 fatia fina de queijo minas · Café sem açúcar (ou com pouco)
@@ -27,9 +27,9 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:iasmin-6a2e15-ref1@nutrilucas
-DTSTAMP:20261109T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261109T123000
-DTEND;TZID=America/Sao_Paulo:20261109T124500
+DTSTAMP:20261113T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261113T123000
+DTEND;TZID=America/Sao_Paulo:20261113T124500
 RRULE:FREQ=DAILY
 SUMMARY:Almoço (plano)
 DESCRIPTION:Salada de alface e tomate à vontade · 4 colheres de sopa de arroz · 1 concha média de feijão · 1 filé médio de frango · 2 colheres de sopa de cenoura · Óleo: 1 colher de sobremesa no preparo
@@ -41,9 +41,9 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:iasmin-6a2e15-ref2@nutrilucas
-DTSTAMP:20261109T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261109T170000
-DTEND;TZID=America/Sao_Paulo:20261109T171500
+DTSTAMP:20261113T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261113T170000
+DTEND;TZID=America/Sao_Paulo:20261113T171500
 RRULE:FREQ=DAILY
 SUMMARY:Lanche da tarde (plano)
 DESCRIPTION:1 pote de iogurte natural · 1½ colher de sopa de aveia · 1 maçã · 1 colher de sopa rasa de amendoim
@@ -55,9 +55,9 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:iasmin-6a2e15-ref3@nutrilucas
-DTSTAMP:20261109T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261109T193000
-DTEND;TZID=America/Sao_Paulo:20261109T194500
+DTSTAMP:20261113T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261113T193000
+DTEND;TZID=America/Sao_Paulo:20261113T194500
 RRULE:FREQ=DAILY
 SUMMARY:Lanche do intervalo (plano)
 DESCRIPTION:1 pão francês · 1½ colher de sopa de frango desfiado · 3 fatias de tomate
@@ -69,9 +69,9 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:iasmin-6a2e15-ref4@nutrilucas
-DTSTAMP:20261109T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261109T230000
-DTEND;TZID=America/Sao_Paulo:20261109T231500
+DTSTAMP:20261113T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261113T230000
+DTEND;TZID=America/Sao_Paulo:20261113T231500
 RRULE:FREQ=DAILY
 SUMMARY:Jantar leve (plano)
 DESCRIPTION:Salada de repolho à vontade · 2 colheres de sopa de arroz · ½ concha de feijão · Omelete de 2 ovos (pouco óleo) · 3 colheres de sopa de abobrinha

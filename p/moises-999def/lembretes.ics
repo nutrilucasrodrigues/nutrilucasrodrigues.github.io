@@ -13,9 +13,9 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:moises-999def-ref0@nutrilucas
-DTSTAMP:20261109T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261109T080000
-DTEND;TZID=America/Sao_Paulo:20261109T081500
+DTSTAMP:20261113T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261113T080000
+DTEND;TZID=America/Sao_Paulo:20261113T081500
 RRULE:FREQ=DAILY
 SUMMARY:Café da manhã (plano)
 DESCRIPTION:1 pão francês · 2 ovos mexidos ou cozidos · Café com 2 colheres de sopa de leite em pó\, sem açúcar
@@ -27,9 +27,9 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:moises-999def-ref1@nutrilucas
-DTSTAMP:20261109T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261109T120000
-DTEND;TZID=America/Sao_Paulo:20261109T121500
+DTSTAMP:20261113T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261113T120000
+DTEND;TZID=America/Sao_Paulo:20261113T121500
 RRULE:FREQ=DAILY
 SUMMARY:Almoço (plano)
 DESCRIPTION:Metade do prato com salada e legumes · 5 colheres de sopa de arroz · 1 concha média de feijão · 1 filé grande de frango grelhado · Evite frituras e molhos gordurosos
@@ -41,9 +41,9 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:moises-999def-ref2@nutrilucas
-DTSTAMP:20261109T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261109T153000
-DTEND;TZID=America/Sao_Paulo:20261109T154500
+DTSTAMP:20261113T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261113T153000
+DTEND;TZID=America/Sao_Paulo:20261113T154500
 RRULE:FREQ=DAILY
 SUMMARY:Lanche da tarde (plano)
 DESCRIPTION:1 pote de iogurte natural · 2 colheres de sopa de aveia · 1 banana · 1 colher de sopa rasa de amendoim
@@ -55,9 +55,9 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:moises-999def-ref3@nutrilucas
-DTSTAMP:20261109T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261109T183000
-DTEND;TZID=America/Sao_Paulo:20261109T184500
+DTSTAMP:20261113T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261113T183000
+DTEND;TZID=America/Sao_Paulo:20261113T184500
 RRULE:FREQ=DAILY
 SUMMARY:Lanche ao chegar (plano)
 DESCRIPTION:1 pão francês · 3 colheres de sopa de frango desfiado · 3 fatias de tomate · 1 laranja
@@ -69,9 +69,9 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:moises-999def-ref4@nutrilucas
-DTSTAMP:20261109T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261109T210000
-DTEND;TZID=America/Sao_Paulo:20261109T211500
+DTSTAMP:20261113T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261113T210000
+DTEND;TZID=America/Sao_Paulo:20261113T211500
 RRULE:FREQ=DAILY
 SUMMARY:Jantar (plano)
 DESCRIPTION:Salada de repolho à vontade · 3 colheres de sopa de arroz · ½ concha cheia de feijão · 1 bife médio de patinho grelhado · 3 colheres de sopa de abobrinha

@@ -7,7 +7,7 @@ P = runpy.run_path(sys.argv[1])['P']
 OUT = pathlib.Path('/home/claude/nutrilucasrodrigues.github.io/p') / P['slug']; OUT.mkdir(parents=True, exist_ok=True)
 G = '#005102'
 NAMES = ['check', 'repeat-2', 'x', 'smile', 'meh', 'frown', 'calendar', 'calendar-check', 'bell', 'send', 'message-circle',
-         'chart-line', 'clipboard-list', 'clipboard-check', 'list-checks', 'chef-hat', 'wifi-off', 'info', 'scale', 'glass-water', 'cup-soda']
+         'chart-line', 'clipboard-list', 'clipboard-check', 'list-checks', 'chef-hat', 'wifi-off', 'info', 'scale', 'glass-water', 'cup-soda', 'target']
 NAMES += sorted({m[0] for m in P['medidas']} | {r[1] for r in P['receitas']} | {f[0] for f in P['fora']} | {t[0] for t in P['tips']})
 IC = {n: ico(n, 20) for n in NAMES}
 NAV = [('plano', 'utensils', 'Plano'), ('trocas', 'arrow-left-right', 'Trocas'), ('compras', 'shopping-cart', 'Compras'),
@@ -37,7 +37,9 @@ self.addEventListener('activate',e=>{{e.waitUntil(caches.keys().then(k=>Promise.
 self.addEventListener('fetch',e=>{{if(e.request.method!=='GET')return;e.respondWith(fetch(e.request).then(r=>{{const cp=r.clone();caches.open(C).then(c=>c.put(e.request,cp)).catch(()=>{{}});return r}}).catch(()=>caches.match(e.request,{{ignoreSearch:true}}).then(r=>r||caches.match('./index.html'))))}});
 """)
 
-DATA = {k: P[k] for k in ['nome', 'key', 'retorno', 'agua_l', 'refri', 'meals', 'groups', 'medidas', 'buys', 'preparo', 'receitas', 'fora', 'tips']}
+P.setdefault('metas', {})
+P['metas'] = {'plano': 5, 'agua': 5, 'treino': None, **P['metas']}
+DATA = {k: P[k] for k in ['nome', 'key', 'retorno', 'agua_l', 'refri', 'meals', 'groups', 'medidas', 'buys', 'preparo', 'receitas', 'fora', 'tips', 'metas']}
 
 CSS = """:root{--dark:#005102;--leaf:#8AC243;--bg:#F4F8EF;--soft:#E3EFD3;--ink:#1E2B22;--muted:#5B6B5F;--line:#DCE6D2;--card:#fff;--warn:#B4561B}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -75,6 +77,7 @@ h2{color:var(--dark);font-size:19px;margin:20px 2px 10px}
 .cups{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:10px}
 .cup{aspect-ratio:3/4;border:2px solid #b9d7f0;border-radius:6px 6px 12px 12px;background:#fff;cursor:pointer}
 .cup.ok{background:linear-gradient(to top,#6cb6ea 85%,#fff 85%)}
+.goal{background:var(--dark);color:#fff;border-radius:18px;padding:14px;margin-bottom:14px}.goal h3{font-size:16px;display:flex;align-items:center;gap:8px;color:#fff;margin:0 0 2px}.goal .gs{font-size:12px;opacity:.85;margin-bottom:8px}.goal .gr{margin-top:9px}.goal .gl{display:flex;justify-content:space-between;font-size:13.5px}.goal .gl b{color:var(--leaf)}.goal .gb{height:8px;border-radius:99px;background:rgba(255,255,255,.18);margin-top:4px;overflow:hidden}.goal .gb i{display:block;height:100%;background:var(--leaf);border-radius:99px}.goal .gp{font-size:12px;opacity:.85;margin-top:10px;border-top:1px solid rgba(255,255,255,.18);padding-top:8px}
 .toggle{display:flex;align-items:center;gap:12px;cursor:pointer}
 .ck{width:30px;height:30px;border-radius:50%;border:2px solid var(--leaf);display:grid;place-items:center;flex:none;color:transparent}
 .ck.ok{background:var(--leaf);color:#103b06}
@@ -132,12 +135,14 @@ HTML = f"""<!doctype html>
 <div class="hint" id="hint">Dica: toque em <b>Compartilhar → Adicionar à Tela de Início</b> (iPhone) ou <b>⋮ → Adicionar à tela inicial</b> (Android) para abrir como app.</div>
 
 <section class="tab on" id="t-plano">
+ <div class="goal" id="goal"></div>
  <h2>Refeições de hoje</h2>
  <p class="sub">Marque cada refeição: <b>Comi</b> (igual ao plano), <b>Troquei</b> (usei a lista de trocas) ou <b>Saí do plano</b>. Sem culpa: é para ajustarmos juntos.</p>
  <div id="meals"></div>
  <h2>Água</h2>
  <div class="box"><b>Meta: cerca de {str(P['agua_l']).replace('.', ',')} litros</b> · cada copo = 250 ml<div class="cups" id="cups"></div><p class="note">Toque em cada copo que beber. Tudo zera sozinho no dia seguinte.</p></div>
  {'<div class="box toggle" onclick="tgR()"><div class="ck" id="sodachk">' + ico('check', 18) + '</div><div><b>Hoje fiquei sem refrigerante</b><br><small style="color:var(--muted)">Marque no fim do dia. Vale para suco de caixinha também.</small></div></div>' if P['refri'] else ''}
+ {('<div class="box toggle" onclick="tgT()"><div class="ck" id="treinochk">' + ico('check', 18) + '</div><div><b>Hoje treinei</b><br><small style="color:var(--muted)">' + P['metas']['treino'][0] + ' conta para a sua meta da semana.</small></div></div>') if P['metas']['treino'] else ''}
  <div class="box"><div class="ih">{ico('bell', 20, G)}<b>Lembretes das refeições</b></div><p class="note" style="margin-top:0">Coloca um alarme diário no horário de cada refeição, direto na agenda do seu celular.</p>
   <a class="btn" href="lembretes.ics">{ico('calendar-check', 16, G)} Ativar lembretes</a></div>
 </section>
@@ -219,12 +224,22 @@ function render(){{
  document.getElementById("progt").textContent=`${{done}} de ${{MAIN.length}} refeições · ${{br(day.w*0.25,day.w%4?2:0)}} L de água`;
  document.getElementById("buys").innerHTML=P.buys.map((b,i)=>`<div class="li ${{buys.includes(i)?"ok":""}}" onclick="tgB(${{i}})"><div class="bx">${{ic("check",14)}}</div><div class="tx">${{esc(b[0])}}</div><div class="q">${{esc(b[1])}}</div></div>`).join("");
  document.getElementById("prep").innerHTML=P.preparo.map((t,i)=>`<div class="li ${{prep.i.includes(i)?"ok":""}}" onclick="tgP(${{i}})"><div class="bx">${{ic("check",14)}}</div><div class="tx">${{esc(t)}}</div></div>`).join("");
- renderEv(); renderAppt();
+ renderEv(); renderAppt(); renderGoal();
 }}
 function setM(i,v){{if(day.m[i]===v){{delete day.m[i];delete day.f[i]}}else day.m[i]=v;saveDay();render()}}
 function setF(i,v){{day.f[i]=day.f[i]===v?undefined:v;saveDay();renderMeals()}}
 function tgW(i){{day.w=(i+1===day.w)?i:i+1;saveDay();render()}}
 function tgR(){{day.r=!day.r;saveDay();render()}}
+function tgT(){{day.t=!day.t;saveDay();render()}}
+function weekDays(){{const d=new Date();const off=(d.getDay()+6)%7;const out=[];for(let k=0;k<=off;k++){{const x=new Date(d);x.setDate(d.getDate()-off+k);out.push(hist[ymd(x)])}}return out}}
+function metas(){{const W=weekDays();const need=Math.max(1,MAIN.length-1);
+ return {{plano:W.filter(h=>h&&MAIN.filter(i=>h.m[i]==="ok"||h.m[i]==="troca").length>=need).length,agua:W.filter(h=>h&&h.w*0.25>=P.agua_l).length,treino:W.filter(h=>h&&h.t).length}}}}
+function renderGoal(){{const M=P.metas,g=metas();
+ const row=(l,v,n)=>`<div class="gr"><div class="gl"><span>${{l}}</span><b>${{Math.min(v,n)}} de ${{n}}${{v>=n?" ✓":""}}</b></div><div class="gb"><i style="width:${{Math.min(100,v/n*100)}}%"></i></div></div>`;
+ document.getElementById("goal").innerHTML=`<h3>${{ic("target",20)}} Minha meta até o retorno</h3><div class="gs">Progresso desta semana (zera toda segunda)</div>`+
+  row("Dias seguindo o plano",g.plano,M.plano)+row("Dias com a água completa",g.agua,M.agua)+(M.treino?row(M.treino[0]+" na semana",g.treino,M.treino[1]):"")+
+  `<div class="gp">${{M.peso_txt?esc(M.peso_txt):"A meta de peso combinada na consulta está no seu plano em PDF."}} Registre o peso 1 vez por semana na aba Evolução. Os resultados variam de pessoa para pessoa.</div>`;
+ const tc=document.getElementById("treinochk"); if(tc) tc.classList.toggle("ok",!!day.t);}}
 function tgB(i){{buys=buys.includes(i)?buys.filter(x=>x!==i):[...buys,i];save("compras",buys);render()}}
 function tgP(i){{prep.i=prep.i.includes(i)?prep.i.filter(x=>x!==i):[...prep.i,i];save("preparo",prep);render()}}
 function clearBuys(){{buys=[];save("compras",buys);render()}}
@@ -261,6 +276,7 @@ function renderEv(){{
  document.getElementById("hist").innerHTML=[...ps].reverse().map(x=>`<tr><td>${{fmtD(x.d)}}</td><td>${{br(x.p)}} kg</td><td>${{x.c?br(x.c)+" cm":""}}</td><td class="m"><button onclick="delW('${{x.d}}')" aria-label="Apagar">${{ic("x",16)}}</button></td></tr>`).join("");
  let t=`Oi Lucas! Minha semana (${{P.nome}}):\\n• Seguindo o plano: ${{st.dias?st.ade+"%":"sem registros"}} (${{st.ok}} iguais, ${{st.troca}} com troca, ${{st.fora}} fora)\\n• Água: ${{br(st.agua)}} L por dia\\n`;
  if(P.refri) t+=`• Dias seguidos sem refri: ${{st.streak}}\\n`;
+ {{const g=metas(),M=P.metas; t+=`• Metas desta semana: plano ${{g.plano}}/${{M.plano}} dias · água ${{g.agua}}/${{M.agua}} dias`+(M.treino?` · ${{M.treino[0].toLowerCase()}} ${{g.treino}}/${{M.treino[1]}}`:"")+`\\n`}}
  if(fm) t+=`• Mais fome depois de: ${{P.meals[fm[0]].n}} (${{fm[1]}}x)\\n`;
  if(ps.length){{t+="Peso:\\n";ps.slice(-6).forEach(x=>t+=`• ${{fmtD(x.d)}}: ${{br(x.p)}} kg${{x.c?" · cintura "+br(x.c)+" cm":""}}\\n`)}}
  document.getElementById("sendev").href="https://wa.me/5561992308296?text="+encodeURIComponent(t);
