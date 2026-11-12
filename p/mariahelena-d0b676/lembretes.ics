@@ -1,0 +1,70 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//nutrilucas//plano//PT
+CALSCALE:GREGORIAN
+BEGIN:VTIMEZONE
+TZID:America/Sao_Paulo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:-0300
+TZOFFSETTO:-0300
+TZNAME:-03
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:mariahelena-d0b676-ref0@nutrilucas
+DTSTAMP:20261113T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261113T083000
+DTEND;TZID=America/Sao_Paulo:20261113T084500
+RRULE:FREQ=DAILY
+SUMMARY:Café da manhã (plano)
+DESCRIPTION:1 pão francês · 2 ovos cozidos (leve já cozidos de casa) · 1 copo americano de café com leite (150 ml de leite integral)\, sem açúcar ou com pouco · 1 fatia pequena de mamão · Creatina: 3 g (1 medidor) misturada no café com leite
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do café da manhã
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:mariahelena-d0b676-ref1@nutrilucas
+DTSTAMP:20261113T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261113T123000
+DTEND;TZID=America/Sao_Paulo:20261113T124500
+RRULE:FREQ=DAILY
+SUMMARY:Almoço (plano)
+DESCRIPTION:Salada à vontade (alface e tomate) · 3 colheres de sopa de arroz · 1 concha média de feijão · 1 filé grande de frango grelhado · 2 colheres de sopa de cenoura · Óleo: 1 colher de sobremesa no preparo · Depois de comer: 1 comprimido do polivitamínico
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do almoço
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:mariahelena-d0b676-ref2@nutrilucas
+DTSTAMP:20261113T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261113T163000
+DTEND;TZID=America/Sao_Paulo:20261113T164500
+RRULE:FREQ=DAILY
+SUMMARY:Lanche antes da aula (plano)
+DESCRIPTION:1 pão francês com frango desfiado (3 colheres de sopa) · 1 fatia fina de queijo minas e 3 fatias de tomate · 1 banana pequena
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do lanche antes da aula
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:mariahelena-d0b676-ref3@nutrilucas
+DTSTAMP:20261113T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261113T221500
+DTEND;TZID=America/Sao_Paulo:20261113T223000
+RRULE:FREQ=DAILY
+SUMMARY:Jantar leve (plano)
+DESCRIPTION:2 colheres de sopa de arroz · 1 filé médio de frango · 3 colheres de sopa de abobrinha refogada · Salada de repolho à vontade · Óleo: 1 colher de sobremesa no preparo
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do jantar leve
+END:VALARM
+END:VEVENT
+END:VCALENDAR
