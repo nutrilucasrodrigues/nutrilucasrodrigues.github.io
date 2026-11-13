@@ -1,0 +1,70 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//nutrilucas//plano//PT
+CALSCALE:GREGORIAN
+BEGIN:VTIMEZONE
+TZID:America/Sao_Paulo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:-0300
+TZOFFSETTO:-0300
+TZNAME:-03
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:vitoria-2f7ad4-ref0@nutrilucas
+DTSTAMP:20261114T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261114T090000
+DTEND;TZID=America/Sao_Paulo:20261114T091500
+RRULE:FREQ=DAILY
+SUMMARY:Café da manhã (plano)
+DESCRIPTION:1 pão francês (50 g) · 2 ovos mexidos ou cozidos (100 g) · 1 copo americano de café com leite: 150 ml de leite integral\, sem açúcar ou com pouco · 1 fatia média de melancia (200 g)
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do café da manhã
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:vitoria-2f7ad4-ref1@nutrilucas
+DTSTAMP:20261114T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261114T123000
+DTEND;TZID=America/Sao_Paulo:20261114T124500
+RRULE:FREQ=DAILY
+SUMMARY:Almoço (plano)
+DESCRIPTION:Salada à vontade: alface e 4 fatias de tomate (60 g) · 3 colheres de sopa de arroz (75 g) · 1 concha cheia de feijão (140 g) · 1 filé grande de frango grelhado (150 g) · 2 colheres de sopa de cenoura cozida (50 g) · Óleo: 1 colher de sobremesa no preparo (8 ml) · Doce do dia: 1 fatia fina de goiabada (20 g)
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do almoço
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:vitoria-2f7ad4-ref2@nutrilucas
+DTSTAMP:20261114T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261114T163000
+DTEND;TZID=America/Sao_Paulo:20261114T164500
+RRULE:FREQ=DAILY
+SUMMARY:Lanche (plano)
+DESCRIPTION:1 pote de iogurte natural (170 g) · 3 colheres de sopa de aveia (30 g) · 1 banana grande (100 g)
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do lanche
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:vitoria-2f7ad4-ref3@nutrilucas
+DTSTAMP:20261114T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261114T200000
+DTEND;TZID=America/Sao_Paulo:20261114T201500
+RRULE:FREQ=DAILY
+SUMMARY:Jantar (plano)
+DESCRIPTION:2 colheres de sopa de arroz (50 g) · 1 bife grande ou 1 espetinho de carne magra (130 g) · 1 pedaço médio de mandioca cozida (80 g) · Vinagrete à vontade: tomate (60 g) e cebola (20 g) · Óleo: 1 colher de sobremesa no preparo (8 ml)
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do jantar
+END:VALARM
+END:VEVENT
+END:VCALENDAR
