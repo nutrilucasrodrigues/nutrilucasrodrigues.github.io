@@ -196,4 +196,4 @@ P = {'nome': 'Vitória',
            ['<b>1 refeição livre por semana</b>, no lugar do almoço ou do jantar de sábado ou domingo, quando o Lucas liberar.',
             'Coma com calma, em 1 prato e sem repetir. Nas outras refeições do dia, siga o plano.',
             'No dia seguinte, volte ao plano normalmente, sem compensar ficando sem comer.']]],
- 'metas': {'plano': 5, 'agua': 5, 'treino': None}}
+ 'metas': {'plano': 5, 'agua': 5, 'treino': None, 'peso_txt': 'Agora o foco é seguir o plano e a água; a meta de peso a gente combina no retorno.'}}
