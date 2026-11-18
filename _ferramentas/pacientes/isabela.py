@@ -192,4 +192,5 @@ P = {'nome': 'Isabela',
  'metas': {'plano': 5,
            'agua': 5,
            'treino': ('Musculação', 4),
-           'peso_txt': 'Meta combinada: proteína em todas as refeições em 5 dias da semana e refrigerante só no fim de semana.'}}
+           'peso_txt': 'Meta combinada: proteína em todas as refeições em 5 dias da semana e refrigerante só no fim de semana.'},
+ 'excluir': ['feijao']}

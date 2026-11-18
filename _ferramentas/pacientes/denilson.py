@@ -212,4 +212,5 @@ P = {'nome': 'Júnior',
             'Coma antes de sair: chegar com fome aumenta o exagero.',
             'Se for beber, intercale com água e evite petiscos fritos.',
             'Na segunda, volte ao plano normalmente, sem compensar ficando sem comer.']]],
- 'metas': {'plano': 5, 'agua': 5, 'treino': ('Treino', 3)}}
+ 'metas': {'plano': 5, 'agua': 5, 'treino': ('Treino', 3)},
+ 'excluir': ['cuscuz']}

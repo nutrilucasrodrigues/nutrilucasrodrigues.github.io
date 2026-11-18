@@ -12,3 +12,9 @@ Uso: copiar `gen_app.py` para `/home/claude/apps/`, os pacientes para `/home/cla
 - Cada paciente tem `metas` no arquivo dele: `plano` (dias por semana seguindo o plano, padrão 5), `agua` (dias com a água completa, padrão 5) e `treino` (ex.: `('Musculação', 2)` ou `None`).
 - O app mostra o card "Minha meta até o retorno" no topo da aba Plano, com o progresso da semana (zera toda segunda). Um dia conta como "seguindo o plano" quando no máximo 1 refeição principal ficou sem marcar "Comi" ou "Troquei".
 - A meta de peso nunca vai para o app (privacidade): fica no PDF e na planilha (aba Evolução, observações).
+
+## Calculadora de trocas (desde 17/11/2026)
+- `trocas.py`: tabela de ~50 alimentos (TACO/rótulos) com medidas caseiras; lê os itens do plano e põe o botão "Trocar" em cada alimento reconhecido.
+- Iguala pelo nutriente principal do grupo: carnes/ovos/leite/leguminosas pela proteína; arroz/raízes/pães/frutas pelo carboidrato; gorduras pela gordura. Avisa quando as calorias mudam mais de 15%. Dá para escolher 2 opções e dividir meio a meio.
+- Aba Trocas: calculadora livre (alimento + quantidade + medida).
+- `excluir` no arquivo do paciente tira alimentos das trocas (ex.: Isabela `feijao`, Júnior `cuscuz`). Whey só aparece para quem tem whey no plano.

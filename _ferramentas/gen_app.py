@@ -2,6 +2,7 @@
 Saída em /home/claude/nutrilucasrodrigues.github.io/p/<slug>/ (index.html, manifest.json, sw.js, lembretes.ics, retorno.ics)."""
 import sys, json, pathlib, runpy, datetime
 sys.path.insert(0, '/home/claude/icons'); from ico import ico
+sys.path.insert(0, str(pathlib.Path(__file__).parent)); import trocas
 
 P = runpy.run_path(sys.argv[1])['P']
 OUT = pathlib.Path('/home/claude/nutrilucasrodrigues.github.io/p') / P['slug']; OUT.mkdir(parents=True, exist_ok=True)
@@ -38,8 +39,12 @@ self.addEventListener('fetch',e=>{{if(e.request.method!=='GET')return;e.respondW
 """)
 
 P.setdefault('metas', {})
+_EX = set(P.get('excluir', []))
+_WHEY = any('whey' in x.lower() for m in P['meals'] for x in m['i'])
+for _m in P['meals']: _m['c'] = [trocas.components(x, _EX) for x in _m['i']]
+P['trocas'] = trocas.data(_EX, _WHEY)
 P['metas'] = {'plano': 5, 'agua': 5, 'treino': None, **P['metas']}
-DATA = {k: P[k] for k in ['nome', 'key', 'retorno', 'agua_l', 'refri', 'meals', 'groups', 'medidas', 'buys', 'preparo', 'receitas', 'fora', 'tips', 'metas']}
+DATA = {k: P[k] for k in ['nome', 'key', 'retorno', 'agua_l', 'refri', 'meals', 'groups', 'medidas', 'buys', 'preparo', 'receitas', 'fora', 'tips', 'metas', 'trocas']}
 
 CSS = """:root{--dark:#005102;--leaf:#8AC243;--bg:#F4F8EF;--soft:#E3EFD3;--ink:#1E2B22;--muted:#5B6B5F;--line:#DCE6D2;--card:#fff;--warn:#B4561B}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -114,7 +119,7 @@ details ol,details ul{margin:0 16px 14px 34px}details li{font-size:14.5px;margin
 .hint{background:#fff7e6;border:1px solid #f1d39b;border-radius:14px;padding:10px 12px;font-size:13px;margin-bottom:12px;display:none}
 nav{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);padding:6px 4px calc(6px + env(safe-area-inset-bottom))}
 nav button{background:none;border:0;font:inherit;font-size:11.5px;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 0;cursor:pointer}
-nav button.on{color:var(--dark);font-weight:700}"""
+nav button.on{color:var(--dark);font-weight:700}""" + trocas.CSS
 
 nav = "".join(f'<button class="{"on" if i == 0 else ""}" data-t="{t}">{ico(ic, 22)}{lb}</button>' for i, (t, ic, lb) in enumerate(NAV))
 HTML = f"""<!doctype html>
@@ -148,6 +153,7 @@ HTML = f"""<!doctype html>
 </section>
 
 <section class="tab" id="t-trocas">
+{trocas.CALC_HTML}
  <h2>Como é essa medida?</h2><div class="box" id="medidas"></div>
  <h2>Troque dentro do mesmo grupo</h2><p class="sub">Cada linha vale 1 porção. Troque um alimento por outro do mesmo grupo, na medida indicada.</p>
  <div id="groups"></div>
@@ -182,6 +188,7 @@ HTML = f"""<!doctype html>
 <a class="wa" href="https://wa.me/5561992308296?text=Oi%20Lucas%2C%20tenho%20uma%20d%C3%BAvida%20sobre%20meu%20plano">{ico('message-circle', 20, '#fff')} Falar com o Lucas no WhatsApp</a>
 <p class="foot">Nutricionista Lucas Rodrigues · CRN-1 15.957<br>Plano individual: não use para outras pessoas. Os resultados variam de pessoa para pessoa.<br>Atualizado em {P['atualizado']}</p>
 </main>
+<div class="sheet-bg" id="sheetbg" onclick="closeSw()"></div><div class="sheet" id="sheet" role="dialog"></div>
 <nav>{nav}</nav>
 <script>
 const P={json.dumps(DATA, ensure_ascii=False)};
@@ -205,12 +212,13 @@ function saveDay(){{hist[today]=day;save("historico",hist)}}
 let pesos=load("pesos",[]), buys=load("compras",[]);
 const wk=(()=>{{const d=new Date();d.setDate(d.getDate()-d.getDay());return ymd(d)}})();
 let prep=load("preparo",{{w:wk,i:[]}}); if(prep.w!==wk) prep={{w:wk,i:[]}};
+{trocas.JS}
 const ST={{ok:"Comi",troca:"Troquei",fora:"Saí do plano"}};
 const HU=[["ok","smile","Satisfeito"],["fome","frown","Com fome"],["cheio","meh","Exagerei"]];
 function renderMeals(){{
  document.getElementById("meals").innerHTML=P.meals.map((m,i)=>{{const s=day.m[i], f=day.f[i];
   return `<div class="meal ${{s?"done":""}}"><div class="mh"><div class="t">${{m.h}}</div><div class="n"><b>${{esc(m.n)}}</b><small>${{esc(m.s)}}</small></div>${{s?`<span class="st ${{s}}">${{ST[s]}}</span>`:""}}</div>
-  <ul>${{m.i.map(x=>`<li>${{esc(x)}}</li>`).join("")}}</ul><div class="swap"><b>Pode trocar:</b> ${{esc(m.t)}}</div>
+  <ul>${{m.i.map((x,ii)=>swItem(i,ii,x)).join("")}}</ul><div class="swap"><b>Pode trocar:</b> ${{esc(m.t)}}</div>
   <div class="acts">${{[["ok","check"],["troca","repeat-2"],["fora","x"]].map(([v,n])=>`<button data-v="${{v}}" class="${{s===v?"on":""}}" onclick="setM(${{i}},'${{v}}')">${{ic(n,16)}}${{ST[v]}}</button>`).join("")}}</div>
   ${{s?`<div class="hun">Como ficou a fome depois?<div>${{HU.map(([v,n,l])=>`<button class="${{f===v?"on":""}}" onclick="setF(${{i}},'${{v}}')">${{ic(n,16)}}${{l}}</button>`).join("")}}</div></div>`:""}}</div>`}}).join("");
 }}
@@ -307,7 +315,7 @@ document.getElementById("fd").value=today;
 if(!(window.matchMedia&&matchMedia("(display-mode: standalone)").matches)&&!navigator.standalone) document.getElementById("hint").style.display="block";
 const offEl=document.getElementById("off"); const net=()=>offEl.style.display=navigator.onLine?"none":"flex"; addEventListener("online",net); addEventListener("offline",net); net();
 if("serviceWorker" in navigator && location.protocol==="https:") navigator.serviceWorker.register("sw.js").catch(()=>{{}});
-render();
+calcInit();render();
 </script>
 </body></html>"""
 (OUT / 'index.html').write_text(HTML, encoding='utf-8')
