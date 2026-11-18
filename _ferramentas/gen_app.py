@@ -27,12 +27,29 @@ for i, m in enumerate(P['meals']):
            "BEGIN:VALARM", "TRIGGER:PT0M", "ACTION:DISPLAY", f"DESCRIPTION:Hora do {m['n'].lower()}", "END:VALARM", "END:VEVENT"]
 ev += ["END:VCALENDAR"]
 (OUT / 'lembretes.ics').write_text("\r\n".join(ev) + "\r\n")
+# ---------- lembretes de água: copos de 200 ml, 2 copos por lembrete, entre a 1ª e a última refeição ----------
+_mins = [int(m['h'].split(':')[0]) * 60 + int(m['h'].split(':')[1]) for m in P['meals'] if not m.get('opc')]
+_ini, _fim = min(_mins), max(_mins)
+_copos = -(-round(P["agua_l"] * 10) // 2); _n = (_copos + 1) // 2
+_step = (_fim - _ini) / max(1, _n - 1)
+AGUA_H = []
+ag = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//nutrilucas//agua//PT", "CALSCALE:GREGORIAN"] + VTZ
+for i in range(_n):
+    t = round((_ini + i * _step) / 15) * 15; hh, mm = divmod(t, 60); hh %= 24
+    q = 2 if (i < _n - 1 or _copos % 2 == 0) else 1
+    AGUA_H.append(f"{hh:02d}:{mm:02d}")
+    txt = f"Beba {q} copo{'s' if q > 1 else ''} de água ({q * 200} ml)"
+    ag += ["BEGIN:VEVENT", f"UID:{P['slug']}-agua{i}@nutrilucas", f"DTSTAMP:{start:%Y%m%d}T000000Z", f"DTSTART;TZID=America/Sao_Paulo:{start:%Y%m%d}T{hh:02d}{mm:02d}00",
+           f"DTEND;TZID=America/Sao_Paulo:{start:%Y%m%d}T{hh:02d}{mm:02d}00", "RRULE:FREQ=DAILY", f"SUMMARY:{txt}",
+           "BEGIN:VALARM", "TRIGGER:PT0M", "ACTION:DISPLAY", f"DESCRIPTION:{txt}", "END:VALARM", "END:VEVENT"]
+ag += ["END:VCALENDAR"]
+(OUT / 'agua.ics').write_text("\r\n".join(ag) + "\r\n")
 (OUT / 'manifest.json').write_text(json.dumps({"name": f"Meu plano · {P['nome']}", "short_name": "Meu plano", "start_url": "./", "scope": "./",
     "display": "standalone", "background_color": "#F4F8EF", "theme_color": G,
     "icons": [{"src": "../../assets/icon-192.png", "sizes": "192x192", "type": "image/png"}, {"src": "../../assets/icon-512.png", "sizes": "512x512", "type": "image/png"}]}, ensure_ascii=False))
 VER = datetime.datetime.now().strftime('%Y%m%d%H%M')
 (OUT / 'sw.js').write_text(f"""const C='plano-{P['slug']}-{VER}';
-const F=['./','./index.html','./manifest.json','./lembretes.ics','../../assets/logo.png','../../assets/icon-192.png'];
+const F=['./','./index.html','./manifest.json','./lembretes.ics','./agua.ics','../../assets/logo.png','../../assets/icon-192.png'];
 self.addEventListener('install',e=>{{self.skipWaiting();e.waitUntil(caches.open(C).then(c=>c.addAll(F)).catch(()=>{{}}))}});
 self.addEventListener('activate',e=>{{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==C).map(x=>caches.delete(x)))).then(()=>self.clients.claim()))}});
 self.addEventListener('fetch',e=>{{if(e.request.method!=='GET')return;e.respondWith(fetch(e.request).then(r=>{{const cp=r.clone();caches.open(C).then(c=>c.put(e.request,cp)).catch(()=>{{}});return r}}).catch(()=>caches.match(e.request,{{ignoreSearch:true}}).then(r=>r||caches.match('./index.html'))))}});
@@ -83,6 +100,8 @@ h2{color:var(--dark);font-size:19px;margin:20px 2px 10px}
 .cup{aspect-ratio:3/4;border:2px solid #b9d7f0;border-radius:6px 6px 12px 12px;background:#fff;cursor:pointer}
 .cup.ok{background:linear-gradient(to top,#6cb6ea 85%,#fff 85%)}
 .goal{background:var(--dark);color:#fff;border-radius:18px;padding:14px;margin-bottom:14px}.goal h3{font-size:16px;display:flex;align-items:center;gap:8px;color:#fff;margin:0 0 2px}.goal .gs{font-size:12px;opacity:.85;margin-bottom:8px}.goal .gr{margin-top:9px}.goal .gl{display:flex;justify-content:space-between;font-size:13.5px}.goal .gl b{color:var(--leaf)}.goal .gb{height:8px;border-radius:99px;background:rgba(255,255,255,.18);margin-top:4px;overflow:hidden}.goal .gb i{display:block;height:100%;background:var(--leaf);border-radius:99px}.goal .gp{font-size:12px;opacity:.85;margin-top:10px;border-top:1px solid rgba(255,255,255,.18);padding-top:8px}
+.gsend{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px;background:#fff;color:var(--dark);border-radius:999px;padding:10px;font-weight:700;font-size:14px;text-decoration:none}
+.sunday{display:none;gap:12px;align-items:center;background:#25D366;color:#fff;border-radius:18px;padding:14px;margin-bottom:14px;text-decoration:none;line-height:1.3}.sunday small{opacity:.95}
 .toggle{display:flex;align-items:center;gap:12px;cursor:pointer}
 .ck{width:30px;height:30px;border-radius:50%;border:2px solid var(--leaf);display:grid;place-items:center;flex:none;color:transparent}
 .ck.ok{background:var(--leaf);color:#103b06}
@@ -140,12 +159,15 @@ HTML = f"""<!doctype html>
 <div class="hint" id="hint">Dica: toque em <b>Compartilhar → Adicionar à Tela de Início</b> (iPhone) ou <b>⋮ → Adicionar à tela inicial</b> (Android) para abrir como app.</div>
 
 <section class="tab on" id="t-plano">
+ <a class="sunday" id="sunday" href="#">{ico('send', 22, '#fff')}<div><b>Fim de semana! Envie sua semana para o Lucas</b><br><small>Um toque e o resumo vai pelo WhatsApp. Assim a gente ajusta o plano juntos.</small></div></a>
  <div class="goal" id="goal"></div>
  <h2>Refeições de hoje</h2>
  <p class="sub">Marque cada refeição: <b>Comi</b> (igual ao plano), <b>Troquei</b> (usei a lista de trocas) ou <b>Saí do plano</b>. Sem culpa: é para ajustarmos juntos.</p>
  <div id="meals"></div>
  <h2>Água</h2>
- <div class="box"><b>Meta: cerca de {str(P['agua_l']).replace('.', ',')} litros</b> · cada copo = 250 ml<div class="cups" id="cups"></div><p class="note">Toque em cada copo que beber. Tudo zera sozinho no dia seguinte.</p></div>
+ <div class="box"><b>Meta: cerca de {str(P['agua_l']).replace('.', ',')} litros</b> · cada copo = 200 ml<div class="cups" id="cups"></div><p class="note">Toque em cada copo que beber. Tudo zera sozinho no dia seguinte.</p>
+  <p class="note" style="margin-top:10px"><b>Lembretes de água:</b> {len(AGUA_H)} alarmes por dia ({', '.join(AGUA_H)}), cada um com 2 copos (400 ml).</p>
+  <a class="btn" href="agua.ics">{ico('glass-water', 16, G)} Ativar lembretes de água</a></div>
  {'<div class="box toggle" onclick="tgR()"><div class="ck" id="sodachk">' + ico('check', 18) + '</div><div><b>Hoje fiquei sem refrigerante</b><br><small style="color:var(--muted)">Marque no fim do dia. Vale para suco de caixinha também.</small></div></div>' if P['refri'] else ''}
  {('<div class="box toggle" onclick="tgT()"><div class="ck" id="treinochk">' + ico('check', 18) + '</div><div><b>Hoje treinei</b><br><small style="color:var(--muted)">' + P['metas']['treino'][0] + ' conta para a sua meta da semana.</small></div></div>') if P['metas']['treino'] else ''}
  <div class="box"><div class="ih">{ico('bell', 20, G)}<b>Lembretes das refeições</b></div><p class="note" style="margin-top:0">Coloca um alarme diário no horário de cada refeição, direto na agenda do seu celular.</p>
@@ -224,12 +246,12 @@ function renderMeals(){{
 }}
 function render(){{
  renderMeals();
- const cups=Math.round(P.agua_l*4);
+ const cups=Math.ceil(P.agua_l*5-1e-9);
  document.getElementById("cups").innerHTML=Array.from({{length:cups}},(_,i)=>`<div class="cup ${{i<day.w?"ok":""}}" onclick="tgW(${{i}})" aria-label="Copo ${{i+1}}"></div>`).join("");
  const sc=document.getElementById("sodachk"); if(sc) sc.classList.toggle("ok",!!day.r);
  const done=MAIN.filter(i=>day.m[i]==="ok"||day.m[i]==="troca").length;
  document.getElementById("bar").style.width=Math.round(((done/MAIN.length)*0.7+(Math.min(day.w,cups)/cups)*0.3)*100)+"%";
- document.getElementById("progt").textContent=`${{done}} de ${{MAIN.length}} refeições · ${{br(day.w*0.25,day.w%4?2:0)}} L de água`;
+ document.getElementById("progt").textContent=`${{done}} de ${{MAIN.length}} refeições · ${{br(day.w*0.2,1)}} L de água`;
  document.getElementById("buys").innerHTML=P.buys.map((b,i)=>`<div class="li ${{buys.includes(i)?"ok":""}}" onclick="tgB(${{i}})"><div class="bx">${{ic("check",14)}}</div><div class="tx">${{esc(b[0])}}</div><div class="q">${{esc(b[1])}}</div></div>`).join("");
  document.getElementById("prep").innerHTML=P.preparo.map((t,i)=>`<div class="li ${{prep.i.includes(i)?"ok":""}}" onclick="tgP(${{i}})"><div class="bx">${{ic("check",14)}}</div><div class="tx">${{esc(t)}}</div></div>`).join("");
  renderEv(); renderAppt(); renderGoal();
@@ -241,12 +263,14 @@ function tgR(){{day.r=!day.r;saveDay();render()}}
 function tgT(){{day.t=!day.t;saveDay();render()}}
 function weekDays(){{const d=new Date();const off=(d.getDay()+6)%7;const out=[];for(let k=0;k<=off;k++){{const x=new Date(d);x.setDate(d.getDate()-off+k);out.push(hist[ymd(x)])}}return out}}
 function metas(){{const W=weekDays();const need=Math.max(1,MAIN.length-1);
- return {{plano:W.filter(h=>h&&MAIN.filter(i=>h.m[i]==="ok"||h.m[i]==="troca").length>=need).length,agua:W.filter(h=>h&&h.w*0.25>=P.agua_l).length,treino:W.filter(h=>h&&h.t).length}}}}
+ return {{plano:W.filter(h=>h&&MAIN.filter(i=>h.m[i]==="ok"||h.m[i]==="troca").length>=need).length,agua:W.filter(h=>h&&h.w*0.2>=P.agua_l-0.01).length,treino:W.filter(h=>h&&h.t).length}}}}
 function renderGoal(){{const M=P.metas,g=metas();
  const row=(l,v,n)=>`<div class="gr"><div class="gl"><span>${{l}}</span><b>${{Math.min(v,n)}} de ${{n}}${{v>=n?" ✓":""}}</b></div><div class="gb"><i style="width:${{Math.min(100,v/n*100)}}%"></i></div></div>`;
  document.getElementById("goal").innerHTML=`<h3>${{ic("target",20)}} Minha meta até o retorno</h3><div class="gs">Progresso desta semana (zera toda segunda)</div>`+
   row("Dias seguindo o plano",g.plano,M.plano)+row("Dias com a água completa",g.agua,M.agua)+(M.treino?row(M.treino[0]+" na semana",g.treino,M.treino[1]):"")+
-  `<div class="gp">${{M.peso_txt?esc(M.peso_txt):"A meta de peso combinada na consulta está no seu plano em PDF."}} Registre o peso 1 vez por semana na aba Evolução. Os resultados variam de pessoa para pessoa.</div>`;
+  `<div class="gp">${{M.peso_txt?esc(M.peso_txt):"A meta de peso combinada na consulta está no seu plano em PDF."}} Registre o peso 1 vez por semana na aba Evolução. Os resultados variam de pessoa para pessoa.</div>`+
+  `<a class="gsend" href="${{window.SENDH||"#"}}">${{ic("send",16)}} Enviar minha semana para o Lucas</a>`;
+ const sun=document.getElementById("sunday"); if(sun){{const d=new Date().getDay();sun.style.display=(d===0||d===6)?"flex":"none";sun.href=window.SENDH||"#"}}
  const tc=document.getElementById("treinochk"); if(tc) tc.classList.toggle("ok",!!day.t);}}
 function tgB(i){{buys=buys.includes(i)?buys.filter(x=>x!==i):[...buys,i];save("compras",buys);render()}}
 function tgP(i){{prep.i=prep.i.includes(i)?prep.i.filter(x=>x!==i):[...prep.i,i];save("preparo",prep);render()}}
@@ -260,7 +284,7 @@ function stats(){{
  L.forEach(([k,x,h])=>{{if(!h)return; water+=h.w; MAIN.forEach(i=>{{const s=h.m[i]; if(s==="ok")ok++; else if(s==="troca")troca++; else if(s==="fora")fora++}});
    for(const i in h.f) if(h.f[i]==="fome") fome[i]=(fome[i]||0)+1}});
  const base=Math.max(1,used.length)*MAIN.length;
- return {{streak,ok,troca,fora,ade:Math.round((ok+troca)/base*100),agua:water*0.25/Math.max(1,used.length),dias:used.length,fome}};
+ return {{streak,ok,troca,fora,ade:Math.round((ok+troca)/base*100),agua:water*0.2/Math.max(1,used.length),dias:used.length,fome}};
 }}
 function renderEv(){{
  const st=stats(); const ps=[...pesos].sort((a,b)=>a.d.localeCompare(b.d));
@@ -287,7 +311,7 @@ function renderEv(){{
  {{const g=metas(),M=P.metas; t+=`• Metas desta semana: plano ${{g.plano}}/${{M.plano}} dias · água ${{g.agua}}/${{M.agua}} dias`+(M.treino?` · ${{M.treino[0].toLowerCase()}} ${{g.treino}}/${{M.treino[1]}}`:"")+`\\n`}}
  if(fm) t+=`• Mais fome depois de: ${{P.meals[fm[0]].n}} (${{fm[1]}}x)\\n`;
  if(ps.length){{t+="Peso:\\n";ps.slice(-6).forEach(x=>t+=`• ${{fmtD(x.d)}}: ${{br(x.p)}} kg${{x.c?" · cintura "+br(x.c)+" cm":""}}\\n`)}}
- document.getElementById("sendev").href="https://wa.me/5561992308296?text="+encodeURIComponent(t);
+ window.SENDH="https://wa.me/5561992308296?text="+encodeURIComponent(t);document.getElementById("sendev").href=SENDH;
 }}
 function addW(){{const d=document.getElementById("fd").value||today,p=parseFloat(String(document.getElementById("fp").value).replace(",",".")),c=parseFloat(String(document.getElementById("fc").value).replace(",","."));
  const e=document.getElementById("fp"); if(!(p>=30&&p<=300)){{e.style.borderColor="#b33";setTimeout(()=>e.style.borderColor="",2500);return}}

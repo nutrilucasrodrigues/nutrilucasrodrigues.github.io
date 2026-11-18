@@ -13,9 +13,9 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:mariahelena-d0b676-ref0@nutrilucas
-DTSTAMP:20261118T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261118T083000
-DTEND;TZID=America/Sao_Paulo:20261118T084500
+DTSTAMP:20261119T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261119T083000
+DTEND;TZID=America/Sao_Paulo:20261119T084500
 RRULE:FREQ=DAILY
 SUMMARY:Café da manhã (plano)
 DESCRIPTION:1 pão francês (50 g) · 2 ovos cozidos (100 g)\, leve já cozidos de casa · 1 copo americano de café com leite: 150 ml de leite integral\, sem açúcar ou com pouco · 1 fatia pequena de mamão (100 g) · Creatina: 3 g (1 medidor) misturada no café com leite
@@ -27,9 +27,9 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:mariahelena-d0b676-ref1@nutrilucas
-DTSTAMP:20261118T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261118T123000
-DTEND;TZID=America/Sao_Paulo:20261118T124500
+DTSTAMP:20261119T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261119T123000
+DTEND;TZID=America/Sao_Paulo:20261119T124500
 RRULE:FREQ=DAILY
 SUMMARY:Almoço (plano)
 DESCRIPTION:Salada à vontade: alface (30 g) e 4 fatias de tomate (60 g) · 3 colheres de sopa de arroz (75 g) · 1 concha média de feijão (100 g) · 1 filé grande de frango grelhado (140 g) · 2 colheres de sopa de cenoura cozida (50 g) · Óleo: 1 colher de sobremesa no preparo (8 ml) · Depois de comer: 1 comprimido do polivitamínico
@@ -41,9 +41,9 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:mariahelena-d0b676-ref2@nutrilucas
-DTSTAMP:20261118T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261118T163000
-DTEND;TZID=America/Sao_Paulo:20261118T164500
+DTSTAMP:20261119T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261119T163000
+DTEND;TZID=America/Sao_Paulo:20261119T164500
 RRULE:FREQ=DAILY
 SUMMARY:Lanche antes da aula (plano)
 DESCRIPTION:1 pão francês (50 g) com 3 colheres de sopa de frango desfiado (60 g) · 1 fatia fina de queijo minas (20 g) e 3 fatias de tomate (40 g) · 1 banana pequena (60 g)
@@ -55,9 +55,9 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:mariahelena-d0b676-ref3@nutrilucas
-DTSTAMP:20261118T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261118T221500
-DTEND;TZID=America/Sao_Paulo:20261118T223000
+DTSTAMP:20261119T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261119T221500
+DTEND;TZID=America/Sao_Paulo:20261119T223000
 RRULE:FREQ=DAILY
 SUMMARY:Jantar leve (plano)
 DESCRIPTION:2 colheres de sopa de arroz (50 g) · 1 filé médio de frango (100 g) · 3 colheres de sopa de abobrinha refogada (60 g) · Salada de repolho à vontade (cerca de 50 g) · Óleo: 1 colher de sobremesa no preparo (8 ml)
