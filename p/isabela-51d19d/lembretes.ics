@@ -1,0 +1,98 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//nutrilucas//plano//PT
+CALSCALE:GREGORIAN
+BEGIN:VTIMEZONE
+TZID:America/Sao_Paulo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:-0300
+TZOFFSETTO:-0300
+TZNAME:-03
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:isabela-51d19d-ref0@nutrilucas
+DTSTAMP:20261118T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261118T103000
+DTEND;TZID=America/Sao_Paulo:20261118T104500
+RRULE:FREQ=DAILY
+SUMMARY:Café da manhã (plano)
+DESCRIPTION:2 ovos mexidos ou cozidos (100 g)\, sem óleo ou com 1 fio · 1 fatia pequena de mamão papaia (100 g)
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do café da manhã
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:isabela-51d19d-ref1@nutrilucas
+DTSTAMP:20261118T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261118T123000
+DTEND;TZID=America/Sao_Paulo:20261118T124500
+RRULE:FREQ=DAILY
+SUMMARY:Almoço (plano)
+DESCRIPTION:4 colheres de sopa de arroz (100 g) · 1 filé médio de peito de frango grelhado (120 g) · 2 colheres de sopa de cenoura cozida (30 g) · Salada à vontade · Azeite: 1 colher de chá (3 ml) · Opcional: 2 colheres de sopa de lentilha (50 g)
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do almoço
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:isabela-51d19d-ref2@nutrilucas
+DTSTAMP:20261118T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261118T150000
+DTEND;TZID=America/Sao_Paulo:20261118T151500
+RRULE:FREQ=DAILY
+SUMMARY:Pré-treino (plano)
+DESCRIPTION:1 maçã média (130 g) · 1 dose (scoop) de whey concentrado (30 g)\, batido com 200 ml de água gelada
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do pré-treino
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:isabela-51d19d-ref3@nutrilucas
+DTSTAMP:20261118T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261118T180000
+DTEND;TZID=America/Sao_Paulo:20261118T181500
+RRULE:FREQ=DAILY
+SUMMARY:Pós-treino (plano)
+DESCRIPTION:1 pão francês (50 g) · 2 colheres de sopa cheias de frango desfiado (50 g)
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do pós-treino
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:isabela-51d19d-ref4@nutrilucas
+DTSTAMP:20261118T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261118T210000
+DTEND;TZID=America/Sao_Paulo:20261118T211500
+RRULE:FREQ=DAILY
+SUMMARY:Jantar (plano)
+DESCRIPTION:1 pedaço e meio médio de mandioca cozida (75 g) · 4 colheres de sopa de carne moída de patinho refogada (100 g) · 3 colheres de sopa de abobrinha refogada (80 g)
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do jantar
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:isabela-51d19d-ref5@nutrilucas
+DTSTAMP:20261118T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261118T233000
+DTEND;TZID=America/Sao_Paulo:20261118T234500
+RRULE:FREQ=DAILY
+SUMMARY:Ceia (plano)
+DESCRIPTION:1 copo de leite semidesnatado (200 ml)
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do ceia
+END:VALARM
+END:VEVENT
+END:VCALENDAR
