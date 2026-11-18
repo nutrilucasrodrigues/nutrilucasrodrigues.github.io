@@ -11,8 +11,8 @@ NAMES = ['check', 'repeat-2', 'x', 'smile', 'meh', 'frown', 'calendar', 'calenda
          'chart-line', 'clipboard-list', 'clipboard-check', 'list-checks', 'chef-hat', 'wifi-off', 'info', 'scale', 'glass-water', 'cup-soda', 'target']
 NAMES += sorted({m[0] for m in P['medidas']} | {r[1] for r in P['receitas']} | {f[0] for f in P['fora']} | {t[0] for t in P['tips']})
 IC = {n: ico(n, 20) for n in NAMES}
-NAV = [('plano', 'utensils', 'Plano'), ('trocas', 'arrow-left-right', 'Trocas'), ('compras', 'shopping-cart', 'Compras'),
-       ('evolucao', 'chart-line', 'Evolução'), ('dicas', 'lightbulb', 'Dicas')]
+NAV = [('inicio', 'house', 'Início'), ('plano', 'utensils', 'Plano'), ('trocas', 'arrow-left-right', 'Trocas'),
+       ('evolucao', 'chart-line', 'Evolução'), ('mais', 'layout-grid', 'Mais')]
 
 # ---------- arquivos de calendário ----------
 VTZ = ["BEGIN:VTIMEZONE", "TZID:America/Sao_Paulo", "BEGIN:STANDARD", "DTSTART:19700101T000000", "TZOFFSETFROM:-0300", "TZOFFSETTO:-0300", "TZNAME:-03", "END:STANDARD", "END:VTIMEZONE"]
@@ -171,14 +171,10 @@ HTML = f"""<!doctype html>
 <div class="prog"><i id="bar"></i></div><div class="progt" id="progt"></div>
 <div class="off" id="off">{ico('wifi-off', 15, '#fff')} Sem internet: tudo continua funcionando.</div></header>
 <main>
+<section class="tab on" id="t-inicio">
 <div id="appt"></div>
 <div class="hint" id="hint"><button class="hx" onclick="save('hintx',true);this.parentNode.style.display='none'" aria-label="Fechar">×</button>Dica: toque em <b>Compartilhar → Adicionar à Tela de Início</b> (iPhone) ou <b>⋮ → Adicionar à tela inicial</b> (Android) para abrir como app.</div>
-
-<section class="tab on" id="t-plano">
  <div class="goal" id="goal"></div>
- <h2>Refeições de hoje</h2>
- 
- <div id="meals"></div>
  <h2>Água</h2>
  <div class="box"><b>Meta: cerca de {str(P['agua_l']).replace('.', ',')} litros</b> · cada copo = 200 ml<div class="cups" id="cups"></div><p class="note">Toque em cada copo que beber. Tudo zera sozinho no dia seguinte.</p></div>
  {'<div class="box toggle" onclick="tgR()"><div class="ck" id="sodachk">' + ico('check', 18) + '</div><div><b>Hoje fiquei sem refrigerante</b><br><small style="color:var(--muted)">Marque no fim do dia. Vale para suco de caixinha também.</small></div></div>' if P['refri'] else ''}
@@ -190,6 +186,13 @@ HTML = f"""<!doctype html>
   <a class="btn" href="relatorio.ics">{ico('send', 16, G)} Relatório da semana (domingo, 19h)</a></details>
 </section>
 
+<section class="tab" id="t-plano">
+ <h2>Meu plano alimentar</h2>
+ 
+ <div id="meals"></div>
+<p class="note" style="text-align:center">Marque cada refeição: Comi, Troquei ou Saí do plano. O progresso aparece na aba Início.</p>
+</section>
+
 <section class="tab" id="t-trocas">
 {trocas.CALC_HTML}
  <h2>Como é essa medida?</h2><div class="box" id="medidas"></div>
@@ -197,11 +200,7 @@ HTML = f"""<!doctype html>
  <div id="groups"></div>
 </section>
 
-<section class="tab" id="t-compras">
- <h2>Preparo da semana</h2><p class="sub">Uma hora no domingo deixa a semana pronta. A lista zera toda semana.</p><div class="box" id="prep"></div>
- <h2>Lista de compras do mês</h2><p class="sub">Toque para marcar o que já comprou. {P['compras_obs']}</p><div class="box" id="buys"></div>
- <button class="btn" onclick="clearBuys()">Desmarcar tudo</button>
-</section>
+
 
 <section class="tab" id="t-evolucao">
  <h2>Minha semana</h2><div class="kpis" id="kpis"></div>
@@ -217,7 +216,7 @@ HTML = f"""<!doctype html>
  <p class="note" style="text-align:center">Seus registros ficam salvos só neste celular. Se trocar de aparelho ou limpar o navegador, eles somem.</p>
 </section>
 
-<section class="tab" id="t-dicas">
+<section class="tab" id="t-mais">
  <h2 id="como">Como usar o app</h2>
  <div class="box"><ol style="margin:0 0 0 20px"><li style="margin:6px 0">Marque cada refeição: <b>Comi</b>, <b>Troquei</b> ou <b>Saí do plano</b>. Sem culpa: é para ajustarmos juntos.</li>
  <li style="margin:6px 0">Não tem um alimento? Toque em <b>Trocar</b> ao lado dele: o app mostra as opções na quantidade certa.</li>
@@ -226,6 +225,10 @@ HTML = f"""<!doctype html>
  <h2>Receitas rápidas</h2><div id="rec"></div>
  <h2>Comendo fora de casa</h2><div id="fora"></div>
  <h2>Para o seu dia a dia</h2><div id="tips"></div>
+
+ <h2>Preparo da semana</h2><p class="sub">Uma hora no domingo deixa a semana pronta. A lista zera toda semana.</p><div class="box" id="prep"></div>
+ <h2>Lista de compras do mês</h2><p class="sub">Toque para marcar o que já comprou. {P['compras_obs']}</p><div class="box" id="buys"></div>
+ <button class="btn" onclick="clearBuys()">Desmarcar tudo</button>
 </section>
 
 <a class="wa" href="https://wa.me/5561992308296?text=Oi%20Lucas%2C%20tenho%20uma%20d%C3%BAvida%20sobre%20meu%20plano">{ico('message-circle', 20, '#fff')} Falar com o Lucas no WhatsApp</a>
@@ -290,7 +293,7 @@ function renderGoal(){{const M=P.metas,g=metas(),sent=load("enviado","")===weekK
  document.getElementById("goal").innerHTML=`<h3>${{ic("target",20)}} Minha semana</h3><div class="gs">Metas até o retorno · zera toda segunda</div>`+
   row("Dias seguindo o plano",g.plano,M.plano)+row("Dias com a água completa",g.agua,M.agua)+(M.treino?row(M.treino[0]+" na semana",g.treino,M.treino[1]):"")+
   (M.peso_txt?`<div class="gp">${{esc(M.peso_txt)}}</div>`:"")+
-  `<div class="rel">${{sent?ic("check",15)+" Relatório desta semana: <b>enviado</b>":"Relatório da semana: <b>pendente</b> · envie no domingo"}} · <a href="#" onclick="go('dicas','como');return false">Como funciona?</a></div>`+
+  `<div class="rel">${{sent?ic("check",15)+" Relatório desta semana: <b>enviado</b>":"Relatório da semana: <b>pendente</b> · envie no domingo"}} · <a href="#" onclick="go('mais','como');return false">Como funciona?</a></div>`+
   (sent?"":`<a class="gsend ${{hot?"hot":""}}" href="${{window.SENDH||"#"}}" onclick="markSent()">${{ic("send",16)}} ${{hot?"Enviar meu relatório agora":"Enviar meu relatório da semana"}}</a>`);
  const tc=document.getElementById("treinochk"); if(tc) tc.classList.toggle("ok",!!day.t);}}
 function go(t,a){{const b=document.querySelector(`nav button[data-t=${{t}}]`);if(b)b.click();setTimeout(()=>{{const e=document.getElementById(a);if(e)e.scrollIntoView({{behavior:"smooth"}})}},80)}}
