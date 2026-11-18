@@ -81,4 +81,19 @@ ACTION:DISPLAY
 DESCRIPTION:Hora do lanche da noite
 END:VALARM
 END:VEVENT
+BEGIN:VEVENT
+UID:waleska-61835a-relatorio@nutrilucas
+DTSTAMP:20261119T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261122T190000
+DTEND;TZID=America/Sao_Paulo:20261122T191500
+RRULE:FREQ=WEEKLY;BYDAY=SU
+SUMMARY:Enviar meu relatório da semana para o Lucas
+DESCRIPTION:Abra o app e toque em Enviar meu relatório: https://nutrilucasrodrigues.github.io/p/waleska-61835a/
+URL:https://nutrilucasrodrigues.github.io/p/waleska-61835a/
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora de enviar seu relatório da semana para o Lucas
+END:VALARM
+END:VEVENT
 END:VCALENDAR

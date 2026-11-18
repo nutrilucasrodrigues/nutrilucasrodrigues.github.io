@@ -25,6 +25,13 @@ for i, m in enumerate(P['meals']):
     ev += ["BEGIN:VEVENT", f"UID:{P['slug']}-ref{i}@nutrilucas", f"DTSTAMP:{start:%Y%m%d}T000000Z", f"DTSTART;TZID=America/Sao_Paulo:{st}",
            f"DTEND;TZID=America/Sao_Paulo:{en}", "RRULE:FREQ=DAILY", f"SUMMARY:{m['n']} (plano)", "DESCRIPTION:" + " · ".join(m['i']).replace(",", "\\,"),
            "BEGIN:VALARM", "TRIGGER:PT0M", "ACTION:DISPLAY", f"DESCRIPTION:Hora do {m['n'].lower()}", "END:VALARM", "END:VEVENT"]
+_sun = start + datetime.timedelta(days=(6 - start.weekday()) % 7)
+REL = ["BEGIN:VEVENT", f"UID:{P['slug']}-relatorio@nutrilucas", f"DTSTAMP:{start:%Y%m%d}T000000Z", f"DTSTART;TZID=America/Sao_Paulo:{_sun:%Y%m%d}T190000",
+       f"DTEND;TZID=America/Sao_Paulo:{_sun:%Y%m%d}T191500", "RRULE:FREQ=WEEKLY;BYDAY=SU", "SUMMARY:Enviar meu relatório da semana para o Lucas",
+       f"DESCRIPTION:Abra o app e toque em Enviar meu relatório: https://nutrilucasrodrigues.github.io/p/{P['slug']}/", f"URL:https://nutrilucasrodrigues.github.io/p/{P['slug']}/",
+       "BEGIN:VALARM", "TRIGGER:PT0M", "ACTION:DISPLAY", "DESCRIPTION:Hora de enviar seu relatório da semana para o Lucas", "END:VALARM", "END:VEVENT"]
+ev += REL
+(OUT / 'relatorio.ics').write_text("\r\n".join(["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//nutrilucas//relatorio//PT", "CALSCALE:GREGORIAN"] + VTZ + REL + ["END:VCALENDAR"]) + "\r\n")
 ev += ["END:VCALENDAR"]
 (OUT / 'lembretes.ics').write_text("\r\n".join(ev) + "\r\n")
 # ---------- lembretes de água: copos de 200 ml, 2 copos por lembrete, entre a 1ª e a última refeição ----------
@@ -49,7 +56,7 @@ ag += ["END:VCALENDAR"]
     "icons": [{"src": "../../assets/icon-192.png", "sizes": "192x192", "type": "image/png"}, {"src": "../../assets/icon-512.png", "sizes": "512x512", "type": "image/png"}]}, ensure_ascii=False))
 VER = datetime.datetime.now().strftime('%Y%m%d%H%M')
 (OUT / 'sw.js').write_text(f"""const C='plano-{P['slug']}-{VER}';
-const F=['./','./index.html','./manifest.json','./lembretes.ics','./agua.ics','../../assets/logo.png','../../assets/icon-192.png'];
+const F=['./','./index.html','./manifest.json','./lembretes.ics','./agua.ics','./relatorio.ics','../../assets/logo.png','../../assets/icon-192.png'];
 self.addEventListener('install',e=>{{self.skipWaiting();e.waitUntil(caches.open(C).then(c=>c.addAll(F)).catch(()=>{{}}))}});
 self.addEventListener('activate',e=>{{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==C).map(x=>caches.delete(x)))).then(()=>self.clients.claim()))}});
 self.addEventListener('fetch',e=>{{if(e.request.method!=='GET')return;e.respondWith(fetch(e.request).then(r=>{{const cp=r.clone();caches.open(C).then(c=>c.put(e.request,cp)).catch(()=>{{}});return r}}).catch(()=>caches.match(e.request,{{ignoreSearch:true}}).then(r=>r||caches.match('./index.html'))))}});
@@ -102,6 +109,9 @@ h2{color:var(--dark);font-size:19px;margin:20px 2px 10px}
 .goal{background:var(--dark);color:#fff;border-radius:18px;padding:14px;margin-bottom:14px}.goal h3{font-size:16px;display:flex;align-items:center;gap:8px;color:#fff;margin:0 0 2px}.goal .gs{font-size:12px;opacity:.85;margin-bottom:8px}.goal .gr{margin-top:9px}.goal .gl{display:flex;justify-content:space-between;font-size:13.5px}.goal .gl b{color:var(--leaf)}.goal .gb{height:8px;border-radius:99px;background:rgba(255,255,255,.18);margin-top:4px;overflow:hidden}.goal .gb i{display:block;height:100%;background:var(--leaf);border-radius:99px}.goal .gp{font-size:12px;opacity:.85;margin-top:10px;border-top:1px solid rgba(255,255,255,.18);padding-top:8px}
 .gsend{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px;background:#fff;color:var(--dark);border-radius:999px;padding:10px;font-weight:700;font-size:14px;text-decoration:none}
 .sunday{display:none;gap:12px;align-items:center;background:#25D366;color:#fff;border-radius:18px;padding:14px;margin-bottom:14px;text-decoration:none;line-height:1.3}.sunday small{opacity:.95}
+.deal{background:#fff;border:2px solid var(--leaf);border-radius:18px;padding:14px;margin-bottom:14px}.deal ol{margin:4px 0 8px 20px}.deal li{font-size:14px;margin:5px 0;line-height:1.4}
+.dst{font-size:13.5px;background:#fff7e6;border-radius:10px;padding:8px 10px;margin:6px 0 8px}.dst svg{vertical-align:-3px;margin-right:4px}.dst.ok{background:#E8F1DF;color:var(--dark)}
+.sbtn{display:inline-block;margin-top:10px;background:#fff;color:#128C4A;border-radius:999px;padding:9px 16px;font-weight:800;font-size:14px}
 .toggle{display:flex;align-items:center;gap:12px;cursor:pointer}
 .ck{width:30px;height:30px;border-radius:50%;border:2px solid var(--leaf);display:grid;place-items:center;flex:none;color:transparent}
 .ck.ok{background:var(--leaf);color:#103b06}
@@ -159,7 +169,11 @@ HTML = f"""<!doctype html>
 <div class="hint" id="hint">Dica: toque em <b>Compartilhar → Adicionar à Tela de Início</b> (iPhone) ou <b>⋮ → Adicionar à tela inicial</b> (Android) para abrir como app.</div>
 
 <section class="tab on" id="t-plano">
- <a class="sunday" id="sunday" href="#">{ico('send', 22, '#fff')}<div><b>Fim de semana! Envie sua semana para o Lucas</b><br><small>Um toque e o resumo vai pelo WhatsApp. Assim a gente ajusta o plano juntos.</small></div></a>
+ <div class="deal"><div class="ih">{ico('clipboard-check', 20, G)}<b>Seu combinado da semana</b></div>
+  <ol><li>Marque as <b>refeições</b> e a <b>água</b> todos os dias.</li><li>No <b>domingo</b>, toque em <b>Enviar meu relatório</b>: o WhatsApp abre com tudo pronto, é só apertar enviar.</li><li>Eu analiso e te respondo com os ajustes.</li></ol>
+  <div class="dst" id="dst"></div>
+  <a class="btn" href="relatorio.ics">{ico('bell', 16, G)} Ativar lembrete do relatório (domingo, 19h)</a></div>
+ <a class="sunday" id="sunday" href="#" onclick="markSent()">{ico('send', 24, '#fff')}<div><b>Hoje é dia de mandar seu relatório!</b><br><small>Toque aqui: o WhatsApp abre com o resumo da sua semana pronto. É só apertar enviar.</small><span class="sbtn">Enviar meu relatório agora</span></div></a>
  <div class="goal" id="goal"></div>
  <h2>Refeições de hoje</h2>
  <p class="sub">Marque cada refeição: <b>Comi</b> (igual ao plano), <b>Troquei</b> (usei a lista de trocas) ou <b>Saí do plano</b>. Sem culpa: é para ajustarmos juntos.</p>
@@ -197,7 +211,7 @@ HTML = f"""<!doctype html>
   <label class="full">Cintura (cm), opcional<input type="number" inputmode="decimal" step="0.5" min="40" max="200" id="fc" placeholder="fita na altura do umbigo"></label></div>
   <button class="save" onclick="addW()">Salvar registro</button>
   <p class="note">Pese <b>1 vez por semana</b>, no mesmo dia, de manhã, em jejum e depois de ir ao banheiro. O peso oscila de um dia para o outro: olhe a tendência. Os resultados variam de pessoa para pessoa.</p></div>
- <a class="wa" id="sendev" href="#">{ico('send', 20, '#fff')} Enviar minha semana para o Lucas</a>
+ <a class="wa" id="sendev" href="#" onclick="markSent()">{ico('send', 20, '#fff')} Enviar meu relatório da semana</a>
  <p class="note" style="text-align:center">Seus registros ficam salvos só neste celular. Se trocar de aparelho ou limpar o navegador, eles somem.</p>
 </section>
 
@@ -269,9 +283,13 @@ function renderGoal(){{const M=P.metas,g=metas();
  document.getElementById("goal").innerHTML=`<h3>${{ic("target",20)}} Minha meta até o retorno</h3><div class="gs">Progresso desta semana (zera toda segunda)</div>`+
   row("Dias seguindo o plano",g.plano,M.plano)+row("Dias com a água completa",g.agua,M.agua)+(M.treino?row(M.treino[0]+" na semana",g.treino,M.treino[1]):"")+
   `<div class="gp">${{M.peso_txt?esc(M.peso_txt):"A meta de peso combinada na consulta está no seu plano em PDF."}} Registre o peso 1 vez por semana na aba Evolução. Os resultados variam de pessoa para pessoa.</div>`+
-  `<a class="gsend" href="${{window.SENDH||"#"}}">${{ic("send",16)}} Enviar minha semana para o Lucas</a>`;
- const sun=document.getElementById("sunday"); if(sun){{const d=new Date().getDay();sun.style.display=(d===0||d===6)?"flex":"none";sun.href=window.SENDH||"#"}}
+  `<a class="gsend" href="${{window.SENDH||"#"}}" onclick="markSent()">${{ic("send",16)}} Enviar meu relatório da semana</a>`;
+ const sent=load("enviado","")===weekKey(), d=new Date().getDay();
+ const sun=document.getElementById("sunday"); if(sun){{sun.style.display=(!sent&&(d===0||d===5||d===6))?"flex":"none";sun.href=window.SENDH||"#"}}
+ const ds=document.getElementById("dst"); if(ds) ds.innerHTML=sent?`${{ic("check",16)}} Relatório desta semana: <b>enviado</b>`:`Relatório desta semana: <b>pendente</b>${{d===0?" · hoje é o dia!":""}}`; if(ds) ds.className="dst "+(sent?"ok":"");
  const tc=document.getElementById("treinochk"); if(tc) tc.classList.toggle("ok",!!day.t);}}
+function weekKey(){{const d=new Date();const off=(d.getDay()+6)%7;d.setDate(d.getDate()-off);return ymd(d)}}
+function markSent(){{save("enviado",weekKey());setTimeout(render,300)}}
 function tgB(i){{buys=buys.includes(i)?buys.filter(x=>x!==i):[...buys,i];save("compras",buys);render()}}
 function tgP(i){{prep.i=prep.i.includes(i)?prep.i.filter(x=>x!==i):[...prep.i,i];save("preparo",prep);render()}}
 function clearBuys(){{buys=[];save("compras",buys);render()}}
