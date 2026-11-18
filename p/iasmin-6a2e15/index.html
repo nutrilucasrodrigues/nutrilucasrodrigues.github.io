@@ -193,8 +193,8 @@ function medida(k,g){const f=TQ.foods[k],u=f[6][0],n=ROUND(g/u[2],u[2]);return `
 function equiv(k,g){const f=TQ.foods[k],ix=TQ.groups[f[1]][1],alvo=g*f[ix]/100,kc0=g*f[2]/100;
  return Object.entries(TQ.foods).filter(([k2,f2])=>k2!==k&&f2[1]===f[1]&&f2[ix]>0).map(([k2,f2])=>{let g2=alvo/f2[ix]*100;const u=f2[6][0];
   g2=Math.round(g2/5)*5||Math.round(g2);
-  const kc=g2*f2[2]/100;return {k:k2,g:g2,kc,dif:kc0?Math.round((kc-kc0)/kc0*100):0}})}
-function openSw(k,g){SW={k,g};SEL=[];drawSw();document.getElementById("sheet").classList.add("on");document.getElementById("sheetbg").classList.add("on")}
+  const kc=g2*f2[2]/100;return {k:k2,g:g2,kc,dif:kc0?Math.round((kc-kc0)/kc0*100):0}}).filter(o=>o.dif<=80&&o.k!=="whey")}
+function openSw(k,g,mi,ii){SW={k,g,mi,ii};SEL=[];drawSw();document.getElementById("sheet").classList.add("on");document.getElementById("sheetbg").classList.add("on")}
 function closeSw(){document.getElementById("sheet").classList.remove("on");document.getElementById("sheetbg").classList.remove("on")}
 function pick(k2){const i=SEL.indexOf(k2);if(i>=0)SEL.splice(i,1);else{SEL.push(k2);if(SEL.length>2)SEL.shift()}drawSw()}
 function drawSw(){const {k,g}=SW,f=TQ.foods[k],gr=TQ.groups[f[1]],nut=["","","","proteína","carboidrato","gordura"][gr[1]];
@@ -203,11 +203,19 @@ function drawSw(){const {k,g}=SW,f=TQ.foods[k],gr=TQ.groups[f[1]],nut=["","","",
  <div class="orig">No plano: <b>${medida(k,g)}</b><br><small style="color:var(--muted)">As opções abaixo têm a mesma quantidade de ${nut}. Toque em 1 para trocar, ou em 2 para dividir meio a meio.</small></div>`;
  h+=ops.map(o=>`<div class="opt ${SEL.includes(o.k)?"sel":""}" onclick="pick('${o.k}')"><div class="ck2">${ic("check",14)}</div><div><div class="nm">${esc(TQ.foods[o.k][0])}</div><div class="qt">${medida(o.k,o.g)}</div>${Math.abs(o.dif)>15?`<div class="kc">${o.dif>0?"+":""}${o.dif}% de calorias</div>`:""}</div></div>`).join("");
  let mix="";if(SEL.length===2){const a=ops.find(o=>o.k===SEL[0]),b=ops.find(o=>o.k===SEL[1]);mix=`<b>Meio a meio:</b><br>${medida(a.k,a.g/2)} de ${esc(TQ.foods[a.k][0].toLowerCase())}<br>+ ${medida(b.k,b.g/2)} de ${esc(TQ.foods[b.k][0].toLowerCase())}`}
- else if(SEL.length===1){const a=ops.find(o=>o.k===SEL[0]);mix=`<b>Sua troca:</b> ${medida(a.k,a.g)} de ${esc(TQ.foods[a.k][0].toLowerCase())}. Marque <b>Troquei</b> na refeição.`}
- h+=`<div class="mix ${mix?"on":""}">${mix}</div><p class="note">Troca feita pelo nutriente principal do grupo. Medidas caseiras aproximadas.</p>`;
+ else if(SEL.length===1){const a=ops.find(o=>o.k===SEL[0]);mix=`<b>Sua troca:</b> ${medida(a.k,a.g)} de ${esc(TQ.foods[a.k][0].toLowerCase())}`}
+ h+=`<div class="mix ${mix?"on":""}">${mix}</div>`;
+ if(SEL.length&&SW.mi!==undefined) h+=`<button class="save" onclick="confirmSw()">${ic("check",16)} Confirmar troca</button>`;
+ h+=`<p class="note">Troca feita pelo nutriente principal do grupo. Medidas caseiras aproximadas. A troca vale só para hoje.</p>`;
  document.getElementById("sheet").innerHTML=h}
+function swText(){const ops=equiv(SW.k,SW.g);return SEL.map(k2=>{const o=ops.find(x=>x.k===k2);return medida(o.k,SEL.length===2?o.g/2:o.g)+" de "+TQ.foods[o.k][0].toLowerCase()}).join(" + ")}
+function confirmSw(){const key=SW.mi+"-"+SW.ii+"-"+SW.k;day.sw=day.sw||{};day.sw[key]={t:swText(),o:TQ.foods[SW.k][0].toLowerCase()};
+ if(day.m[SW.mi]!=="fora") day.m[SW.mi]="troca";saveDay();closeSw();render()}
+function undoSw(key,mi){delete day.sw[key];if(!Object.keys(day.sw).some(x=>x.startsWith(mi+"-"))&&day.m[mi]==="troca") delete day.m[mi];saveDay();render()}
 function swItem(mi,ii,x){const c=(P.meals[mi].c||[])[ii]||[];if(!c.length)return `<li>${esc(x)}</li>`;
- return `<li class="li-sw"><span>${esc(x)}</span>${c.map(([k,g])=>`<button class="swb" onclick="openSw('${k}',${g})">${ic("repeat-2",13)}${c.length>1?esc(TQ.foods[k][0].split(" ")[0]):"Trocar"}</button>`).join("")}</li>`}
+ const done=c.map(([k])=>[mi+"-"+ii+"-"+k,(day.sw||{})[mi+"-"+ii+"-"+k]]).filter(z=>z[1]);
+ if(done.length) return `<li class="li-sw"><span><s style="color:var(--muted)">${esc(x)}</s><br>${done.map(([key,v])=>`<b style="color:var(--dark)">Troquei:</b> ${esc(v.t)} <button class="swb" style="background:#fff;border:1px solid var(--line)" onclick="undoSw('${key}',${mi})">Desfazer</button>`).join("<br>")}</span></li>`;
+ return `<li class="li-sw"><span>${esc(x)}</span>${c.map(([k,g])=>`<button class="swb" onclick="openSw('${k}',${g},${mi},${ii})">${ic("repeat-2",13)}${c.length>1?esc(TQ.foods[k][0].split(" ")[0]):"Trocar"}</button>`).join("")}</li>`}
 function calcInit(){const s=document.getElementById("cfood");if(!s)return;
  s.innerHTML=Object.entries(TQ.groups).map(([gk,g])=>{const fs=Object.entries(TQ.foods).filter(([k,f])=>f[1]===gk);return fs.length?`<optgroup label="${g[0]}">${fs.map(([k,f])=>`<option value="${k}">${esc(f[0])}</option>`).join("")}</optgroup>`:""}).join("");
  calcUnits()}
