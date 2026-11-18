@@ -112,6 +112,12 @@ h2{color:var(--dark);font-size:19px;margin:20px 2px 10px}
 .deal{background:#fff;border:2px solid var(--leaf);border-radius:18px;padding:14px;margin-bottom:14px}.deal ol{margin:4px 0 8px 20px}.deal li{font-size:14px;margin:5px 0;line-height:1.4}
 .dst{font-size:13.5px;background:#fff7e6;border-radius:10px;padding:8px 10px;margin:6px 0 8px}.dst svg{vertical-align:-3px;margin-right:4px}.dst.ok{background:#E8F1DF;color:var(--dark)}
 .sbtn{display:inline-block;margin-top:10px;background:#fff;color:#128C4A;border-radius:999px;padding:9px 16px;font-weight:800;font-size:14px}
+.apl{background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 14px;font-size:14px;margin-bottom:12px;display:flex;align-items:center;gap:6px}.apl a{color:var(--dark);font-weight:700}
+.hint{position:relative;padding-right:34px!important}.hx{position:absolute;right:6px;top:4px;background:none;border:0;font-size:22px;color:#9a7a3a;cursor:pointer}
+.rel{font-size:13px;margin-top:10px;border-top:1px solid rgba(255,255,255,.18);padding-top:8px;opacity:.95}.rel a{color:var(--leaf);font-weight:700}.rel svg{vertical-align:-3px}
+.gsend.hot{background:#25D366;color:#fff;font-size:15px;padding:12px}
+details.swapd{margin:4px 0 6px}details.swapd summary{font-size:13px;color:var(--dark);font-weight:700;padding:6px 0;cursor:pointer}details.swapd .swap{margin-top:4px}
+details.rem summary{padding:0;display:flex;gap:8px;align-items:center}details.rem .btn{display:flex;margin-top:8px}
 .toggle{display:flex;align-items:center;gap:12px;cursor:pointer}
 .ck{width:30px;height:30px;border-radius:50%;border:2px solid var(--leaf);display:grid;place-items:center;flex:none;color:transparent}
 .ck.ok{background:var(--leaf);color:#103b06}
@@ -166,26 +172,22 @@ HTML = f"""<!doctype html>
 <div class="off" id="off">{ico('wifi-off', 15, '#fff')} Sem internet: tudo continua funcionando.</div></header>
 <main>
 <div id="appt"></div>
-<div class="hint" id="hint">Dica: toque em <b>Compartilhar → Adicionar à Tela de Início</b> (iPhone) ou <b>⋮ → Adicionar à tela inicial</b> (Android) para abrir como app.</div>
+<div class="hint" id="hint"><button class="hx" onclick="save('hintx',true);this.parentNode.style.display='none'" aria-label="Fechar">×</button>Dica: toque em <b>Compartilhar → Adicionar à Tela de Início</b> (iPhone) ou <b>⋮ → Adicionar à tela inicial</b> (Android) para abrir como app.</div>
 
 <section class="tab on" id="t-plano">
- <div class="deal"><div class="ih">{ico('clipboard-check', 20, G)}<b>Seu combinado da semana</b></div>
-  <ol><li>Marque as <b>refeições</b> e a <b>água</b> todos os dias.</li><li>No <b>domingo</b>, toque em <b>Enviar meu relatório</b>: o WhatsApp abre com tudo pronto, é só apertar enviar.</li><li>Eu analiso e te respondo com os ajustes.</li></ol>
-  <div class="dst" id="dst"></div>
-  <a class="btn" href="relatorio.ics">{ico('bell', 16, G)} Ativar lembrete do relatório (domingo, 19h)</a></div>
- <a class="sunday" id="sunday" href="#" onclick="markSent()">{ico('send', 24, '#fff')}<div><b>Hoje é dia de mandar seu relatório!</b><br><small>Toque aqui: o WhatsApp abre com o resumo da sua semana pronto. É só apertar enviar.</small><span class="sbtn">Enviar meu relatório agora</span></div></a>
  <div class="goal" id="goal"></div>
  <h2>Refeições de hoje</h2>
- <p class="sub">Marque cada refeição: <b>Comi</b> (igual ao plano), <b>Troquei</b> (usei a lista de trocas) ou <b>Saí do plano</b>. Sem culpa: é para ajustarmos juntos.</p>
+ 
  <div id="meals"></div>
  <h2>Água</h2>
- <div class="box"><b>Meta: cerca de {str(P['agua_l']).replace('.', ',')} litros</b> · cada copo = 200 ml<div class="cups" id="cups"></div><p class="note">Toque em cada copo que beber. Tudo zera sozinho no dia seguinte.</p>
-  <p class="note" style="margin-top:10px"><b>Lembretes de água:</b> {len(AGUA_H)} alarmes por dia ({', '.join(AGUA_H)}), cada um com 2 copos (400 ml).</p>
-  <a class="btn" href="agua.ics">{ico('glass-water', 16, G)} Ativar lembretes de água</a></div>
+ <div class="box"><b>Meta: cerca de {str(P['agua_l']).replace('.', ',')} litros</b> · cada copo = 200 ml<div class="cups" id="cups"></div><p class="note">Toque em cada copo que beber. Tudo zera sozinho no dia seguinte.</p></div>
  {'<div class="box toggle" onclick="tgR()"><div class="ck" id="sodachk">' + ico('check', 18) + '</div><div><b>Hoje fiquei sem refrigerante</b><br><small style="color:var(--muted)">Marque no fim do dia. Vale para suco de caixinha também.</small></div></div>' if P['refri'] else ''}
  {('<div class="box toggle" onclick="tgT()"><div class="ck" id="treinochk">' + ico('check', 18) + '</div><div><b>Hoje treinei</b><br><small style="color:var(--muted)">' + P['metas']['treino'][0] + ' conta para a sua meta da semana.</small></div></div>') if P['metas']['treino'] else ''}
- <div class="box"><div class="ih">{ico('bell', 20, G)}<b>Lembretes das refeições</b></div><p class="note" style="margin-top:0">Coloca um alarme diário no horário de cada refeição, direto na agenda do seu celular.</p>
-  <a class="btn" href="lembretes.ics">{ico('calendar-check', 16, G)} Ativar lembretes</a></div>
+ <details class="box rem"><summary>{ico('bell', 20, G)} Ativar lembretes no celular</summary>
+  <p class="note" style="margin-top:0">Cada botão coloca alarmes na agenda do seu celular. Ative uma vez só.</p>
+  <a class="btn" href="lembretes.ics">{ico('calendar-check', 16, G)} Refeições (no horário de cada uma)</a>
+  <a class="btn" href="agua.ics">{ico('glass-water', 16, G)} Água ({len(AGUA_H)} por dia: {', '.join(AGUA_H)})</a>
+  <a class="btn" href="relatorio.ics">{ico('send', 16, G)} Relatório da semana (domingo, 19h)</a></details>
 </section>
 
 <section class="tab" id="t-trocas">
@@ -216,6 +218,11 @@ HTML = f"""<!doctype html>
 </section>
 
 <section class="tab" id="t-dicas">
+ <h2 id="como">Como usar o app</h2>
+ <div class="box"><ol style="margin:0 0 0 20px"><li style="margin:6px 0">Marque cada refeição: <b>Comi</b>, <b>Troquei</b> ou <b>Saí do plano</b>. Sem culpa: é para ajustarmos juntos.</li>
+ <li style="margin:6px 0">Não tem um alimento? Toque em <b>Trocar</b> ao lado dele: o app mostra as opções na quantidade certa.</li>
+ <li style="margin:6px 0">Marque os copos de <b>água</b> ao longo do dia.</li>
+ <li style="margin:6px 0">No <b>domingo</b>, toque em <b>Enviar meu relatório</b>: o WhatsApp abre com tudo pronto, é só apertar enviar. Eu analiso e te respondo com os ajustes.</li></ol></div>
  <h2>Receitas rápidas</h2><div id="rec"></div>
  <h2>Comendo fora de casa</h2><div id="fora"></div>
  <h2>Para o seu dia a dia</h2><div id="tips"></div>
@@ -254,7 +261,7 @@ const HU=[["ok","smile","Satisfeito"],["fome","frown","Com fome"],["cheio","meh"
 function renderMeals(){{
  document.getElementById("meals").innerHTML=P.meals.map((m,i)=>{{const s=day.m[i], f=day.f[i];
   return `<div class="meal ${{s?"done":""}}"><div class="mh"><div class="t">${{m.h}}</div><div class="n"><b>${{esc(m.n)}}</b><small>${{esc(m.s)}}</small></div>${{s?`<span class="st ${{s}}">${{ST[s]}}</span>`:""}}</div>
-  <ul>${{m.i.map((x,ii)=>swItem(i,ii,x)).join("")}}</ul><div class="swap"><b>Pode trocar:</b> ${{esc(m.t)}}</div>
+  <ul>${{m.i.map((x,ii)=>swItem(i,ii,x)).join("")}}</ul><details class="swapd"><summary>Ver lista de trocas</summary><div class="swap">${{esc(m.t)}}</div></details>
   <div class="acts">${{[["ok","check"],["troca","repeat-2"],["fora","x"]].map(([v,n])=>`<button data-v="${{v}}" class="${{s===v?"on":""}}" onclick="setM(${{i}},'${{v}}')">${{ic(n,16)}}${{ST[v]}}</button>`).join("")}}</div>
   ${{s?`<div class="hun">Como ficou a fome depois?<div>${{HU.map(([v,n,l])=>`<button class="${{f===v?"on":""}}" onclick="setF(${{i}},'${{v}}')">${{ic(n,16)}}${{l}}</button>`).join("")}}</div></div>`:""}}</div>`}}).join("");
 }}
@@ -278,16 +285,15 @@ function tgT(){{day.t=!day.t;saveDay();render()}}
 function weekDays(){{const d=new Date();const off=(d.getDay()+6)%7;const out=[];for(let k=0;k<=off;k++){{const x=new Date(d);x.setDate(d.getDate()-off+k);out.push(hist[ymd(x)])}}return out}}
 function metas(){{const W=weekDays();const need=Math.max(1,MAIN.length-1);
  return {{plano:W.filter(h=>h&&MAIN.filter(i=>h.m[i]==="ok"||h.m[i]==="troca").length>=need).length,agua:W.filter(h=>h&&h.w*0.2>=P.agua_l-0.01).length,treino:W.filter(h=>h&&h.t).length}}}}
-function renderGoal(){{const M=P.metas,g=metas();
+function renderGoal(){{const M=P.metas,g=metas(),sent=load("enviado","")===weekKey(),d=new Date().getDay(),hot=!sent&&(d===0||d===5||d===6);
  const row=(l,v,n)=>`<div class="gr"><div class="gl"><span>${{l}}</span><b>${{Math.min(v,n)}} de ${{n}}${{v>=n?" ✓":""}}</b></div><div class="gb"><i style="width:${{Math.min(100,v/n*100)}}%"></i></div></div>`;
- document.getElementById("goal").innerHTML=`<h3>${{ic("target",20)}} Minha meta até o retorno</h3><div class="gs">Progresso desta semana (zera toda segunda)</div>`+
+ document.getElementById("goal").innerHTML=`<h3>${{ic("target",20)}} Minha semana</h3><div class="gs">Metas até o retorno · zera toda segunda</div>`+
   row("Dias seguindo o plano",g.plano,M.plano)+row("Dias com a água completa",g.agua,M.agua)+(M.treino?row(M.treino[0]+" na semana",g.treino,M.treino[1]):"")+
-  `<div class="gp">${{M.peso_txt?esc(M.peso_txt):"A meta de peso combinada na consulta está no seu plano em PDF."}} Registre o peso 1 vez por semana na aba Evolução. Os resultados variam de pessoa para pessoa.</div>`+
-  `<a class="gsend" href="${{window.SENDH||"#"}}" onclick="markSent()">${{ic("send",16)}} Enviar meu relatório da semana</a>`;
- const sent=load("enviado","")===weekKey(), d=new Date().getDay();
- const sun=document.getElementById("sunday"); if(sun){{sun.style.display=(!sent&&(d===0||d===5||d===6))?"flex":"none";sun.href=window.SENDH||"#"}}
- const ds=document.getElementById("dst"); if(ds) ds.innerHTML=sent?`${{ic("check",16)}} Relatório desta semana: <b>enviado</b>`:`Relatório desta semana: <b>pendente</b>${{d===0?" · hoje é o dia!":""}}`; if(ds) ds.className="dst "+(sent?"ok":"");
+  (M.peso_txt?`<div class="gp">${{esc(M.peso_txt)}}</div>`:"")+
+  `<div class="rel">${{sent?ic("check",15)+" Relatório desta semana: <b>enviado</b>":"Relatório da semana: <b>pendente</b> · envie no domingo"}} · <a href="#" onclick="go('dicas','como');return false">Como funciona?</a></div>`+
+  (sent?"":`<a class="gsend ${{hot?"hot":""}}" href="${{window.SENDH||"#"}}" onclick="markSent()">${{ic("send",16)}} ${{hot?"Enviar meu relatório agora":"Enviar meu relatório da semana"}}</a>`);
  const tc=document.getElementById("treinochk"); if(tc) tc.classList.toggle("ok",!!day.t);}}
+function go(t,a){{const b=document.querySelector(`nav button[data-t=${{t}}]`);if(b)b.click();setTimeout(()=>{{const e=document.getElementById(a);if(e)e.scrollIntoView({{behavior:"smooth"}})}},80)}}
 function weekKey(){{const d=new Date();const off=(d.getDay()+6)%7;d.setDate(d.getDate()-off);return ymd(d)}}
 function markSent(){{save("enviado",weekKey());setTimeout(render,300)}}
 function tgB(i){{buys=buys.includes(i)?buys.filter(x=>x!==i):[...buys,i];save("compras",buys);render()}}
@@ -342,6 +348,7 @@ function renderAppt(){{const R=P.retorno; const el=document.getElementById("appt
  const txt=dias>0?`Faltam <b>${{dias}} ${{dias===1?"dia":"dias"}}</b> para o seu retorno.`:`Chegou a hora do seu retorno.`;
  let pre=""; if(dias<=7){{const k="pre-"+R.data; const done=load(k,[]);
   pre=`<div class="pre"><p>Checklist para o retorno</p>${{PRE.map((t,i)=>`<div class="li ${{done.includes(i)?"ok":""}}" onclick="tgPre('${{k}}',${{i}})"><div class="bx">${{ic("check",14)}}</div><div class="tx">${{t}}</div></div>`).join("")}}</div>`}}
+ if(dias>7){{el.innerHTML=`<div class="apl">${{ic("calendar",16)}} Retorno em <b>${{dias}} dias</b> · <a href="${{wa}}">Agendar</a></div>`;return}}
  el.innerHTML=`<div class="appt"><div class="top"><div class="ic">${{ic("calendar",26)}}</div><div class="tx"><b>Seu retorno</b><small>${{txt}}<br>Fale com o Lucas para combinar o dia e o horário.</small></div>${{dias>0?`<div class="cd">${{dias}}<span>${{dias===1?"dia":"dias"}}</span></div>`:""}}</div>
   <a class="btn" href="${{wa}}">${{ic("message-circle",16)}} Agendar meu retorno</a>${{pre}}</div>`;
 }}
@@ -354,7 +361,7 @@ document.getElementById("tips").innerHTML=P.tips.map(t=>`<div class="box"><div c
 document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{{document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("on",x===b));document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("on",t.id==="t-"+b.dataset.t));window.scrollTo(0,0)}});
 document.getElementById("hoje").textContent=new Date().toLocaleDateString("pt-BR",{{weekday:"long",day:"numeric",month:"short"}});
 document.getElementById("fd").value=today;
-if(!(window.matchMedia&&matchMedia("(display-mode: standalone)").matches)&&!navigator.standalone) document.getElementById("hint").style.display="block";
+if(!(window.matchMedia&&matchMedia("(display-mode: standalone)").matches)&&!navigator.standalone&&!load("hintx",false)) document.getElementById("hint").style.display="block";
 const offEl=document.getElementById("off"); const net=()=>offEl.style.display=navigator.onLine?"none":"flex"; addEventListener("online",net); addEventListener("offline",net); net();
 if("serviceWorker" in navigator && location.protocol==="https:") navigator.serviceWorker.register("sw.js").catch(()=>{{}});
 calcInit();render();
