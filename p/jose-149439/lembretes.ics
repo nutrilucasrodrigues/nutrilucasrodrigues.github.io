@@ -18,7 +18,7 @@ DTSTART;TZID=America/Sao_Paulo:20261125T060000
 DTEND;TZID=America/Sao_Paulo:20261125T061500
 RRULE:FREQ=DAILY
 SUMMARY:Café da manhã (plano)
-DESCRIPTION:2 fatias médias de cuscuz de milho (200 g) · 2 ovos cozidos ou mexidos (100 g) · 1 caneca grande de leite (300 ml) com meia xícara de café (50 ml) e 2 colheres de sopa cheias de aveia (30 g) · 1 banana (90 g) · Manteiga: 1 ponta de faca (5 g)
+DESCRIPTION:1 fatia grande de cuscuz de milho (150 g) · 2 ovos cozidos ou mexidos (100 g) · 1 copo grande de leite (250 ml) com meia xícara de café (50 ml) e 2 colheres de sopa cheias de aveia (30 g) · 1 banana (90 g) · Manteiga: 1 ponta de faca (5 g)
 BEGIN:VALARM
 TRIGGER:PT0M
 ACTION:DISPLAY
@@ -46,7 +46,7 @@ DTSTART;TZID=America/Sao_Paulo:20261125T123000
 DTEND;TZID=America/Sao_Paulo:20261125T124500
 RRULE:FREQ=DAILY
 SUMMARY:Almoço (marmita) (plano)
-DESCRIPTION:12 colheres de sopa de arroz (300 g) · 1 concha e meia de feijão (150 g) · 1 filé médio de frango grelhado (100 g) · 3 colheres de sopa de cenoura cozida (50 g) · Salada à vontade · Azeite: 2 colheres de chá (8 ml)
+DESCRIPTION:10 colheres de sopa de arroz (250 g) · 1 concha e meia de feijão (150 g) · 1 filé médio e meio de frango grelhado (120 g) · 3 colheres de sopa de vinagrete (60 g) e salada à vontade · Azeite: 2 colheres de chá (8 ml)
 BEGIN:VALARM
 TRIGGER:PT0M
 ACTION:DISPLAY
@@ -74,7 +74,7 @@ DTSTART;TZID=America/Sao_Paulo:20261125T220000
 DTEND;TZID=America/Sao_Paulo:20261125T221500
 RRULE:FREQ=DAILY
 SUMMARY:Jantar (pós-treino) (plano)
-DESCRIPTION:9 colheres de sopa de arroz (230 g) · 1 concha e meia de feijão (150 g) · 1 filé pequeno de frango grelhado (80 g) · 4 rodelas de tomate (60 g) e salada à vontade · Azeite: 1 colher de chá (5 ml)
+DESCRIPTION:8 colheres de sopa de arroz (200 g) · 1 concha e meia de feijão (150 g) · 1 filé médio de frango grelhado (100 g) · 4 rodelas de tomate (60 g) e salada à vontade · Azeite: 1 colher de chá (5 ml)
 BEGIN:VALARM
 TRIGGER:PT0M
 ACTION:DISPLAY
