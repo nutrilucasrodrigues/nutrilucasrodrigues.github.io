@@ -1,0 +1,99 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//nutrilucas//plano//PT
+CALSCALE:GREGORIAN
+BEGIN:VTIMEZONE
+TZID:America/Sao_Paulo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:-0300
+TZOFFSETTO:-0300
+TZNAME:-03
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:jose-149439-ref0@nutrilucas
+DTSTAMP:20261125T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261125T060000
+DTEND;TZID=America/Sao_Paulo:20261125T061500
+RRULE:FREQ=DAILY
+SUMMARY:Café da manhã (plano)
+DESCRIPTION:2 fatias médias de cuscuz de milho (200 g) · 2 ovos cozidos ou mexidos (100 g) · 1 caneca grande de leite (300 ml) com meia xícara de café (50 ml) e 2 colheres de sopa cheias de aveia (30 g) · 1 banana (90 g) · Manteiga: 1 ponta de faca (5 g)
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do café da manhã
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:jose-149439-ref1@nutrilucas
+DTSTAMP:20261125T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261125T093000
+DTEND;TZID=America/Sao_Paulo:20261125T094500
+RRULE:FREQ=DAILY
+SUMMARY:Lanche de bolso (plano)
+DESCRIPTION:1 pão francês (50 g) com manteiga (5 g\, 1 ponta de faca) · 1 banana (90 g)
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do lanche de bolso
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:jose-149439-ref2@nutrilucas
+DTSTAMP:20261125T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261125T123000
+DTEND;TZID=America/Sao_Paulo:20261125T124500
+RRULE:FREQ=DAILY
+SUMMARY:Almoço (marmita) (plano)
+DESCRIPTION:12 colheres de sopa de arroz (300 g) · 1 concha e meia de feijão (150 g) · 1 filé médio de frango grelhado (100 g) · 3 colheres de sopa de cenoura cozida (50 g) · Salada à vontade · Azeite: 2 colheres de chá (8 ml)
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do almoço (marmita)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:jose-149439-ref3@nutrilucas
+DTSTAMP:20261125T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261125T183000
+DTEND;TZID=America/Sao_Paulo:20261125T184500
+RRULE:FREQ=DAILY
+SUMMARY:Pré-treino (plano)
+DESCRIPTION:2 pães franceses (100 g) com 2 colheres de sopa cheias de frango desfiado (50 g) · 1 banana (90 g) com 1 colher de sopa de mel (15 g) · Meia xícara de café (50 ml)\, se quiser
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do pré-treino
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:jose-149439-ref4@nutrilucas
+DTSTAMP:20261125T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261125T220000
+DTEND;TZID=America/Sao_Paulo:20261125T221500
+RRULE:FREQ=DAILY
+SUMMARY:Jantar (pós-treino) (plano)
+DESCRIPTION:9 colheres de sopa de arroz (230 g) · 1 concha e meia de feijão (150 g) · 1 filé pequeno de frango grelhado (80 g) · 4 rodelas de tomate (60 g) e salada à vontade · Azeite: 1 colher de chá (5 ml)
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do jantar (pós-treino)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:jose-149439-relatorio@nutrilucas
+DTSTAMP:20261125T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261129T190000
+DTEND;TZID=America/Sao_Paulo:20261129T191500
+RRULE:FREQ=WEEKLY;BYDAY=SU
+SUMMARY:Enviar meu relatório da semana para o Lucas
+DESCRIPTION:Abra o app e toque em Enviar meu relatório: https://nutrilucasrodrigues.github.io/p/jose-149439/
+URL:https://nutrilucasrodrigues.github.io/p/jose-149439/
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora de enviar seu relatório da semana para o Lucas
+END:VALARM
+END:VEVENT
+END:VCALENDAR
