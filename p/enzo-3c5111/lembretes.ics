@@ -18,7 +18,7 @@ DTSTART;TZID=America/Sao_Paulo:20261125T093000
 DTEND;TZID=America/Sao_Paulo:20261125T094500
 RRULE:FREQ=DAILY
 SUMMARY:Café da manhã (plano)
-DESCRIPTION:1 tapioca média (100 g de goma\, 5 colheres de sopa) com 2 ovos mexidos (100 g) e 1 ponta de faca de manteiga (5 g) · 1 copo grande de leite (250 ml) com 1 colher de sopa de Nescau (10 g) · 1 banana (90 g)
+DESCRIPTION:1 tapioca grande (110 g de goma\, 5 colheres e meia de sopa) com 2 ovos mexidos (100 g) e 1 ponta de faca de manteiga (5 g) · 1 copo grande de leite (250 ml) com 1 colher de sopa de Nescau (10 g) · 1 banana (90 g)
 BEGIN:VALARM
 TRIGGER:PT0M
 ACTION:DISPLAY
@@ -60,7 +60,7 @@ DTSTART;TZID=America/Sao_Paulo:20261125T184500
 DTEND;TZID=America/Sao_Paulo:20261125T190000
 RRULE:FREQ=DAILY
 SUMMARY:Vitamina pré-treino (plano)
-DESCRIPTION:Bata no liquidificador: 1 copo grande de leite (250 ml)\, 2 bananas (180 g)\, 2 colheres de sopa cheias de aveia (30 g) e 1 colher de sopa de mel (15 g)
+DESCRIPTION:Bata no liquidificador: 1 copo grande e meio de leite (300 ml)\, 2 bananas (180 g)\, 3 colheres de sopa de aveia (40 g) e 1 colher de sopa de mel (15 g)
 BEGIN:VALARM
 TRIGGER:PT0M
 ACTION:DISPLAY
@@ -74,7 +74,7 @@ DTSTART;TZID=America/Sao_Paulo:20261125T220000
 DTEND;TZID=America/Sao_Paulo:20261125T221500
 RRULE:FREQ=DAILY
 SUMMARY:Jantar (pós-treino) (plano)
-DESCRIPTION:10 colheres de sopa de arroz (250 g) · 1 concha e meia de feijão (150 g) · 1 filé pequeno de frango (80 g) · 4 rodelas de tomate (60 g) e salada à vontade · Azeite: 2 colheres de chá (10 ml)
+DESCRIPTION:11 colheres de sopa de arroz (280 g) · 1 concha e meia de feijão (150 g) · 1 filé pequeno de frango (80 g) · 4 rodelas de tomate (60 g) e salada à vontade · Azeite: 2 colheres de chá (10 ml)
 BEGIN:VALARM
 TRIGGER:PT0M
 ACTION:DISPLAY
@@ -88,7 +88,7 @@ DTSTART;TZID=America/Sao_Paulo:20261125T231500
 DTEND;TZID=America/Sao_Paulo:20261125T233000
 RRULE:FREQ=DAILY
 SUMMARY:Ceia (plano)
-DESCRIPTION:1 fatia grande de cuscuz (150 g) com 1 ponta de faca de manteiga (5 g) · 1 copo de leite (200 ml)
+DESCRIPTION:1 fatia grande de cuscuz (150 g) com 1 ponta de faca de manteiga (5 g) · 1 copo de leite (200 ml) · 1 banana (90 g)
 BEGIN:VALARM
 TRIGGER:PT0M
 ACTION:DISPLAY
