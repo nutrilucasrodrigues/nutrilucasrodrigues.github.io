@@ -1,0 +1,113 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//nutrilucas//plano//PT
+CALSCALE:GREGORIAN
+BEGIN:VTIMEZONE
+TZID:America/Sao_Paulo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:-0300
+TZOFFSETTO:-0300
+TZNAME:-03
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:taiana-091568-ref0@nutrilucas
+DTSTAMP:20261126T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261126T070000
+DTEND;TZID=America/Sao_Paulo:20261126T071500
+RRULE:FREQ=DAILY
+SUMMARY:Pré-treino (plano)
+DESCRIPTION:Bata no liquidificador: 1 copo de leite (200 ml)\, 1 banana (90 g)\, 1 colher de sopa de aveia (15 g) e 1 colher de sobremesa de mel (10 g)
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do pré-treino
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:taiana-091568-ref1@nutrilucas
+DTSTAMP:20261126T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261126T093000
+DTEND;TZID=America/Sao_Paulo:20261126T094500
+RRULE:FREQ=DAILY
+SUMMARY:Café da manhã (pós-treino) (plano)
+DESCRIPTION:1 fatia grande de cuscuz (150 g) com 1 ponta de faca de manteiga (5 g) · 2 ovos (100 g) · 1 fatia pequena de mamão (100 g) · Meio copo de leite com café (100 ml)
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do café da manhã (pós-treino)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:taiana-091568-ref2@nutrilucas
+DTSTAMP:20261126T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261126T123000
+DTEND;TZID=America/Sao_Paulo:20261126T124500
+RRULE:FREQ=DAILY
+SUMMARY:Almoço (plano)
+DESCRIPTION:6 colheres de sopa de arroz (150 g) · 1 concha de feijão (100 g) · 1 filé pequeno de frango (80 g) · 3 colheres de sopa de cenoura (50 g) e salada · Azeite: 2 colheres de chá (10 ml) · 2 dedos de suco de uva integral (50 ml) com água
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do almoço
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:taiana-091568-ref3@nutrilucas
+DTSTAMP:20261126T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261126T160000
+DTEND;TZID=America/Sao_Paulo:20261126T161500
+RRULE:FREQ=DAILY
+SUMMARY:Lanche da tarde (plano)
+DESCRIPTION:Bata no liquidificador: 1 copo de leite (200 ml)\, 1 banana (90 g)\, 1 colher de sopa cheia de aveia (20 g) e 1 colher de sopa de mel (15 g)
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do lanche da tarde
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:taiana-091568-ref4@nutrilucas
+DTSTAMP:20261126T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261126T193000
+DTEND;TZID=America/Sao_Paulo:20261126T194500
+RRULE:FREQ=DAILY
+SUMMARY:Jantar leve (plano)
+DESCRIPTION:5 colheres de sopa de arroz (120 g) · Meia concha de feijão (80 g) · 1 filé pequeno de frango (80 g) · 4 rodelas de tomate (60 g) e salada · Azeite: 2 colheres de chá (10 ml)
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do jantar leve
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:taiana-091568-ref5@nutrilucas
+DTSTAMP:20261126T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261126T220000
+DTEND;TZID=America/Sao_Paulo:20261126T221500
+RRULE:FREQ=DAILY
+SUMMARY:Ceia (plano)
+DESCRIPTION:1 pote de iogurte natural (170 g)
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do ceia
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:taiana-091568-relatorio@nutrilucas
+DTSTAMP:20261126T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261129T190000
+DTEND;TZID=America/Sao_Paulo:20261129T191500
+RRULE:FREQ=WEEKLY;BYDAY=SU
+SUMMARY:Enviar meu relatório da semana para o Lucas
+DESCRIPTION:Abra o app e toque em Enviar meu relatório: https://nutrilucasrodrigues.github.io/p/taiana-091568/
+URL:https://nutrilucasrodrigues.github.io/p/taiana-091568/
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora de enviar seu relatório da semana para o Lucas
+END:VALARM
+END:VEVENT
+END:VCALENDAR
