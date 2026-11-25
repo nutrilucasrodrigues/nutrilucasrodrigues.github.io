@@ -1,0 +1,99 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//nutrilucas//plano//PT
+CALSCALE:GREGORIAN
+BEGIN:VTIMEZONE
+TZID:America/Sao_Paulo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:-0300
+TZOFFSETTO:-0300
+TZNAME:-03
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:daniel-e752d0-ref0@nutrilucas
+DTSTAMP:20261126T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261126T070000
+DTEND;TZID=America/Sao_Paulo:20261126T071500
+RRULE:FREQ=DAILY
+SUMMARY:Café da manhã (plano)
+DESCRIPTION:1 pão francês (50 g) com 1 ponta de faca de manteiga (5 g) · 2 ovos mexidos ou cozidos (100 g) · 1 copo pequeno de leite (150 ml) com meia xícara de café (50 ml) · 1 banana (90 g)
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do café da manhã
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:daniel-e752d0-ref1@nutrilucas
+DTSTAMP:20261126T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261126T120000
+DTEND;TZID=America/Sao_Paulo:20261126T121500
+RRULE:FREQ=DAILY
+SUMMARY:Almoço (self-service) (plano)
+DESCRIPTION:Metade do prato de salada e legumes (100 g) · 1 filé grande de frango ou carne grelhada (150 g) · 7 colheres de sopa de arroz (170 g) · 1 concha de feijão (100 g) · Azeite na salada: 2 colheres de chá (10 ml)
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do almoço (self-service)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:daniel-e752d0-ref2@nutrilucas
+DTSTAMP:20261126T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261126T153000
+DTEND;TZID=America/Sao_Paulo:20261126T154500
+RRULE:FREQ=DAILY
+SUMMARY:Lanche da tarde (plano)
+DESCRIPTION:1 pote de iogurte natural (170 g) · 1 banana (90 g) · 2 colheres de sopa cheias de aveia (30 g)
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do lanche da tarde
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:daniel-e752d0-ref3@nutrilucas
+DTSTAMP:20261126T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261126T183000
+DTEND;TZID=America/Sao_Paulo:20261126T184500
+RRULE:FREQ=DAILY
+SUMMARY:Pré-treino (plano)
+DESCRIPTION:1 pão francês (50 g) com 1 ovo (50 g) · 1 banana (90 g)
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do pré-treino
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:daniel-e752d0-ref4@nutrilucas
+DTSTAMP:20261126T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261126T221500
+DTEND;TZID=America/Sao_Paulo:20261126T223000
+RRULE:FREQ=DAILY
+SUMMARY:Lanche da noite (pós-treino) (plano)
+DESCRIPTION:4 fatias de pão integral (100 g) ou 2 rap10 · 6 colheres de sopa de frango desfiado (150 g) · 4 rodelas de tomate (60 g)\, folhas de alface e 1 colher de chá de azeite (5 ml) · 1 copo de leite (200 ml)
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do lanche da noite (pós-treino)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:daniel-e752d0-relatorio@nutrilucas
+DTSTAMP:20261126T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261129T190000
+DTEND;TZID=America/Sao_Paulo:20261129T191500
+RRULE:FREQ=WEEKLY;BYDAY=SU
+SUMMARY:Enviar meu relatório da semana para o Lucas
+DESCRIPTION:Abra o app e toque em Enviar meu relatório: https://nutrilucasrodrigues.github.io/p/daniel-e752d0/
+URL:https://nutrilucasrodrigues.github.io/p/daniel-e752d0/
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora de enviar seu relatório da semana para o Lucas
+END:VALARM
+END:VEVENT
+END:VCALENDAR
