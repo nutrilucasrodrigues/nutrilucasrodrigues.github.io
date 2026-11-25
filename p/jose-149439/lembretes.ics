@@ -13,12 +13,12 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:jose-149439-ref0@nutrilucas
-DTSTAMP:20261125T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261125T060000
-DTEND;TZID=America/Sao_Paulo:20261125T061500
+DTSTAMP:20261126T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261126T060000
+DTEND;TZID=America/Sao_Paulo:20261126T061500
 RRULE:FREQ=DAILY
 SUMMARY:Café da manhã (plano)
-DESCRIPTION:1 fatia grande de cuscuz de milho (150 g) · 2 ovos cozidos ou mexidos (100 g) · 1 copo grande de leite (250 ml) com meia xícara de café (50 ml) e 2 colheres de sopa cheias de aveia (30 g) · 1 banana (90 g) · Manteiga: 1 ponta de faca (5 g)
+DESCRIPTION:1 fatia média de cuscuz de milho (100 g) · 2 ovos cozidos ou mexidos (100 g) · 1 copo grande de leite (250 ml) com meia xícara de café (50 ml) e 2 colheres de sopa cheias de aveia (30 g) · 1 banana (90 g) · Manteiga: 1 ponta de faca (5 g)
 BEGIN:VALARM
 TRIGGER:PT0M
 ACTION:DISPLAY
@@ -27,9 +27,9 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jose-149439-ref1@nutrilucas
-DTSTAMP:20261125T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261125T093000
-DTEND;TZID=America/Sao_Paulo:20261125T094500
+DTSTAMP:20261126T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261126T093000
+DTEND;TZID=America/Sao_Paulo:20261126T094500
 RRULE:FREQ=DAILY
 SUMMARY:Lanche de bolso (plano)
 DESCRIPTION:1 pão francês (50 g) com manteiga (5 g\, 1 ponta de faca) · 1 banana (90 g)
@@ -41,12 +41,12 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jose-149439-ref2@nutrilucas
-DTSTAMP:20261125T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261125T123000
-DTEND;TZID=America/Sao_Paulo:20261125T124500
+DTSTAMP:20261126T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261126T123000
+DTEND;TZID=America/Sao_Paulo:20261126T124500
 RRULE:FREQ=DAILY
 SUMMARY:Almoço (marmita) (plano)
-DESCRIPTION:10 colheres de sopa de arroz (250 g) · 1 concha e meia de feijão (150 g) · 1 filé médio e meio de frango grelhado (120 g) · 3 colheres de sopa de vinagrete (60 g) e salada à vontade · Azeite: 2 colheres de chá (8 ml)
+DESCRIPTION:7 colheres de sopa de arroz (180 g) · 1 concha e meia de feijão (150 g) · 1 filé médio e meio de frango grelhado (120 g) · 3 colheres de sopa de vinagrete (60 g) e salada à vontade · Azeite: 2 colheres de chá (8 ml)
 BEGIN:VALARM
 TRIGGER:PT0M
 ACTION:DISPLAY
@@ -55,12 +55,12 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jose-149439-ref3@nutrilucas
-DTSTAMP:20261125T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261125T183000
-DTEND;TZID=America/Sao_Paulo:20261125T184500
+DTSTAMP:20261126T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261126T183000
+DTEND;TZID=America/Sao_Paulo:20261126T184500
 RRULE:FREQ=DAILY
 SUMMARY:Pré-treino (plano)
-DESCRIPTION:2 pães franceses (100 g) com 2 colheres de sopa cheias de frango desfiado (50 g) · 1 banana (90 g) com 1 colher de sopa de mel (15 g) · Meia xícara de café (50 ml)\, se quiser
+DESCRIPTION:1 pão francês (50 g) com 2 colheres de sopa cheias de frango desfiado (50 g) · 1 banana (90 g) com 1 colher de sopa de mel (15 g) · Meia xícara de café (50 ml)\, se quiser
 BEGIN:VALARM
 TRIGGER:PT0M
 ACTION:DISPLAY
@@ -69,12 +69,12 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jose-149439-ref4@nutrilucas
-DTSTAMP:20261125T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261125T220000
-DTEND;TZID=America/Sao_Paulo:20261125T221500
+DTSTAMP:20261126T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261126T220000
+DTEND;TZID=America/Sao_Paulo:20261126T221500
 RRULE:FREQ=DAILY
 SUMMARY:Jantar (pós-treino) (plano)
-DESCRIPTION:8 colheres de sopa de arroz (200 g) · 1 concha e meia de feijão (150 g) · 1 filé médio de frango grelhado (100 g) · 4 rodelas de tomate (60 g) e salada à vontade · Azeite: 1 colher de chá (5 ml)
+DESCRIPTION:6 colheres de sopa de arroz (150 g) · 1 concha e meia de feijão (150 g) · 1 filé médio de frango grelhado (100 g) · 4 rodelas de tomate (60 g) e salada à vontade · Azeite: 1 colher de chá (5 ml)
 BEGIN:VALARM
 TRIGGER:PT0M
 ACTION:DISPLAY
@@ -83,7 +83,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:jose-149439-relatorio@nutrilucas
-DTSTAMP:20261125T000000Z
+DTSTAMP:20261126T000000Z
 DTSTART;TZID=America/Sao_Paulo:20261129T190000
 DTEND;TZID=America/Sao_Paulo:20261129T191500
 RRULE:FREQ=WEEKLY;BYDAY=SU
