@@ -13,12 +13,12 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:isabelly-15fc2f-ref0@nutrilucas
-DTSTAMP:20261119T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261119T050000
-DTEND;TZID=America/Sao_Paulo:20261119T051500
+DTSTAMP:20261126T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261126T050000
+DTEND;TZID=America/Sao_Paulo:20261126T051500
 RRULE:FREQ=DAILY
 SUMMARY:Café da manhã (plano)
-DESCRIPTION:3 colheres de sopa cheias de cuscuz · 2 ovos (cozidos ou mexidos) · Café com 2 colheres de sopa de leite em pó
+DESCRIPTION:3 colheres de sopa cheias de cuscuz (75 g) · 2 ovos cozidos ou mexidos (100 g) · Café com 2 colheres de sopa de leite em pó (20 g)
 BEGIN:VALARM
 TRIGGER:PT0M
 ACTION:DISPLAY
@@ -27,12 +27,12 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:isabelly-15fc2f-ref1@nutrilucas
-DTSTAMP:20261119T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261119T083000
-DTEND;TZID=America/Sao_Paulo:20261119T084500
+DTSTAMP:20261126T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261126T083000
+DTEND;TZID=America/Sao_Paulo:20261126T084500
 RRULE:FREQ=DAILY
 SUMMARY:Lanche da manhã (plano)
-DESCRIPTION:3 pães de queijo pequenos · Meio pote grande de iogurte natural (ou 1 pote pequeno)
+DESCRIPTION:3 pães de queijo pequenos (60 g) · 1 pote de iogurte natural (170 g)
 BEGIN:VALARM
 TRIGGER:PT0M
 ACTION:DISPLAY
@@ -41,12 +41,12 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:isabelly-15fc2f-ref2@nutrilucas
-DTSTAMP:20261119T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261119T123000
-DTEND;TZID=America/Sao_Paulo:20261119T124500
+DTSTAMP:20261126T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261126T123000
+DTEND;TZID=America/Sao_Paulo:20261126T124500
 RRULE:FREQ=DAILY
 SUMMARY:Almoço (plano)
-DESCRIPTION:Salada (alface e tomate) · 6 colheres de sopa de arroz · 1 concha pequena de feijão · 1 bife médio de carne magra · 2 colheres de sopa de cenoura · Óleo: 1 colher de chá no preparo
+DESCRIPTION:Salada à vontade (alface e tomate) · 6 colheres de sopa de arroz (150 g) · 1 concha pequena de feijão (80 g) · 1 bife médio de carne magra (100 g) · 2 colheres de sopa de cenoura (30 g) · Óleo: 1 colher de chá no preparo (5 ml)
 BEGIN:VALARM
 TRIGGER:PT0M
 ACTION:DISPLAY
@@ -55,12 +55,12 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:isabelly-15fc2f-ref3@nutrilucas
-DTSTAMP:20261119T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261119T160000
-DTEND;TZID=America/Sao_Paulo:20261119T161500
+DTSTAMP:20261126T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261126T160000
+DTEND;TZID=America/Sao_Paulo:20261126T161500
 RRULE:FREQ=DAILY
 SUMMARY:Lanche antes do treino (plano)
-DESCRIPTION:1 banana grande · 4 colheres de sopa de aveia · Meio copo de leite (2 colheres de sopa de leite em pó)
+DESCRIPTION:1 banana grande (120 g) · 4 colheres de sopa de aveia (40 g) · Meio copo de leite: 2 colheres de sopa de leite em pó (20 g) com água
 BEGIN:VALARM
 TRIGGER:PT0M
 ACTION:DISPLAY
@@ -69,12 +69,12 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:isabelly-15fc2f-ref4@nutrilucas
-DTSTAMP:20261119T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261119T200000
-DTEND;TZID=America/Sao_Paulo:20261119T201500
+DTSTAMP:20261126T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261126T200000
+DTEND;TZID=America/Sao_Paulo:20261126T201500
 RRULE:FREQ=DAILY
 SUMMARY:Jantar (plano)
-DESCRIPTION:4 pedaços médios de mandioca · 1 filé médio de frango · Meia concha de feijão · 3 colheres de sopa de brócolis · Azeite: 1 colher de sobremesa
+DESCRIPTION:4 pedaços médios de mandioca (200 g) · 1 filé médio de frango (100 g) · Meia concha de feijão (50 g) · 3 colheres de sopa de brócolis (45 g) · Azeite: 1 colher de sobremesa (8 ml)
 BEGIN:VALARM
 TRIGGER:PT0M
 ACTION:DISPLAY
@@ -83,9 +83,9 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:isabelly-15fc2f-relatorio@nutrilucas
-DTSTAMP:20261119T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261122T190000
-DTEND;TZID=America/Sao_Paulo:20261122T191500
+DTSTAMP:20261126T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261129T190000
+DTEND;TZID=America/Sao_Paulo:20261129T191500
 RRULE:FREQ=WEEKLY;BYDAY=SU
 SUMMARY:Enviar meu relatório da semana para o Lucas
 DESCRIPTION:Abra o app e toque em Enviar meu relatório: https://nutrilucasrodrigues.github.io/p/isabelly-15fc2f/

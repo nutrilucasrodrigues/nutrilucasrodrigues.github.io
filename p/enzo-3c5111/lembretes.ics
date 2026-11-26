@@ -13,9 +13,9 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:enzo-3c5111-ref0@nutrilucas
-DTSTAMP:20261125T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261125T093000
-DTEND;TZID=America/Sao_Paulo:20261125T094500
+DTSTAMP:20261126T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261126T093000
+DTEND;TZID=America/Sao_Paulo:20261126T094500
 RRULE:FREQ=DAILY
 SUMMARY:Café da manhã (plano)
 DESCRIPTION:1 tapioca grande (110 g de goma\, 5 colheres e meia de sopa) com 2 ovos mexidos (100 g) e 1 ponta de faca de manteiga (5 g) · 1 copo grande de leite (250 ml) com 1 colher de sopa de Nescau (10 g) · 1 banana (90 g)
@@ -27,9 +27,9 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:enzo-3c5111-ref1@nutrilucas
-DTSTAMP:20261125T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261125T120000
-DTEND;TZID=America/Sao_Paulo:20261125T121500
+DTSTAMP:20261126T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261126T120000
+DTEND;TZID=America/Sao_Paulo:20261126T121500
 RRULE:FREQ=DAILY
 SUMMARY:Almoço (plano)
 DESCRIPTION:10 colheres de sopa de arroz (250 g) · 1 concha e meia de feijão (150 g) · 1 filé pequeno de frango (60 g) · 3 colheres de sopa de abóbora (60 g) e salada à vontade · Azeite: 2 colheres de chá (10 ml)
@@ -41,9 +41,9 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:enzo-3c5111-ref2@nutrilucas
-DTSTAMP:20261125T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261125T153000
-DTEND;TZID=America/Sao_Paulo:20261125T154500
+DTSTAMP:20261126T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261126T153000
+DTEND;TZID=America/Sao_Paulo:20261126T154500
 RRULE:FREQ=DAILY
 SUMMARY:Merenda da escola (plano)
 DESCRIPTION:1 prato da merenda: 6 colheres de sopa de arroz ou macarrão (150 g) com pedaços de frango da galinhada (40 g) · 1 banana (90 g)\, levada de casa
@@ -55,9 +55,9 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:enzo-3c5111-ref3@nutrilucas
-DTSTAMP:20261125T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261125T184500
-DTEND;TZID=America/Sao_Paulo:20261125T190000
+DTSTAMP:20261126T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261126T184500
+DTEND;TZID=America/Sao_Paulo:20261126T190000
 RRULE:FREQ=DAILY
 SUMMARY:Vitamina pré-treino (plano)
 DESCRIPTION:Bata no liquidificador: 1 copo grande e meio de leite (300 ml)\, 2 bananas (180 g)\, 3 colheres de sopa de aveia (40 g) e 1 colher de sopa de mel (15 g)
@@ -69,9 +69,9 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:enzo-3c5111-ref4@nutrilucas
-DTSTAMP:20261125T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261125T220000
-DTEND;TZID=America/Sao_Paulo:20261125T221500
+DTSTAMP:20261126T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261126T220000
+DTEND;TZID=America/Sao_Paulo:20261126T221500
 RRULE:FREQ=DAILY
 SUMMARY:Jantar (pós-treino) (plano)
 DESCRIPTION:11 colheres de sopa de arroz (280 g) · 1 concha e meia de feijão (150 g) · 1 filé pequeno de frango (80 g) · 4 rodelas de tomate (60 g) e salada à vontade · Azeite: 2 colheres de chá (10 ml)
@@ -83,9 +83,9 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:enzo-3c5111-ref5@nutrilucas
-DTSTAMP:20261125T000000Z
-DTSTART;TZID=America/Sao_Paulo:20261125T231500
-DTEND;TZID=America/Sao_Paulo:20261125T233000
+DTSTAMP:20261126T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261126T231500
+DTEND;TZID=America/Sao_Paulo:20261126T233000
 RRULE:FREQ=DAILY
 SUMMARY:Ceia (plano)
 DESCRIPTION:1 fatia grande de cuscuz (150 g) com 1 ponta de faca de manteiga (5 g) · 1 copo de leite (200 ml) · 1 banana (90 g)
@@ -97,7 +97,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:enzo-3c5111-relatorio@nutrilucas
-DTSTAMP:20261125T000000Z
+DTSTAMP:20261126T000000Z
 DTSTART;TZID=America/Sao_Paulo:20261129T190000
 DTEND;TZID=America/Sao_Paulo:20261129T191500
 RRULE:FREQ=WEEKLY;BYDAY=SU

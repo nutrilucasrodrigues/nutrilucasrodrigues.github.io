@@ -116,6 +116,9 @@ h2{color:var(--dark);font-size:19px;margin:20px 2px 10px}
 .hint{position:relative;padding-right:34px!important}.hx{position:absolute;right:6px;top:4px;background:none;border:0;font-size:22px;color:#9a7a3a;cursor:pointer}
 .rel{font-size:13px;margin-top:10px;border-top:1px solid rgba(255,255,255,.18);padding-top:8px;opacity:.95}.rel a{color:var(--leaf);font-weight:700}.rel svg{vertical-align:-3px}
 .gsend.hot{background:#25D366;color:#fff;font-size:15px;padding:12px}
+.relc{background:#fff;border:2px solid var(--leaf);border-radius:18px;padding:12px 14px;margin-bottom:14px}.relc .rt{display:flex;align-items:center;gap:8px;font-size:16px;color:var(--dark)}.relc .rs{font-size:13px;color:var(--muted);margin-top:3px}.relc .rs a{color:var(--dark);font-weight:700}
+.relc .gsend{background:var(--dark);color:#fff}.relc.hot{background:var(--dark);border-color:var(--dark)}.relc.hot .rt{color:#fff}.relc.hot .rs{color:#fff;opacity:.9}.relc.hot .rs a{color:var(--leaf)}.relc.hot .gsend{background:#25D366}
+.relc.done{border:1px solid var(--line);padding:9px 14px;font-size:13.5px;color:var(--dark);display:flex;align-items:center;gap:6px}
 details.swapd{margin:4px 0 6px}details.swapd summary{font-size:13px;color:var(--dark);font-weight:700;padding:6px 0;cursor:pointer}details.swapd .swap{margin-top:4px}
 details.rem summary{padding:0;display:flex;gap:8px;align-items:center}details.rem .btn{display:flex;margin-top:8px}
 .toggle{display:flex;align-items:center;gap:12px;cursor:pointer}
@@ -172,6 +175,7 @@ HTML = f"""<!doctype html>
 <div class="off" id="off">{ico('wifi-off', 15, '#fff')} Sem internet: tudo continua funcionando.</div></header>
 <main>
 <section class="tab on" id="t-inicio">
+<div class="relc" id="relc"></div>
 <div id="appt"></div>
 <div class="hint" id="hint"><button class="hx" onclick="save('hintx',true);this.parentNode.style.display='none'" aria-label="Fechar">×</button>Dica: toque em <b>Compartilhar → Adicionar à Tela de Início</b> (iPhone) ou <b>⋮ → Adicionar à tela inicial</b> (Android) para abrir como app.</div>
  <div class="goal" id="goal"></div>
@@ -292,9 +296,11 @@ function renderGoal(){{const M=P.metas,g=metas(),sent=load("enviado","")===weekK
  const row=(l,v,n)=>`<div class="gr"><div class="gl"><span>${{l}}</span><b>${{Math.min(v,n)}} de ${{n}}${{v>=n?" ✓":""}}</b></div><div class="gb"><i style="width:${{Math.min(100,v/n*100)}}%"></i></div></div>`;
  document.getElementById("goal").innerHTML=`<h3>${{ic("target",20)}} Minha semana</h3><div class="gs">Metas até o retorno · zera toda segunda</div>`+
   row("Dias seguindo o plano",g.plano,M.plano)+row("Dias com a água completa",g.agua,M.agua)+(M.treino?row(M.treino[0]+" na semana",g.treino,M.treino[1]):"")+
-  (M.peso_txt?`<div class="gp">${{esc(M.peso_txt)}}</div>`:"")+
-  `<div class="rel">${{sent?ic("check",15)+" Relatório desta semana: <b>enviado</b>":"Relatório da semana: <b>pendente</b> · envie no domingo"}} · <a href="#" onclick="go('mais','como');return false">Como funciona?</a></div>`+
-  (sent?"":`<a class="gsend ${{hot?"hot":""}}" href="${{window.SENDH||"#"}}" onclick="markSent()">${{ic("send",16)}} ${{hot?"Enviar meu relatório agora":"Enviar meu relatório da semana"}}</a>`);
+  (M.peso_txt?`<div class="gp">${{esc(M.peso_txt)}}</div>`:"");
+ const rc=document.getElementById("relc"); rc.className="relc"+(sent?" done":hot?" hot":"");
+ rc.innerHTML=sent?`${{ic("check",16)}} Relatório desta semana: <b>enviado</b>`:
+  `<div class="rt">${{ic("send",18)}} <b>Relatório da semana</b></div><div class="rs">${{hot?"Hoje é dia de enviar! Leva 1 toque.":"Pendente · envie no domingo"}} · <a href="#" onclick="go('mais','como');return false">Como funciona?</a></div>`+
+  `<a class="gsend ${{hot?"hot":""}}" href="${{window.SENDH||"#"}}" onclick="markSent()">${{ic("send",16)}} ${{hot?"Enviar meu relatório agora":"Enviar meu relatório da semana"}}</a>`;
  const tc=document.getElementById("treinochk"); if(tc) tc.classList.toggle("ok",!!day.t);}}
 function go(t,a){{const b=document.querySelector(`nav button[data-t=${{t}}]`);if(b)b.click();setTimeout(()=>{{const e=document.getElementById(a);if(e)e.scrollIntoView({{behavior:"smooth"}})}},80)}}
 function weekKey(){{const d=new Date();const off=(d.getDay()+6)%7;d.setDate(d.getDate()-off);return ymd(d)}}
