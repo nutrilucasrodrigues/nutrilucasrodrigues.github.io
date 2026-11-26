@@ -1,0 +1,113 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//nutrilucas//plano//PT
+CALSCALE:GREGORIAN
+BEGIN:VTIMEZONE
+TZID:America/Sao_Paulo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:-0300
+TZOFFSETTO:-0300
+TZNAME:-03
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:rafael-0dc9bc-ref0@nutrilucas
+DTSTAMP:20261127T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261127T081500
+DTEND;TZID=America/Sao_Paulo:20261127T083000
+RRULE:FREQ=DAILY
+SUMMARY:Café da manhã (plano)
+DESCRIPTION:2 pães franceses (100 g) com 2 pontas de faca de manteiga (10 g) · 2 ovos mexidos (100 g) · Café com 1 copo pequeno de leite sem lactose (150 ml)
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do café da manhã
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:rafael-0dc9bc-ref1@nutrilucas
+DTSTAMP:20261127T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261127T103000
+DTEND;TZID=America/Sao_Paulo:20261127T104500
+RRULE:FREQ=DAILY
+SUMMARY:Lanche da manhã (plano)
+DESCRIPTION:1 banana (90 g) · 1 punhado pequeno de amendoim (20 g)
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do lanche da manhã
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:rafael-0dc9bc-ref2@nutrilucas
+DTSTAMP:20261127T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261127T130000
+DTEND;TZID=America/Sao_Paulo:20261127T131500
+RRULE:FREQ=DAILY
+SUMMARY:Almoço (plano)
+DESCRIPTION:1 filé pequeno de frango grelhado (80 g) · 6 colheres de sopa de arroz (150 g) · 1 concha de feijão (100 g) · 3 rodelas de tomate (40 g) e poucas folhas · Azeite: 2 colheres de chá (10 ml)
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do almoço
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:rafael-0dc9bc-ref3@nutrilucas
+DTSTAMP:20261127T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261127T163000
+DTEND;TZID=America/Sao_Paulo:20261127T164500
+RRULE:FREQ=DAILY
+SUMMARY:Lanche da tarde (plano)
+DESCRIPTION:1 pão francês (50 g) com 1 ovo (50 g) e 1 ponta de faca de manteiga (5 g) · 1 banana (90 g)
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do lanche da tarde
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:rafael-0dc9bc-ref4@nutrilucas
+DTSTAMP:20261127T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261127T203000
+DTEND;TZID=America/Sao_Paulo:20261127T204500
+RRULE:FREQ=DAILY
+SUMMARY:Jantar (plano)
+DESCRIPTION:1 escumadeira e meia de macarrão (180 g) · 1 concha de feijão (100 g) · 1 bife pequeno grelhado (80 g) · 3 rodelas de tomate (40 g) · Azeite: 2 colheres de chá (10 ml)
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do jantar
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:rafael-0dc9bc-ref5@nutrilucas
+DTSTAMP:20261127T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261127T233000
+DTEND;TZID=America/Sao_Paulo:20261127T234500
+RRULE:FREQ=DAILY
+SUMMARY:Ceia (plano)
+DESCRIPTION:1 copo de leite sem lactose (200 ml) com café\, se quiser · 1 fatia pequena de cuscuz (80 g)
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do ceia
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:rafael-0dc9bc-relatorio@nutrilucas
+DTSTAMP:20261127T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261129T190000
+DTEND;TZID=America/Sao_Paulo:20261129T191500
+RRULE:FREQ=WEEKLY;BYDAY=SU
+SUMMARY:Enviar meu relatório da semana para o Lucas
+DESCRIPTION:Abra o app e toque em Enviar meu relatório: https://nutrilucasrodrigues.github.io/p/rafael-0dc9bc/
+URL:https://nutrilucasrodrigues.github.io/p/rafael-0dc9bc/
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora de enviar seu relatório da semana para o Lucas
+END:VALARM
+END:VEVENT
+END:VCALENDAR
