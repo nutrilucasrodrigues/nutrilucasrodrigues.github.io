@@ -18,7 +18,7 @@ DTSTART;TZID=America/Sao_Paulo:20261126T070000
 DTEND;TZID=America/Sao_Paulo:20261126T071500
 RRULE:FREQ=DAILY
 SUMMARY:Pré-treino (plano)
-DESCRIPTION:Bata no liquidificador: 1 copo de leite (200 ml)\, 1 banana (90 g)\, 1 colher de sopa de aveia (15 g) e 1 colher de sobremesa de mel (10 g)
+DESCRIPTION:Bata no liquidificador: 1 copo de leite (200 ml)\, 1 banana (90 g) e 1 colher de sobremesa de mel (10 g)
 BEGIN:VALARM
 TRIGGER:PT0M
 ACTION:DISPLAY
@@ -32,7 +32,7 @@ DTSTART;TZID=America/Sao_Paulo:20261126T093000
 DTEND;TZID=America/Sao_Paulo:20261126T094500
 RRULE:FREQ=DAILY
 SUMMARY:Café da manhã (pós-treino) (plano)
-DESCRIPTION:1 fatia grande de cuscuz (150 g) com 1 ponta de faca de manteiga (5 g) · 2 ovos (100 g) · 1 fatia pequena de mamão (100 g) · Meio copo de leite com café (100 ml)
+DESCRIPTION:1 fatia grande de cuscuz (150 g) com 1 ponta de faca de manteiga (5 g) · 2 ovos mexidos (100 g) · Meio copo de leite com café (100 ml) · 1 fatia pequena de mamão (100 g)
 BEGIN:VALARM
 TRIGGER:PT0M
 ACTION:DISPLAY
@@ -46,7 +46,7 @@ DTSTART;TZID=America/Sao_Paulo:20261126T123000
 DTEND;TZID=America/Sao_Paulo:20261126T124500
 RRULE:FREQ=DAILY
 SUMMARY:Almoço (plano)
-DESCRIPTION:6 colheres de sopa de arroz (150 g) · 1 concha de feijão (100 g) · 1 filé pequeno de frango (80 g) · 3 colheres de sopa de cenoura (50 g) e salada · Azeite: 2 colheres de chá (10 ml) · 2 dedos de suco de uva integral (50 ml) com água
+DESCRIPTION:8 a 10 corações de frango (100 g) · 6 colheres de sopa de arroz (150 g) · Meia concha de feijão (80 g)\, mais caldo que grão · 2 colheres de sopa de beterraba crua ralada (30 g) e poucas folhas · Azeite: 2 colheres de chá (10 ml) · 2 dedos de suco de uva integral (50 ml) com água
 BEGIN:VALARM
 TRIGGER:PT0M
 ACTION:DISPLAY
@@ -59,12 +59,12 @@ DTSTAMP:20261126T000000Z
 DTSTART;TZID=America/Sao_Paulo:20261126T160000
 DTEND;TZID=America/Sao_Paulo:20261126T161500
 RRULE:FREQ=DAILY
-SUMMARY:Lanche da tarde (plano)
-DESCRIPTION:Bata no liquidificador: 1 copo de leite (200 ml)\, 1 banana (90 g)\, 1 colher de sopa cheia de aveia (20 g) e 1 colher de sopa de mel (15 g)
+SUMMARY:Shake da tarde (plano)
+DESCRIPTION:Bata no liquidificador: 1 copo de leite (200 ml)\, 1 banana (90 g)\, 1 colher de sopa de leite em pó (15 g)\, 1 colher de sopa rasa de farinha ou pasta de amendoim (10 g) e 1 colher de sopa de mel (15 g)
 BEGIN:VALARM
 TRIGGER:PT0M
 ACTION:DISPLAY
-DESCRIPTION:Hora do lanche da tarde
+DESCRIPTION:Hora do shake da tarde
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -74,7 +74,7 @@ DTSTART;TZID=America/Sao_Paulo:20261126T193000
 DTEND;TZID=America/Sao_Paulo:20261126T194500
 RRULE:FREQ=DAILY
 SUMMARY:Jantar leve (plano)
-DESCRIPTION:5 colheres de sopa de arroz (120 g) · Meia concha de feijão (80 g) · 1 filé pequeno de frango (80 g) · 4 rodelas de tomate (60 g) e salada · Azeite: 2 colheres de chá (10 ml)
+DESCRIPTION:1 filé pequeno de frango ou miúdos (80 g) · 5 colheres de sopa de arroz (120 g) · Meia concha pequena de feijão (60 g) · 3 rodelas de tomate (40 g) · Azeite: 1 colher de chá (5 ml)
 BEGIN:VALARM
 TRIGGER:PT0M
 ACTION:DISPLAY
