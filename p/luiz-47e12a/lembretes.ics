@@ -1,0 +1,113 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//nutrilucas//plano//PT
+CALSCALE:GREGORIAN
+BEGIN:VTIMEZONE
+TZID:America/Sao_Paulo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:-0300
+TZOFFSETTO:-0300
+TZNAME:-03
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:luiz-47e12a-ref0@nutrilucas
+DTSTAMP:20261126T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261126T083000
+DTEND;TZID=America/Sao_Paulo:20261126T084500
+RRULE:FREQ=DAILY
+SUMMARY:Café da manhã (plano)
+DESCRIPTION:1 pão francês (50 g) com 2 pontas de faca de manteiga (10 g) · 2 ovos mexidos (100 g) · 1 copo pequeno de leite (150 ml) com meia xícara de café (50 ml)
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do café da manhã
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:luiz-47e12a-ref1@nutrilucas
+DTSTAMP:20261126T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261126T103000
+DTEND;TZID=America/Sao_Paulo:20261126T104500
+RRULE:FREQ=DAILY
+SUMMARY:Lanche da manhã (plano)
+DESCRIPTION:1 pote de iogurte natural (170 g) · 1 banana (90 g) · 1 colher de sobremesa de mel (10 g)
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do lanche da manhã
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:luiz-47e12a-ref2@nutrilucas
+DTSTAMP:20261126T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261126T123000
+DTEND;TZID=America/Sao_Paulo:20261126T124500
+RRULE:FREQ=DAILY
+SUMMARY:Almoço (marmita) (plano)
+DESCRIPTION:3 pedaços pequenos de carne de panela (100 g) · 8 colheres de sopa de arroz (200 g) · 1 concha de feijão (100 g) · 2 colheres de sopa de cenoura (40 g) e poucas folhas · Azeite: 2 colheres de chá (10 ml)
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do almoço (marmita)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:luiz-47e12a-ref3@nutrilucas
+DTSTAMP:20261126T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261126T160000
+DTEND;TZID=America/Sao_Paulo:20261126T161500
+RRULE:FREQ=DAILY
+SUMMARY:Lanche da tarde (plano)
+DESCRIPTION:1 pão francês (50 g) com 1 ponta de faca de manteiga (5 g) e 2 colheres de sopa de frango desfiado (40 g) · 1 banana (90 g)
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do lanche da tarde
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:luiz-47e12a-ref4@nutrilucas
+DTSTAMP:20261126T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261126T184500
+DTEND;TZID=America/Sao_Paulo:20261126T190000
+RRULE:FREQ=DAILY
+SUMMARY:Pré-treino (plano)
+DESCRIPTION:1 fatia média e meia de cuscuz (120 g) com 1 ponta de faca de manteiga (5 g) · 1 ovo (50 g) · 1 colher de sopa de mel (15 g)
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do pré-treino
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:luiz-47e12a-ref5@nutrilucas
+DTSTAMP:20261126T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261126T213000
+DTEND;TZID=America/Sao_Paulo:20261126T214500
+RRULE:FREQ=DAILY
+SUMMARY:Lanche pós-treino (plano)
+DESCRIPTION:2 pães franceses (100 g) ou 2 rap10 · 4 colheres de sopa cheias de frango desfiado (100 g) · 3 rodelas de tomate (40 g) e 2 colheres de chá de azeite (10 ml) · 1 copo grande de leite (250 ml)
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora do lanche pós-treino
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:luiz-47e12a-relatorio@nutrilucas
+DTSTAMP:20261126T000000Z
+DTSTART;TZID=America/Sao_Paulo:20261129T190000
+DTEND;TZID=America/Sao_Paulo:20261129T191500
+RRULE:FREQ=WEEKLY;BYDAY=SU
+SUMMARY:Enviar meu relatório da semana para o Lucas
+DESCRIPTION:Abra o app e toque em Enviar meu relatório: https://nutrilucasrodrigues.github.io/p/luiz-47e12a/
+URL:https://nutrilucasrodrigues.github.io/p/luiz-47e12a/
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Hora de enviar seu relatório da semana para o Lucas
+END:VALARM
+END:VEVENT
+END:VCALENDAR
